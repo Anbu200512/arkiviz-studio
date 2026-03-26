@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlTag" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>ARKI·VIZ | Admin Dashboard - Architectural Rendering Studio</title>
+    <link rel="icon" type="image/jpg" href="image/growwpark_logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#c17b4c', // Warm terracotta
+                        secondary: '#a5653a' // Darker terracotta
+                    },
+                    screens: {
+                        'xs': '475px',
+                        'sm': '640px',
+                        'md': '768px',
+                        'lg': '1024px',
+                        'xl': '1280px',
+                    }
+                } 
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        
+        /* Logo Style - Terracotta Gradient */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-active { 
+            background: rgba(193, 123, 76, 0.1); 
+            border-left: 4px solid #c17b4c; 
+            color: #c17b4c !important; 
+            font-weight: 700; 
+        }
+        
+        [dir="rtl"] .sidebar-active { 
+            border-left: 0; 
+            border-right: 4px solid #c17b4c; 
+        }
+        
+        .custom-shadow { 
+            box-shadow: 0 10px 25px -5px rgba(193, 123, 76, 0.1); 
+        }
+        
+        .dark .custom-shadow { 
+            box-shadow: 0 10px 25px -5px rgba(193, 123, 76, 0.2); 
+        }
+        
+        .saas-card {
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            background: linear-gradient(135deg, rgba(193,123,76,0.02) 0%, rgba(255,255,255,1) 100%);
+        }
+        
+        .dark .saas-card {
+            background: linear-gradient(135deg, rgba(193,123,76,0.05) 0%, rgba(30,26,23,1) 100%);
+        }
+        
+        .page-node { 
+            display: none; 
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        .page-node.active { 
+            display: block; 
+            animation: fadeInUp 0.4s ease forwards;
+        }
+        
+        @keyframes fadeInUp { 
+            from { 
+                opacity: 0; 
+                transform: translateY(15px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @media (max-width: 1023px) {
+            #sidebar {
+                width: 280px;
+                box-shadow: 0 0 30px rgba(193,123,76,0.15);
+            }
+            
+            .dark #sidebar {
+                box-shadow: 0 0 30px rgba(193,123,76,0.3);
+            }
+        }
+        
+        button, a {
+            min-height: 44px;
+            min-width: 44px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 640px) {
+            table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+        }
+
+        .notification-item:hover {
+            background-color: rgba(193, 123, 76, 0.05);
+        }
+        
+        .status-badge {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-[#1E1A17] text-gray-900 dark:text-gray-100 antialiased">
+
+    <!-- Mobile Overlay -->
+    <div id="sidebarOverlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity duration-300"></div>
+
+    <div class="flex min-h-screen relative w-full overflow-x-hidden">
+        <!-- Sidebar - Architecture Studio Theme -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-[280px] bg-white dark:bg-[#2A241F] text-gray-500 dark:text-gray-400 transition-all duration-300 ease-in-out lg:translate-x-0 -translate-x-full border-r border-primary/20 dark:border-gray-700 overflow-y-auto">
+            <div class="p-5 h-full flex flex-col">
+                
+                <!-- Logo - Terracotta Gradient -->
+                <div class="flex items-center justify-between mb-8">
+                    <a href="index.html" class="logo mb-3">
+                        <i class="fas fa-cube text-2xl text-primary"></i>
+                        <span class="font-black text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI·VIZ</span>
+                    </a>
+                    
+                    <button onclick="toggleSidebar()" class="lg:hidden p-2 hover:bg-primary/10 rounded-lg">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Studio Badge -->
+                <div class="mb-4 p-2 bg-primary/10 dark:bg-primary/20 rounded-lg border border-primary/20 text-center">
+                    <span class="text-[8px] font-black text-primary uppercase tracking-widest">Architectural Visualization Studio</span>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="flex-1 space-y-1 overflow-y-auto">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-3 ml-2">
+                        <i data-lucide="layout-grid" class="w-3 h-3 inline mr-1"></i>
+                        MAIN MENU
+                    </p>
+                    
+                    <a href="javascript:void(0)" onclick="showPage('stats')" id="btn-stats" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl sidebar-active transition-all hover:bg-primary/10 group">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5 group-hover:scale-110 transition-transform text-primary"></i>
+                        <span class="font-medium">Dashboard</span>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="showPage('projects')" id="btn-projects" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                        <i data-lucide="folder-open" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Projects</span>
+                        <span class="ml-auto bg-primary text-white text-[8px] font-black px-2 py-1 rounded-full">128</span>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="showPage('renders')" id="btn-renders" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                        <i data-lucide="image" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Renders</span>
+                        <span class="ml-auto bg-primary text-white text-[8px] font-black px-2 py-1 rounded-full">342</span>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="showPage('clients')" id="btn-clients" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                        <i data-lucide="users" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Clients</span>
+                        <span class="ml-auto bg-primary text-white text-[8px] font-black px-2 py-1 rounded-full">245</span>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="showPage('queue')" id="btn-queue" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                        <i data-lucide="clock" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Render Queue</span>
+                        <span class="ml-auto bg-primary text-white text-[8px] font-black px-2 py-1 rounded-full">12</span>
+                    </a>
+                    
+                    <a href="javascript:void(0)" onclick="showPage('feedback')" id="btn-feedback" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                        <i data-lucide="message-square" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Feedback</span>
+                        <span class="ml-auto bg-primary text-white text-[8px] font-black px-2 py-1 rounded-full">8</span>
+                    </a>
+
+                    <!-- SETTINGS SECTION -->
+                    <div class="mt-6 pt-6 border-t border-primary/20 dark:border-gray-700">
+                        <p class="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-3 ml-2">
+                            <i data-lucide="settings" class="w-3 h-3 inline mr-1"></i>
+                            SETTINGS
+                        </p>
+                        
+                        <a href="javascript:void(0)" onclick="showPage('storage')" id="btn-storage" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                            <i data-lucide="hard-drive" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-medium">Storage</span>
+                            <span class="ml-auto bg-primary text-white text-[8px] font-black px-2 py-1 rounded-full">14.2GB</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" onclick="showPage('billing')" id="btn-billing" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                            <i data-lucide="receipt" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-medium">Billing</span>
+                        </a>
+                        
+                        <a href="javascript:void(0)" onclick="showPage('security')" id="btn-security" class="nav-btn flex items-center gap-3 p-3.5 rounded-xl hover:bg-primary/10 transition-all group">
+                            <i data-lucide="shield" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                            <span class="font-medium">Security</span>
+                        </a>
+                    </div>
+                </nav>
+
+                <!-- Bottom Controls -->
+                <div class="pt-6 mt-6 border-t border-primary/20 dark:border-gray-700">
+                    <div class="flex items-center justify-between bg-primary/10 dark:bg-gray-800/50 p-2 rounded-2xl">
+                        <button onclick="toggleDirection()" class="p-2.5 hover:bg-white dark:hover:bg-gray-700 rounded-xl shadow-sm transition-all text-gray-400 hover:text-primary flex items-center gap-1">
+                            <i class="fa-solid fa-left-right text-xs"></i>
+                        </button>
+                        
+                        <button onclick="toggleDarkMode()" class="p-2.5 bg-white dark:bg-gray-700 rounded-xl text-primary shadow-sm hover:scale-110 transition-all">
+                            <i id="themeIcon" data-lucide="moon" class="w-4 h-4"></i>
+                        </button>
+                        
+                        <a href="login.html">
+                            <button class="p-2.5 bg-primary/10 rounded-xl text-primary hover:scale-110 transition-all">
+                                <i data-lucide="log-out" class="w-4 h-4"></i>
+                            </button>
+                        </a>
+                    </div>
+                    
+                    <!-- Admin Profile -->
+                    <div class="mt-4 p-3 bg-gradient-to-r from-primary/5 to-transparent rounded-xl border border-primary/10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-black">
+                                AD
+                            </div>
+                            <div>
+                                <p class="font-bold text-sm">Alex Morgan</p>
+                                <p class="text-[9px] text-primary uppercase font-black tracking-widest">Studio Admin</p>
+                                <p class="text-[7px] text-gray-500">alex@arkiviz.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 lg:ml-[280px] p-4 sm:p-5 md:p-6 lg:p-8 transition-all duration-300 w-full max-w-full overflow-x-hidden">
+            
+            <!-- Header -->
+            <header class="flex items-center justify-between mb-6 sm:mb-8">
+                <div class="flex-1">
+                    <div class="flex items-center gap-3">
+                        <button onclick="toggleSidebar()" class="lg:hidden p-2.5 bg-white dark:bg-[#2A241F] rounded-xl custom-shadow border border-primary/20 dark:border-gray-700">
+                            <i id="menuIcon" data-lucide="menu" class="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 dark:text-white"></i>
+                        </button>
+                        <div>
+                            <h1 id="pageTitle" class="text-xl sm:text-2xl font-black tracking-tight uppercase">DASHBOARD</h1>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 font-medium mt-0.5">
+                                <span class="text-primary font-black">ARKI·VIZ</span> · Studio Management
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="flex items-center gap-2">
+                    <div class="hidden sm:flex items-center gap-2 bg-white dark:bg-[#2A241F] px-4 py-2 rounded-xl custom-shadow">
+                        <i data-lucide="clock" class="w-4 h-4 text-primary"></i>
+                        <span class="text-xs font-medium" id="liveTime">10:30 AM</span>
+                    </div>
+                    <div class="relative">
+                        <button onclick="showPage('feedback')" class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center relative">
+                            <i data-lucide="bell" class="w-5 h-5 text-primary"></i>
+                            <span class="absolute -top-1 -right-1 bg-primary text-white text-[8px] font-black px-1.5 py-0.5 rounded-full">8</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- PAGES -->
+            <div id="mainDisplay" class="space-y-6">
+                
+                <!-- === DASHBOARD PAGE === -->
+                <div id="page-stats" class="page-node active">
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] custom-shadow border border-primary/20 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                            <div class="flex items-center justify-between mb-2">
+                                <p class="text-[9px] sm:text-[10px] font-black text-primary uppercase tracking-widest">ACTIVE PROJECTS</p>
+                                <span class="bg-primary/10 text-primary text-[8px] sm:text-[9px] font-black px-2 py-1 rounded-full">+12%</span>
+                            </div>
+                            <h3 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white">128</h3>
+                            <div class="mt-2 flex items-center gap-2">
+                                <i data-lucide="trending-up" class="w-3 h-3 text-green-600"></i>
+                                <p class="text-[9px] sm:text-[10px] text-gray-500">+24 this month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                            <p class="text-[9px] sm:text-[10px] font-black text-primary uppercase tracking-widest mb-2">RENDERS COMPLETED</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white">2,438</h3>
+                            <div class="mt-2 flex items-center gap-2">
+                                <i data-lucide="image" class="w-3 h-3 text-primary"></i>
+                                <p class="text-[9px] sm:text-[10px] text-gray-500">+342 this month</p>
+                            </div>
+                        </div>
+                        
+                        <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                            <p class="text-[9px] sm:text-[10px] font-black text-primary uppercase tracking-widest mb-2">ACTIVE CLIENTS</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white">245</h3>
+                            <div class="mt-2 flex items-center gap-2">
+                                <i data-lucide="users" class="w-3 h-3 text-primary"></i>
+                                <p class="text-[9px] sm:text-[10px] text-gray-500">+18 this week</p>
+                            </div>
+                        </div>
+                        
+                        <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                            <p class="text-[9px] sm:text-[10px] font-black text-primary uppercase tracking-widest mb-2">STORAGE USED</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-gray-900 dark:text-white">14.2GB</h3>
+                            <div class="mt-2 flex items-center gap-2">
+                                <i data-lucide="hard-drive" class="w-3 h-3 text-primary"></i>
+                                <p class="text-[9px] sm:text-[10px] text-gray-500">/ 50GB</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <div class="lg:col-span-2 saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2.5rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                            <div class="flex items-center justify-between mb-4">
+                                <h4 class="text-xs sm:text-sm font-black uppercase tracking-wider">RENDERING VOLUME 2024</h4>
+                                <div class="flex gap-2">
+                                    <span class="px-2 py-1 bg-primary/10 text-primary rounded-lg text-[8px] sm:text-[9px] font-black">Monthly</span>
+                                </div>
+                            </div>
+                            <div class="h-[200px] sm:h-[250px]">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2.5rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                            <h4 class="text-xs sm:text-sm font-black uppercase tracking-wider mb-4">PROJECT CATEGORIES</h4>
+                            <div class="h-[200px] sm:h-[250px] flex items-center justify-center">
+                                <canvas id="trafficChart"></canvas>
+                            </div>
+                            <div class="mt-4 grid grid-cols-2 gap-2">
+                                <div class="flex items-center gap-1">
+                                    <span class="w-2 h-2 bg-primary rounded-full"></span>
+                                    <span class="text-[8px] sm:text-[9px] font-medium">Exterior (35%)</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="w-2 h-2 bg-secondary rounded-full"></span>
+                                    <span class="text-[8px] sm:text-[9px] font-medium">Interior (42%)</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <span class="w-2 h-2 bg-green-600 rounded-full"></span>
+                                    <span class="text-[8px] sm:text-[9px] font-medium">Animation (23%)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity -->
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl sm:rounded-[2.5rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-xs sm:text-sm font-black uppercase tracking-wider">RECENT RENDERING ACTIVITY</h4>
+                            <button class="text-primary text-[9px] sm:text-[10px] font-black uppercase hover:underline">View All</button>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 bg-primary/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                                        <i data-lucide="image" class="w-4 h-4 text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs sm:text-sm font-bold">SkyVilla Santorini - 4K Render</p>
+                                        <p class="text-[8px] sm:text-[9px] text-gray-400">2 hours ago</p>
+                                    </div>
+                                </div>
+                                <span class="text-[9px] sm:text-[10px] font-black text-green-600">Completed</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-primary/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                                        <i data-lucide="clock" class="w-4 h-4 text-secondary"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs sm:text-sm font-bold">Neo Tower Lobby - Interior</p>
+                                        <p class="text-[8px] sm:text-[9px] text-gray-400">5 hours ago</p>
+                                    </div>
+                                </div>
+                                <span class="text-[9px] sm:text-[10px] font-black text-amber-600">Processing</span>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-primary/5 rounded-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-green-600"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs sm:text-sm font-bold">Urban Oasis Park - Landscape</p>
+                                        <p class="text-[8px] sm:text-[9px] text-gray-400">Yesterday</p>
+                                    </div>
+                                </div>
+                                <span class="text-[9px] sm:text-[10px] font-black text-green-600">Delivered</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === PROJECTS PAGE === -->
+                <div id="page-projects" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-[2.5rem] custom-shadow border border-primary/20 dark:border-gray-700">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+                            <div>
+                                <h3 class="text-lg sm:text-xl font-black uppercase">PROJECTS</h3>
+                                <p class="text-[9px] sm:text-[10px] text-primary mt-1">128 active projects</p>
+                            </div>
+                            <button class="w-full sm:w-auto bg-primary text-white text-[10px] sm:text-[11px] font-black px-6 py-3 rounded-xl hover:bg-secondary transition-colors flex items-center justify-center gap-2">
+                                <i data-lucide="folder-plus" class="w-4 h-4"></i>
+                                New Project
+                            </button>
+                        </div>
+                        
+                        <div class="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0">
+                            <table class="w-full min-w-[600px] sm:min-w-full text-left">
+                                <thead class="border-b border-primary/20 dark:border-gray-700 text-[9px] sm:text-[10px] uppercase font-black text-primary">
+                                    <tr><th class="pb-3 sm:pb-4">PROJECT</th><th class="pb-3 sm:pb-4">CLIENT</th><th class="pb-3 sm:pb-4">STATUS</th><th class="pb-3 sm:pb-4 text-center">PROGRESS</th></tr>
+                                </thead>
+                                <tbody class="text-xs sm:text-sm font-medium">
+                                    <tr class="border-b border-primary/10 dark:border-gray-800 hover:bg-primary/5 transition-colors"><td class="py-3 sm:py-4 font-black">SkyVilla Santorini</td><td class="py-3 sm:py-4">Michael Chen</td><td class="py-3 sm:py-4"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-[8px] font-black">Rendering</span></td><td class="py-3 sm:py-4 text-center"><div class="w-24 bg-gray-200 rounded-full h-1.5"><div class="bg-primary h-1.5 rounded-full" style="width:85%"></div></div><span class="text-[8px]">85%</span></td></tr>
+                                    <tr class="border-b border-primary/10 dark:border-gray-800 hover:bg-primary/5 transition-colors"><td class="py-3 sm:py-4 font-black">Neo Tower Lobby</td><td class="py-3 sm:py-4">Sarah Johnson</td><td class="py-3 sm:py-4"><span class="bg-amber-100 text-amber-600 px-2 py-1 rounded-full text-[8px] font-black">In Progress</span></td><td class="py-3 sm:py-4 text-center"><div class="w-24 bg-gray-200 rounded-full h-1.5"><div class="bg-primary h-1.5 rounded-full" style="width:42%"></div></div><span class="text-[8px]">42%</span></td></tr>
+                                    <tr class="border-b border-primary/10 dark:border-gray-800 hover:bg-primary/5 transition-colors"><td class="py-3 sm:py-4 font-black">Urban Oasis Park</td><td class="py-3 sm:py-4">David Kim</td><td class="py-3 sm:py-4"><span class="bg-green-100 text-green-600 px-2 py-1 rounded-full text-[8px] font-black">Completed</span></td><td class="py-3 sm:py-4 text-center"><div class="w-24 bg-gray-200 rounded-full h-1.5"><div class="bg-green-600 h-1.5 rounded-full" style="width:100%"></div></div><span class="text-[8px]">100%</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === RENDERS PAGE === -->
+                <div id="page-renders" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-black uppercase mb-6">RENDERS LIBRARY</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                            <div class="bg-primary/5 rounded-xl p-3"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="rounded-lg w-full"><p class="text-sm font-bold mt-2">SkyVilla Final</p><p class="text-[8px] text-gray-500">4K · VRay</p></div>
+                            <div class="bg-primary/5 rounded-xl p-3"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="rounded-lg w-full"><p class="text-sm font-bold mt-2">Neo Tower Lobby</p><p class="text-[8px] text-gray-500">4K · Corona</p></div>
+                            <div class="bg-primary/5 rounded-xl p-3"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="rounded-lg w-full"><p class="text-sm font-bold mt-2">Urban Oasis Park</p><p class="text-[8px] text-gray-500">Lumion · 4K</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- === CLIENTS PAGE === -->
+                <div id="page-clients" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-black uppercase mb-6">CLIENTS</h3>
+                        <div class="space-y-3"><div class="flex justify-between p-3 bg-primary/5 rounded-xl"><div><p class="font-bold">Michael Chen</p><p class="text-[8px] text-gray-500">michael@studio.com</p></div><span class="text-[8px] font-black text-green-600">Enterprise</span></div><div class="flex justify-between p-3 bg-primary/5 rounded-xl"><div><p class="font-bold">Sarah Johnson</p><p class="text-[8px] text-gray-500">sarah@design.com</p></div><span class="text-[8px] font-black text-primary">Pro</span></div></div>
+                    </div>
+                </div>
+
+                <!-- === RENDER QUEUE PAGE === -->
+                <div id="page-queue" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-black uppercase mb-6">RENDER QUEUE</h3>
+                        <div class="space-y-3"><div class="p-3 bg-primary/5 rounded-xl"><div class="flex justify-between"><p class="font-bold">SkyVilla Santorini</p><span class="text-[8px] text-amber-600">85%</span></div><div class="w-full bg-gray-200 rounded-full h-1.5 mt-2"><div class="bg-primary h-1.5 rounded-full" style="width:85%"></div></div><p class="text-[8px] text-gray-500 mt-1">Est. completion: 2 hours</p></div></div>
+                    </div>
+                </div>
+
+                <!-- === FEEDBACK PAGE === -->
+                <div id="page-feedback" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-black uppercase mb-6">CLIENT FEEDBACK</h3>
+                        <div class="space-y-3"><div class="p-3 bg-primary/5 rounded-xl"><p class="font-bold">Michael Chen</p><p class="text-xs">"Amazing render quality! The lighting is perfect."</p><p class="text-[8px] text-gray-500 mt-1">2 hours ago</p></div><div class="p-3 bg-primary/5 rounded-xl"><p class="font-bold">Sarah Johnson</p><p class="text-xs">"Can we adjust the camera angle on the lobby render?"</p><p class="text-[8px] text-gray-500 mt-1">Yesterday</p></div></div>
+                    </div>
+                </div>
+
+                <!-- === STORAGE PAGE === -->
+                <div id="page-storage" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-black uppercase mb-6">STORAGE MANAGEMENT</h3>
+                        <div class="p-4 bg-primary/5 rounded-xl"><div class="flex justify-between"><span class="font-bold">Used Space</span><span>14.2 GB / 50 GB</span></div><div class="w-full bg-gray-200 rounded-full h-2 mt-2"><div class="bg-primary h-2 rounded-full" style="width:28.4%"></div></div><div class="grid grid-cols-2 gap-4 mt-4"><div><p class="text-[8px]">4K Renders</p><p class="font-bold">8.2 GB</p></div><div><p class="text-[8px]">3D Models</p><p class="font-bold">3.5 GB</p></div></div></div>
+                    </div>
+                </div>
+
+                <!-- === BILLING PAGE === -->
+                <div id="page-billing" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <h3 class="text-lg sm:text-xl font-black uppercase mb-6">BILLING</h3>
+                        <div class="space-y-4"><div class="flex justify-between p-4 bg-primary/5 rounded-xl"><span class="font-black">Current Plan</span><span class="text-primary font-black">Enterprise Studio</span></div><div class="flex justify-between p-4 bg-primary/5 rounded-xl"><span class="font-black">Monthly Revenue</span><span class="font-black">$12,450</span></div><div class="flex justify-between p-4 bg-primary/5 rounded-xl"><span class="font-black">Next Invoice</span><span class="font-black">$1,299</span></div></div>
+                    </div>
+                </div>
+
+                <!-- === SECURITY PAGE === -->
+                <div id="page-security" class="page-node">
+                    <div class="saas-card bg-white dark:bg-[#2A241F] p-4 sm:p-6 rounded-2xl custom-shadow border border-primary/20 dark:border-gray-700">
+                        <div class="flex items-center gap-2 mb-6"><i data-lucide="shield" class="w-6 h-6 text-primary"></i><h3 class="text-lg sm:text-xl font-black uppercase">SECURITY</h3></div>
+                        <div class="space-y-6"><div class="bg-primary/5 rounded-xl p-4"><div class="flex justify-between items-center"><div><p class="font-bold">Two-Factor Authentication</p><p class="text-[8px]">Protect your admin account</p></div><label class="relative inline-flex items-center cursor-pointer"><input type="checkbox" class="sr-only peer" checked><div class="w-11 h-6 bg-gray-200 peer-focus:ring-2 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div></label></div></div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <footer class="mt-8 text-center text-[8px] sm:text-[9px] text-primary/60 uppercase tracking-wider">
+                <p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering</p>
+                <p class="mt-1">v2.5.0 · All rights reserved</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('-translate-x-full');
+            if (window.innerWidth < 1024 && overlay) overlay.classList.toggle('hidden');
+        }
+
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (window.innerWidth >= 1024) { sidebar.classList.remove('-translate-x-full'); if (overlay) overlay.classList.add('hidden'); }
+            else { sidebar.classList.add('-translate-x-full'); if (overlay) overlay.classList.add('hidden'); }
+        });
+
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const icon = document.getElementById('themeIcon');
+            const isDark = document.documentElement.classList.contains('dark');
+            icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            lucide.createIcons();
+            localStorage.setItem('darkMode', isDark ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.getElementById('themeIcon')?.setAttribute('data-lucide', 'sun');
+            lucide.createIcons();
+        }
+
+        function toggleDirection() { document.getElementById('htmlTag').dir = document.getElementById('htmlTag').dir === 'rtl' ? 'ltr' : 'rtl'; lucide.createIcons(); }
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page-node').forEach(p => p.classList.remove('active'));
+            document.getElementById('page-' + pageId)?.classList.add('active');
+            const titles = { stats:'DASHBOARD', projects:'PROJECTS', renders:'RENDERS', clients:'CLIENTS', queue:'RENDER QUEUE', feedback:'FEEDBACK', storage:'STORAGE', billing:'BILLING', security:'SECURITY' };
+            document.getElementById('pageTitle').innerText = titles[pageId] || pageId.toUpperCase();
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('sidebar-active'));
+            document.getElementById('btn-' + pageId)?.classList.add('sidebar-active');
+            if (window.innerWidth < 1024) toggleSidebar();
+        }
+
+        function updateLiveTime() {
+            const el = document.getElementById('liveTime');
+            if(el) { const now = new Date(); el.innerText = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`; }
+        }
+        setInterval(updateLiveTime, 1000); updateLiveTime();
+
+        const ctxRevenue = document.getElementById('revenueChart')?.getContext('2d');
+        if(ctxRevenue) new Chart(ctxRevenue, { type:'line', data:{ labels:['Jan','Feb','Mar','Apr','May','Jun'], datasets:[{ label:'Renders', data:[185,245,312,408,485,612], borderColor:'#c17b4c', backgroundColor:'rgba(193,123,76,0.1)', borderWidth:2, pointRadius:3, tension:0.4, fill:true }] }, options:{ responsive:true, maintainAspectRatio:false, plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true } } } });
+        
+        const ctxTraffic = document.getElementById('trafficChart')?.getContext('2d');
+        if(ctxTraffic) new Chart(ctxTraffic, { type:'doughnut', data:{ labels:['Exterior','Interior','Animation'], datasets:[{ data:[35,42,23], backgroundColor:['#c17b4c','#a5653a','#22c55e'], borderWidth:0 }] }, options:{ responsive:true, maintainAspectRatio:false, cutout:'75%', plugins:{ legend:{ display:false } } } });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const overlay = document.createElement('div');
+            overlay.id = 'sidebarOverlay';
+            overlay.className = 'fixed inset-0 bg-black/50 z-40 hidden lg:hidden transition-opacity duration-300';
+            overlay.onclick = toggleSidebar;
+            document.body.appendChild(overlay);
+            showPage('stats');
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>

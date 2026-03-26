@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>About Us | ARKI·VIZ - 3D Architectural Rendering Studio</title>
+    <link rel="icon" type="image/jpg" href="image/growwpark_logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#c17b4c',
+                        secondary: '#8b5a2b',
+                        darkBg: '#1e1a17'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                } 
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        
+        body.light {
+            background: #F5F2F0;
+        }
+        
+        body.dark {
+            background: #1E1A17;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 1000;
+            background: rgba(255, 252, 248, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(193, 123, 76, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .navbar {
+            background: rgba(30, 26, 23, 0.95);
+            border-color: rgba(193, 123, 76, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(193, 123, 76, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c17b4c;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .dark .logo-text {
+            background: linear-gradient(135deg, #d69462, #c17b4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 40px;
+            color: #3a2c24;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            position: relative;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+        }
+        
+        .dark .nav-link {
+            color: #e8dfd8;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white !important;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            margin-top: 15px;
+            min-width: 220px;
+            background: white;
+            border-radius: 24px;
+            padding: 12px;
+            box-shadow: 0 20px 40px -10px rgba(193, 123, 76, 0.2);
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .dark .dropdown-menu {
+            background: #2a241f;
+            border-color: rgba(193, 123, 76, 0.3);
+        }
+        
+        .dropdown-group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            color: #3a2c24;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .dark .dropdown-item {
+            color: #e8dfd8;
+        }
+        
+        .dropdown-item i {
+            width: 18px;
+            color: #c17b4c;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item:hover i {
+            color: white;
+        }
+        
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 252, 248, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .dark #mobileMenu {
+            background: rgba(30, 26, 23, 0.98);
+        }
+        
+        #mobileMenu.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
+            border-radius: 30px;
+        }
+        
+        .close-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #3a2c24;
+            background: white;
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .dark .mobile-link {
+            color: #e8dfd8;
+            background: rgba(193, 123, 76, 0.1);
+            border-color: rgba(193, 123, 76, 0.2);
+        }
+        
+        .mobile-link:hover,
+        .mobile-link.active {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white !important;
+            transform: translateX(10px);
+            border-color: transparent;
+        }
+        
+        .mobile-submenu {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #c17b4c;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .mobile-submenu.open {
+            display: block;
+        }
+        
+        .mobile-submenu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border-radius: 16px;
+            color: #3a2c24;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid rgba(193, 123, 76, 0.2);
+        }
+        
+        .dark .mobile-submenu a {
+            color: #e8dfd8;
+            background: rgba(193, 123, 76, 0.1);
+        }
+        
+        .mobile-submenu a:hover,
+        .mobile-submenu a.active {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white !important;
+            transform: translateX(10px);
+            border-color: transparent;
+        }
+        
+        .action-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 45px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(193, 123, 76, 0.5);
+        }
+        
+        .settings-section {
+            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
+            border: 2px solid rgba(193, 123, 76, 0.3);
+            border-radius: 30px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+        
+        .settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        
+        .settings-label {
+            font-weight: 600;
+            color: #3a2c24;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dark .settings-label {
+            color: #e8dfd8;
+        }
+        
+        @media (max-width: 1024px) {
+            .desktop-menu { display: none !important; }
+            .desktop-auth { display: none !important; }
+            .mobile-toggle { display: flex !important; }
+        }
+        
+        @media (min-width: 1025px) {
+            .mobile-toggle { display: none !important; }
+            .desktop-menu { display: flex !important; }
+            .desktop-auth { display: block !important; }
+        }
+        
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(193, 123, 76, 0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(193, 123, 76, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        .hero-about-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .dark .hero-about-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .value-card {
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(193, 123, 76, 0.2);
+        }
+        
+        .team-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px -12px rgba(193, 123, 76, 0.25);
+        }
+        
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .milestone-card {
+            transition: all 0.3s ease;
+        }
+        
+        .milestone-card:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="light font-inter">
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 py-2">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i>
+                    <span class="logo-text">ARKI·VIZ</span>
+                </a>
+
+                <div class="desktop-menu items-center gap-1">
+                    <div class="dropdown-group relative">
+                        <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link active">About</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="upload.html" class="nav-link">Upload</a>
+                    <a href="feedback.html" class="nav-link">Feedback</a>
+                    <a href="assets.html" class="nav-link">Assets</a>
+                    <div class="dropdown-group relative">
+                        <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="portfolio.html" class="dropdown-item">Portfolio</a>
+                            <a href="rendering-queue.html" class="dropdown-item">Rendering Queue</a>
+                            <a href="collaboration.html" class="dropdown-item">Collaboration</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown-group relative">
+                        <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
+                            <a href="user.html" class="dropdown-item">User Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <div class="desktop-menu flex items-center gap-2">
+                        <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+                        <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
+                    </div>
+                    <div class="desktop-auth dropdown-group relative">
+                        <button class="action-btn"><i data-lucide="user" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu" style="right: 0; left: auto;">
+                            <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
+                            <a href="signup.html" class="dropdown-item"><i data-lucide="user-plus"></i>Signup</a>
+                        </div>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="mobile-toggle action-btn"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu">
+        <div class="mobile-header">
+            <a href="index.html" class="logo"><i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i><span class="logo-text">ARKI·VIZ</span></a>
+            <button onclick="toggleMobileMenu()" class="close-btn"><i data-lucide="x" class="w-6 h-6"></i></button>
+        </div>
+        <div class="px-4">
+            <button onclick="toggleMobileSubmenu('mobileHomeSub')" class="mobile-link"><span><i class="fas fa-home mr-2"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileHomeSub" class="mobile-submenu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
+            <a href="about.html" class="mobile-link active"><span><i class="fas fa-info-circle mr-2"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="projects.html" class="mobile-link"><span><i class="fas fa-folder-open mr-2"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="upload.html" class="mobile-link"><span><i class="fas fa-cloud-upload-alt mr-2"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="feedback.html" class="mobile-link"><span><i class="fas fa-comment-dots mr-2"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="assets.html" class="mobile-link"><span><i class="fas fa-database mr-2"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileStudioSub')" class="mobile-link"><span><i class="fas fa-building mr-2"></i>STUDIO</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileStudioSub" class="mobile-submenu"><a href="portfolio.html">Portfolio</a><a href="rendering-queue.html">Rendering Queue</a><a href="collaboration.html">Collaboration</a></div>
+            <a href="contact.html" class="mobile-link"><span><i class="fas fa-envelope mr-2"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSub')" class="mobile-link"><span><i class="fas fa-chalkboard-user mr-2"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileDashSub" class="mobile-submenu"><a href="admin.html">Admin Dashboard</a><a href="user.html">User Dashboard</a></div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSub')" class="mobile-link"><span><i class="fas fa-user-circle mr-2"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileAuthSub" class="mobile-submenu"><a href="login.html">Login</a><a href="signup.html">Signup</a></div>
+            <div class="settings-section">
+                <div class="settings-item"><span class="settings-label"><i class="fa-solid fa-arrow-right-arrow-left"></i>DIRECTION</span><button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-left-right"></i></button></div>
+                <div class="settings-item"><span class="settings-label"><i data-lucide="moon"></i>THEME</span><button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section - Similar to Homepage with Different Image -->
+    <section class="hero-about-bg relative min-h-screen flex items-center pt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-20 z-0"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="order-1 lg:order-1 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-amber-200 px-4 py-2 rounded-full text-sm font-semibold mb-6 mx-auto lg:mx-0">
+                        <i class="fas fa-cube"></i>
+                        <span>Our Story Since 2015</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
+                        Where Architecture<br class="hidden lg:block"> Meets <span class="text-amber-400">Visual Art</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-xl mx-auto lg:mx-0">
+                        We transform architectural concepts into photorealistic visualizations, helping architects, developers, and designers bring their visions to life with stunning accuracy and artistic excellence.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="upload.html" class="bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-amber-700 transition shadow-lg hover:shadow-xl flex items-center gap-2">
+                            <i class="fas fa-cloud-upload-alt"></i> Start Your Project
+                        </a>
+                        <a href="projects.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 flex items-center gap-2">
+                            <i class="fas fa-images"></i> View Our Work
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
+                        <div class="flex -space-x-2">
+                            <div class="w-10 h-10 rounded-full bg-amber-200 border-2 border-white flex items-center justify-center text-xs font-bold">MJ</div>
+                            <div class="w-10 h-10 rounded-full bg-stone-300 border-2 border-white flex items-center justify-center text-xs font-bold">SC</div>
+                            <div class="w-10 h-10 rounded-full bg-amber-300 border-2 border-white flex items-center justify-center text-xs font-bold">AR</div>
+                            <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs font-bold">+125</div>
+                        </div>
+                        <span class="text-sm text-gray-200">Trusted by 500+ architects worldwide</span>
+                    </div>
+                </div>
+
+                <!-- Right Content - Floating Image Card -->
+                <div class="order-2 lg:order-2 mt-8 lg:mt-0">
+                    <div class="floating-card relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500 max-w-md mx-auto lg:max-w-none bg-white/10 backdrop-blur-sm p-4 rounded-2xl">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Our Studio" class="w-full h-auto rounded-xl">
+                        <div class="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-sm p-3 rounded-xl">
+                            <div class="flex justify-between text-white text-sm"><span>Creative Studio Barcelona</span><span>Est. 2015</span></div>
+                            <div class="w-full bg-gray-600 rounded-full h-1.5 mt-2"><div class="bg-amber-500 h-1.5 rounded-full" style="width:100%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-amber-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">500+</div><div class="text-amber-100">Projects Completed</div></div>
+                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">45+</div><div class="text-amber-100">Countries Served</div></div>
+                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">15+</div><div class="text-amber-100">Years Experience</div></div>
+                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">98%</div><div class="text-amber-100">Client Satisfaction</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="order-2 lg:order-1">
+                    <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Story</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Creating Visual Stories That Inspire</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Founded in 2015, ARKI·VIZ was born from a passion for architectural design and cutting-edge visualization technology. What started as a small team of 3D artists has grown into a premier architectural visualization studio serving clients across 45+ countries.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">We believe every architectural project deserves to be seen in its full glory. Our mission is to bridge the gap between architectural vision and reality through stunning photorealistic renderings that not only showcase design intent but evoke emotion and inspire action.</p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Photoreal Quality</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Fast Turnaround</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Collaborative Process</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">24/7 Support</span></div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 relative">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Our Journey" class="rounded-2xl shadow-xl w-full">
+                    <div class="absolute -bottom-6 -right-6 bg-amber-600 rounded-2xl p-4 shadow-xl">
+                        <div class="text-white text-center"><div class="text-2xl font-bold">15+</div><div class="text-sm">Years of<br>Excellence</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Mission & Vision -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 text-center">
+                    <div class="w-20 h-20 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-bullseye text-3xl text-amber-600"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">To empower architects and designers with stunning visualizations that communicate their vision with clarity, emotion, and precision — bridging the gap between imagination and reality.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 text-center">
+                    <div class="w-20 h-20 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-eye text-3xl text-amber-600"></i></div>
+                    <h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+                    <p class="text-gray-600 dark:text-gray-400 leading-relaxed">To become the world's leading architectural visualization studio, known for artistic excellence, technical innovation, and unwavering commitment to client success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Core Values</span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-12">What Drives Us</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="value-card bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-paintbrush text-2xl text-amber-600"></i></div><h3 class="text-xl font-bold mb-3">Artistic Excellence</h3><p class="text-gray-600 dark:text-gray-400">Every render is crafted with meticulous attention to detail, lighting, composition, and photorealism.</p></div>
+                <div class="value-card bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-microchip text-2xl text-amber-600"></i></div><h3 class="text-xl font-bold mb-3">Technical Precision</h3><p class="text-gray-600 dark:text-gray-400">Using cutting-edge rendering engines for accurate materials, realistic lighting, and lifelike textures.</p></div>
+                <div class="value-card bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-handshake text-2xl text-amber-600"></i></div><h3 class="text-xl font-bold mb-3">Client Partnership</h3><p class="text-gray-600 dark:text-gray-400">Collaborative feedback loops ensure your vision is perfectly executed with transparency and communication.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Journey</span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-12">Key Milestones</h2>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="milestone-card bg-white dark:bg-gray-900 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2015</div><p class="font-semibold">Studio Founded</p><p class="text-sm text-gray-500">Started in Barcelona</p></div>
+                <div class="milestone-card bg-white dark:bg-gray-900 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2017</div><p class="font-semibold">First International Client</p><p class="text-sm text-gray-500">Expanded globally</p></div>
+                <div class="milestone-card bg-white dark:bg-gray-900 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2020</div><p class="font-semibold">100th Project Completed</p><p class="text-sm text-gray-500">Milestone achievement</p></div>
+                <div class="milestone-card bg-white dark:bg-gray-900 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2024</div><p class="font-semibold">500+ Projects</p><p class="text-sm text-gray-500">Global recognition</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Creative Minds</span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Meet Our Team</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Passionate artists, architects, and technologists dedicated to visual storytelling.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="team-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">Michael Chen</h3><p class="text-amber-600 text-sm mb-2">Founder & Creative Director</p><p class="text-gray-500 text-sm">15+ years in architectural visualization</p></div></div>
+                <div class="team-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">Sarah Rodriguez</h3><p class="text-amber-600 text-sm mb-2">Lead 3D Artist</p><p class="text-gray-500 text-sm">Expert in photorealistic rendering</p></div></div>
+                <div class="team-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">David Kim</h3><p class="text-amber-600 text-sm mb-2">Technical Director</p><p class="text-gray-500 text-sm">VRay & Corona Specialist</p></div></div>
+                <div class="team-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">Emma Watson</h3><p class="text-amber-600 text-sm mb-2">Client Relations</p><p class="text-gray-500 text-sm">Ensuring seamless collaboration</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Toolkit</span>
+            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Cutting-Edge Technology</h2>
+            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">We leverage industry-leading software to deliver exceptional results.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fab fa-3d text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">3ds Max</span></div>
+                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-cube text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">SketchUp</span></div>
+                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-drafting-compass text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">Revit</span></div>
+                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-chart-line text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">VRay</span></div>
+                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-sun text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">Corona</span></div>
+                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-mountain text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">Lumion</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-amber-600 to-stone-700">
+        <div class="max-w-4xl mx-auto text-center px-4">
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Ready to Visualize Your Vision?</h2>
+            <p class="text-xl text-amber-100 mb-8">Let's collaborate on your next architectural project.</p>
+            <a href="contact.html" class="bg-white text-amber-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition inline-flex items-center gap-2"><i class="fas fa-paper-plane"></i> Get in Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 mb-10">
+                <div class="col-span-2 lg:col-span-1"><a href="index.html" class="flex items-center gap-2 mb-3"><i class="fas fa-cube text-2xl text-amber-500"></i><span class="font-black text-2xl bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">ARKI·VIZ</span></a><p class="text-gray-400 text-sm mb-4">Architectural visualization & rendering studio.</p><div class="flex gap-3"><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-instagram text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-behance text-xs"></i></a></div></div>
+                <div><h4 class="font-bold mb-4 text-amber-400">Explore</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="projects.html" class="hover:text-white">Projects</a></li><li><a href="upload.html" class="hover:text-white">Upload</a></li><li><a href="assets.html" class="hover:text-white">Assets</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-amber-400">Studio</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li><li><a href="rendering-queue.html" class="hover:text-white">Rendering</a></li><li><a href="contact.html" class="hover:text-white">Contact</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-amber-400">Contact</h4><div class="text-gray-400 text-sm"><p><i class="fas fa-map-marker-alt mr-2 text-amber-500"></i> Barcelona, Spain</p><p><i class="fas fa-envelope mr-2 text-amber-500"></i> studio@arkiviz.com</p></div></div>
+            </div>
+            <div class="pt-6 border-t border-gray-800 text-center text-gray-500 text-xs"><p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering</p></div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        function toggleMobileMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('open');document.body.classList.toggle('menu-open');setTimeout(()=>lucide.createIcons(),100);}
+        function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.classList.remove('menu-open');}
+        function toggleMobileSubmenu(id){const s=document.getElementById(id);if(s){s.classList.toggle('open');const btn=s.previousElementSibling;const icon=btn?.querySelector('i:last-child');if(icon){icon.style.transform=s.classList.contains('open')?'rotate(180deg)':'rotate(0deg)';}}setTimeout(()=>lucide.createIcons(),10);}
+        function toggleTheme(){document.documentElement.classList.toggle('dark');document.body.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');setTimeout(()=>lucide.createIcons(),10);}
+        function toggleDirection(){document.documentElement.dir=document.documentElement.dir==='rtl'?'ltr':'rtl';}
+        
+        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
+        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
+    </script>
+</body>
+</html>

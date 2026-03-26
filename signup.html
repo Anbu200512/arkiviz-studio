@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Sign Up | ARKI·VIZ - 3D Architectural Rendering Studio</title>
+    <link rel="icon" type="image/jpg" href="image/growwpark_logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: { 
+                extend: { 
+                    colors: { 
+                        primary: '#c17b4c',
+                        secondary: '#a5653a',
+                        darkBg: '#1e1a17'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    }
+                } 
+            }
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+        
+        body.light {
+            background: #F5F2F0;
+        }
+        
+        body.dark {
+            background: #1E1A17;
+        }
+        
+        body.menu-open {
+            overflow: hidden;
+        }
+        
+        .navbar {
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            z-index: 1000;
+            background: rgba(255, 252, 248, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(193, 123, 76, 0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .dark .navbar {
+            background: rgba(30, 26, 23, 0.95);
+            border-color: rgba(193, 123, 76, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(193, 123, 76, 0.2);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c17b4c;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+        }
+        
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo-text {
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+        
+        .dark .logo-text {
+            background: linear-gradient(135deg, #d69462, #c17b4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-link {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 40px;
+            color: #3a2c24;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            position: relative;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+        }
+        
+        .dark .nav-link {
+            color: #e8dfd8;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white !important;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            margin-top: 15px;
+            min-width: 220px;
+            background: white;
+            border-radius: 24px;
+            padding: 12px;
+            box-shadow: 0 20px 40px -10px rgba(193, 123, 76, 0.2);
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .dark .dropdown-menu {
+            background: #2a241f;
+            border-color: rgba(193, 123, 76, 0.3);
+        }
+        
+        .dropdown-group:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 16px;
+            color: #3a2c24;
+            font-weight: 500;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .dark .dropdown-item {
+            color: #e8dfd8;
+        }
+        
+        .dropdown-item i {
+            width: 18px;
+            color: #c17b4c;
+        }
+        
+        .dropdown-item:hover {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .dropdown-item:hover i {
+            color: white;
+        }
+        
+        #mobileMenu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 252, 248, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 2000;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .dark #mobileMenu {
+            background: rgba(30, 26, 23, 0.98);
+        }
+        
+        #mobileMenu.open {
+            transform: translateX(0);
+        }
+        
+        .mobile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
+            border-radius: 30px;
+        }
+        
+        .close-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            color: white;
+            border: none;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        .mobile-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #3a2c24;
+            background: white;
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .dark .mobile-link {
+            color: #e8dfd8;
+            background: rgba(193, 123, 76, 0.1);
+            border-color: rgba(193, 123, 76, 0.2);
+        }
+        
+        .mobile-link:hover,
+        .mobile-link.active {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white !important;
+            transform: translateX(10px);
+            border-color: transparent;
+        }
+        
+        .mobile-submenu {
+            margin-left: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #c17b4c;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .mobile-submenu.open {
+            display: block;
+        }
+        
+        .mobile-submenu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border-radius: 16px;
+            color: #3a2c24;
+            font-weight: 500;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: white;
+            border: 1px solid rgba(193, 123, 76, 0.2);
+        }
+        
+        .dark .mobile-submenu a {
+            color: #e8dfd8;
+            background: rgba(193, 123, 76, 0.1);
+        }
+        
+        .mobile-submenu a:hover,
+        .mobile-submenu a.active {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white !important;
+            transform: translateX(10px);
+            border-color: transparent;
+        }
+        
+        .action-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 45px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(193, 123, 76, 0.5);
+        }
+        
+        .settings-section {
+            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
+            border: 2px solid rgba(193, 123, 76, 0.3);
+            border-radius: 30px;
+            padding: 24px;
+            margin-top: 30px;
+        }
+        
+        .settings-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+        }
+        
+        .settings-label {
+            font-weight: 600;
+            color: #3a2c24;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .dark .settings-label {
+            color: #e8dfd8;
+        }
+        
+        @media (max-width: 1024px) {
+            .desktop-menu { display: none !important; }
+            .desktop-auth { display: none !important; }
+            .mobile-toggle { display: flex !important; }
+        }
+        
+        @media (min-width: 1025px) {
+            .mobile-toggle { display: none !important; }
+            .desktop-menu { display: flex !important; }
+            .desktop-auth { display: block !important; }
+        }
+        
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(193, 123, 76, 0.08) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(193, 123, 76, 0.08) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        
+        /* Hero Section - Creative Team Background */
+        .signup-hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .dark .signup-hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        }
+        
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .signup-card {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        
+        .signup-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 40px -12px rgba(193, 123, 76, 0.3);
+        }
+        
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #c17b4c;
+            box-shadow: 0 0 0 3px rgba(193, 123, 76, 0.1);
+            outline: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 24px;
+            max-width: 400px;
+            width: 90%;
+        }
+        
+        .dark .modal-content {
+            background: #1e1a17;
+        }
+        
+        .password-strength {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="light font-inter">
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 py-2">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i>
+                    <span class="logo-text">ARKI·VIZ</span>
+                </a>
+
+                <div class="desktop-menu items-center gap-1">
+                    <div class="dropdown-group relative">
+                        <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="index.html" class="dropdown-item">Home 1</a>
+                            <a href="home2.html" class="dropdown-item">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="upload.html" class="nav-link">Upload</a>
+                    <a href="feedback.html" class="nav-link">Feedback</a>
+                    <a href="assets.html" class="nav-link">Assets</a>
+                    <div class="dropdown-group relative">
+                        <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="portfolio.html" class="dropdown-item">Portfolio</a>
+                            <a href="rendering-queue.html" class="dropdown-item">Rendering Queue</a>
+                            <a href="collaboration.html" class="dropdown-item">Collaboration</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown-group relative">
+                        <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu">
+                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
+                            <a href="user.html" class="dropdown-item">User Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <div class="desktop-menu flex items-center gap-2">
+                        <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
+                        <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
+                    </div>
+                    <div class="desktop-auth dropdown-group relative">
+                        <button class="action-btn active"><i data-lucide="user" class="w-4 h-4"></i></button>
+                        <div class="dropdown-menu" style="right: 0; left: auto;">
+                            <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
+                            <a href="signup.html" class="dropdown-item active"><i data-lucide="user-plus"></i>Signup</a>
+                        </div>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="mobile-toggle action-btn"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu">
+        <div class="mobile-header">
+            <a href="index.html" class="logo"><i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i><span class="logo-text">ARKI·VIZ</span></a>
+            <button onclick="toggleMobileMenu()" class="close-btn"><i data-lucide="x" class="w-6 h-6"></i></button>
+        </div>
+        <div class="px-4">
+            <button onclick="toggleMobileSubmenu('mobileHomeSub')" class="mobile-link"><span><i class="fas fa-home mr-2"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileHomeSub" class="mobile-submenu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
+            <a href="about.html" class="mobile-link"><span><i class="fas fa-info-circle mr-2"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="projects.html" class="mobile-link"><span><i class="fas fa-folder-open mr-2"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="upload.html" class="mobile-link"><span><i class="fas fa-cloud-upload-alt mr-2"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="feedback.html" class="mobile-link"><span><i class="fas fa-comment-dots mr-2"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="assets.html" class="mobile-link"><span><i class="fas fa-database mr-2"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileStudioSub')" class="mobile-link"><span><i class="fas fa-building mr-2"></i>STUDIO</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileStudioSub" class="mobile-submenu"><a href="portfolio.html">Portfolio</a><a href="rendering-queue.html">Rendering Queue</a><a href="collaboration.html">Collaboration</a><a href="team.html">Our Team</a></div>
+            <a href="contact.html" class="mobile-link"><span><i class="fas fa-envelope mr-2"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSub')" class="mobile-link"><span><i class="fas fa-chalkboard-user mr-2"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileDashSub" class="mobile-submenu"><a href="admin.html">Admin Dashboard</a><a href="user.html">User Dashboard</a></div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSub')" class="mobile-link active"><span><i class="fas fa-user-circle mr-2"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileAuthSub" class="mobile-submenu open"><a href="login.html">Login</a><a href="signup.html" class="active">Signup</a></div>
+            <div class="settings-section">
+                <div class="settings-item"><span class="settings-label"><i class="fa-solid fa-arrow-right-arrow-left"></i>DIRECTION</span><button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-left-right"></i></button></div>
+                <div class="settings-item"><span class="settings-label"><i data-lucide="moon"></i>THEME</span><button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section with Creative Team Background -->
+    <section class="signup-hero-bg relative min-h-screen flex items-center pt-16 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-pattern opacity-20 z-0"></div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content - Welcome Message -->
+                <div class="order-1 lg:order-1 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-amber-200 px-4 py-2 rounded-full text-sm font-semibold mb-6 mx-auto lg:mx-0">
+                        <i class="fas fa-cube"></i>
+                        <span>Join the Studio</span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
+                        Create Your <br class="hidden lg:block"> <span class="text-amber-400">Studio Account</span>
+                    </h1>
+                    
+                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-xl mx-auto lg:mx-0">
+                        Start visualizing your architectural projects with our professional rendering studio. Upload, collaborate, and download stunning 4K renders.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="login.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 flex items-center gap-2">
+                            <i class="fas fa-sign-in-alt"></i> Already have an account? Sign In
+                        </a>
+                    </div>
+
+                    <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
+                        <div class="flex -space-x-2">
+                            <div class="w-10 h-10 rounded-full bg-amber-200 border-2 border-white flex items-center justify-center text-xs font-bold">MJ</div>
+                            <div class="w-10 h-10 rounded-full bg-stone-300 border-2 border-white flex items-center justify-center text-xs font-bold">SC</div>
+                            <div class="w-10 h-10 rounded-full bg-amber-300 border-2 border-white flex items-center justify-center text-xs font-bold">AR</div>
+                        </div>
+                        <span class="text-sm text-gray-200">Join 500+ architects using ARKI·VIZ</span>
+                    </div>
+                </div>
+
+                <!-- Right Content - Signup Form -->
+                <div class="order-2 lg:order-2 mt-8 lg:mt-0">
+                    <div class="signup-card bg-white/95 dark:bg-[#2A241F]/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 md:p-8 border border-primary/20">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-user-plus text-2xl text-primary"></i>
+                            </div>
+                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create Account</h2>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Start your journey with ARKI·VIZ</p>
+                        </div>
+                        
+                        <form id="signupForm" class="space-y-4">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label><input type="text" id="firstName" class="form-input w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="John" required></div>
+                                <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label><input type="text" id="lastName" class="form-input w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="Doe" required></div>
+                            </div>
+                            
+                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label><div class="relative"><i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i><input type="email" id="signupEmail" class="form-input w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="studio@arkiviz.com" required></div></div>
+                            
+                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Company / Firm (Optional)</label><div class="relative"><i class="fas fa-building absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i><input type="text" id="company" class="form-input w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="Your Architecture Firm"></div></div>
+                            
+                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label><div class="relative"><i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i><input type="password" id="signupPassword" class="form-input w-full pl-10 pr-12 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="••••••••" required><button type="button" onclick="toggleSignupPassword()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary"><i id="signupPasswordIcon" class="fas fa-eye text-sm"></i></button></div><div id="passwordStrength" class="mt-2"><div class="flex gap-1 h-1"><span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span><span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span><span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span><span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span></div><p id="strengthText" class="text-[10px] text-gray-500 mt-1">Use 8+ characters with mix of letters & numbers</p></div></div>
+                            
+                            <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Confirm Password</label><div class="relative"><i class="fas fa-check-circle absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i><input type="password" id="confirmPassword" class="form-input w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="••••••••" required></div><p id="passwordMatchMsg" class="text-[10px] mt-1"></p></div>
+                            
+                            <div class="flex items-center gap-2"><input type="checkbox" id="termsCheckbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary"><label class="text-xs text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a></label></div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-lg flex items-center justify-center gap-2"><i class="fas fa-user-plus"></i> Create Free Account</button>
+                        </form>
+                        
+                        <div class="relative my-5"><div class="absolute inset-0 flex items-center"><div class="w-full border-t border-gray-300 dark:border-gray-700"></div></div><div class="relative flex justify-center text-sm"><span class="px-2 bg-white/95 dark:bg-[#2A241F]/95 text-gray-500">Or sign up with</span></div></div>
+                        
+                        <div class="grid grid-cols-2 gap-3"><button onclick="socialSignup('google')" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 transition"><i class="fab fa-google text-red-500"></i><span class="text-sm font-medium">Google</span></button><button onclick="socialSignup('github')" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 transition"><i class="fab fa-github text-gray-800 dark:text-white"></i><span class="text-sm font-medium">GitHub</span></button></div>
+                        
+                        <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">Already have an account? <a href="login.html" class="text-primary font-semibold hover:underline">Sign in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12"><h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">What You Get</h2><p class="text-gray-600 dark:text-gray-400 mt-2">Everything you need to bring your architectural visions to life</p></div>
+            <div class="grid md:grid-cols-3 gap-8 text-center"><div><i class="fas fa-cloud-upload-alt text-3xl text-primary mb-3"></i><h3 class="font-bold mb-2">Upload Projects</h3><p class="text-sm text-gray-500">Share your architectural files securely</p></div><div><i class="fas fa-chart-line text-3xl text-primary mb-3"></i><h3 class="font-bold mb-2">Track Progress</h3><p class="text-sm text-gray-500">Monitor rendering status in real-time</p></div><div><i class="fas fa-download text-3xl text-primary mb-3"></i><h3 class="font-bold mb-2">Download Assets</h3><p class="text-sm text-gray-500">Get high-res renders instantly</p></div></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 mb-10">
+                <div class="col-span-2 lg:col-span-1"><a href="index.html" class="flex items-center gap-2 mb-3"><i class="fas fa-cube text-2xl text-amber-500"></i><span class="font-black text-2xl bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">ARKI·VIZ</span></a><p class="text-gray-400 text-sm mb-4">Architectural visualization & rendering studio.</p><div class="flex gap-3"><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-instagram text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-behance text-xs"></i></a></div></div>
+                <div><h4 class="font-bold mb-4 text-amber-400">Explore</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="projects.html" class="hover:text-white">Projects</a></li><li><a href="upload.html" class="hover:text-white">Upload</a></li><li><a href="assets.html" class="hover:text-white">Assets</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-amber-400">Studio</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li><li><a href="team.html" class="hover:text-white">Our Team</a></li><li><a href="contact.html" class="hover:text-white">Contact</a></li></ul></div>
+                <div><h4 class="font-bold mb-4 text-amber-400">Contact</h4><div class="text-gray-400 text-sm"><p><i class="fas fa-map-marker-alt mr-2 text-amber-500"></i> Barcelona, Spain</p><p><i class="fas fa-envelope mr-2 text-amber-500"></i> studio@arkiviz.com</p></div></div>
+            </div>
+            <div class="pt-6 border-t border-gray-800 text-center text-gray-500 text-xs"><p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering</p></div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        
+        let signupPasswordVisible = false;
+        
+        function toggleSignupPassword() {
+            const passwordInput = document.getElementById('signupPassword');
+            const icon = document.getElementById('signupPasswordIcon');
+            signupPasswordVisible = !signupPasswordVisible;
+            passwordInput.type = signupPasswordVisible ? 'text' : 'password';
+            icon.className = signupPasswordVisible ? 'fas fa-eye-slash text-sm' : 'fas fa-eye text-sm';
+        }
+        
+        document.getElementById('signupPassword').addEventListener('input', function() {
+            const password = this.value;
+            const bars = document.querySelectorAll('.password-strength-bar');
+            const strengthText = document.getElementById('strengthText');
+            let strength = 0;
+            if (password.length >= 8) strength++;
+            if (password.match(/[A-Z]/)) strength++;
+            if (password.match(/[0-9]/)) strength++;
+            if (password.match(/[^A-Za-z0-9]/)) strength++;
+            bars.forEach((bar, i) => { if (i < strength) { bar.classList.remove('bg-gray-200', 'dark:bg-gray-700'); bar.classList.add('bg-primary'); } else { bar.classList.remove('bg-primary'); bar.classList.add('bg-gray-200', 'dark:bg-gray-700'); } });
+            if (password.length === 0) { strengthText.textContent = 'Use 8+ characters with mix of letters & numbers'; strengthText.className = 'text-[10px] text-gray-500 mt-1'; }
+            else if (strength <= 1) { strengthText.textContent = 'Weak - Use at least 8 characters'; strengthText.className = 'text-[10px] text-red-500 mt-1'; }
+            else if (strength === 2) { strengthText.textContent = 'Fair - Add numbers and symbols'; strengthText.className = 'text-[10px] text-yellow-500 mt-1'; }
+            else if (strength === 3) { strengthText.textContent = 'Good - Add special characters for strong password'; strengthText.className = 'text-[10px] text-blue-500 mt-1'; }
+            else { strengthText.textContent = 'Strong password!'; strengthText.className = 'text-[10px] text-green-500 mt-1'; }
+        });
+        
+        document.getElementById('confirmPassword').addEventListener('input', function() {
+            const password = document.getElementById('signupPassword').value;
+            const confirm = this.value;
+            const matchMsg = document.getElementById('passwordMatchMsg');
+            if (confirm.length > 0) {
+                if (password === confirm) { matchMsg.textContent = '✓ Passwords match'; matchMsg.className = 'text-[10px] text-green-500 mt-1'; }
+                else { matchMsg.textContent = '✗ Passwords do not match'; matchMsg.className = 'text-[10px] text-red-500 mt-1'; }
+            } else { matchMsg.textContent = ''; }
+        });
+        
+        function toggleMobileMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('open');document.body.classList.toggle('menu-open');setTimeout(()=>lucide.createIcons(),100);}
+        function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.classList.remove('menu-open');}
+        function toggleMobileSubmenu(id){const s=document.getElementById(id);if(s){s.classList.toggle('open');const btn=s.previousElementSibling;const icon=btn?.querySelector('i:last-child');if(icon){icon.style.transform=s.classList.contains('open')?'rotate(180deg)':'rotate(0deg)';}}setTimeout(()=>lucide.createIcons(),10);}
+        function toggleTheme(){document.documentElement.classList.toggle('dark');document.body.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');setTimeout(()=>lucide.createIcons(),10);}
+        function toggleDirection(){document.documentElement.dir=document.documentElement.dir==='rtl'?'ltr':'rtl';}
+        
+        function socialSignup(provider){alert(`Sign up with ${provider} would redirect to OAuth. Demo mode: redirecting to dashboard.`);window.location.href='user.html';}
+        
+        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
+        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
+        
+        document.getElementById('signupForm').addEventListener('submit',(e)=>{
+            e.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('termsCheckbox').checked;
+            if(!firstName || !lastName || !email || !password){alert('Please fill in all required fields');return;}
+            if(password !== confirm){alert('Passwords do not match');return;}
+            if(!terms){alert('Please agree to the Terms of Service and Privacy Policy');return;}
+            if(password.length < 8){alert('Password must be at least 8 characters long');return;}
+            alert(`Welcome to ARKI·VIZ, ${firstName} ${lastName}!\n\nYour account has been created successfully. You can now log in to access your dashboard.\n\nDemo mode: Redirecting to login page.`);
+            window.location.href='login.html';
+        });
+    </script>
+</body>
+</html>
