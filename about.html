@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>About Us | ARKI·VIZ - 3D Architectural Rendering Studio</title>
+    <title>About Us | ARKI VIZ - 3D Architectural Rendering Studio</title>
     <link rel="icon" type="image/jpg" href="image/growwpark_logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -55,62 +55,40 @@
             overflow: hidden;
         }
         
-        /* ===== PERFECT NAVBAR (FROM HOME 1) ===== */
         .navbar {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0px;
+            left: 0px;
+            right: 0px;
             z-index: 1000;
             background: rgba(255, 252, 248, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(193, 123, 76, 0.25);
+            border: 1px solid rgba(193, 123, 76, 0.25);
             transition: all 0.3s ease;
         }
         
         .dark .navbar {
             background: rgba(30, 26, 23, 0.95);
-            border-bottom-color: rgba(193, 123, 76, 0.4);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-        }
-        
-        .nav-3-part {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-        
-        .nav-part-left {
-            flex-shrink: 0;
+            border-color: rgba(193, 123, 76, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(193, 123, 76, 0.2);
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
-            padding: 6px 8px;
+            color: #c17b4c;
             transition: all 0.3s ease;
+            padding: 8px 16px;
         }
         
         .logo:hover {
-            transform: scale(1.02);
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-            color: #c17b4c;
+            transform: scale(1.05);
         }
         
         .logo-text {
             font-weight: 900;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -123,31 +101,22 @@
             -webkit-text-fill-color: transparent;
         }
         
-        .nav-part-center {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.25rem;
-            white-space: nowrap;
-            overflow: visible;
-        }
-        
         .nav-link {
             font-size: 14px;
             font-weight: 600;
-            padding: 8px 12px;
+            padding: 10px 18px;
             border-radius: 40px;
             color: #3a2c24;
+            letter-spacing: 0.3px;
             transition: all 0.3s ease;
+            position: relative;
             background: transparent;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 4px;
             text-decoration: none;
-            white-space: nowrap;
         }
         
         .dark .nav-link {
@@ -162,25 +131,21 @@
             transform: translateY(-2px);
         }
         
-        .dropdown {
-            position: relative;
-        }
-        
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            margin-top: 12px;
+            margin-top: 15px;
             min-width: 220px;
             background: white;
             border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            padding: 12px;
+            box-shadow: 0 20px 40px -10px rgba(193, 123, 76, 0.2);
             border: 1px solid rgba(193, 123, 76, 0.2);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.25s ease;
-            z-index: 1001;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
         }
         
         .dark .dropdown-menu {
@@ -188,7 +153,7 @@
             border-color: rgba(193, 123, 76, 0.3);
         }
         
-        .dropdown:hover .dropdown-menu {
+        .dropdown-group:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -198,12 +163,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 16px;
+            padding: 12px 16px;
             border-radius: 16px;
             color: #3a2c24;
             font-weight: 500;
             font-size: 13px;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
         
@@ -222,231 +187,32 @@
             transform: translateX(5px);
         }
         
-        .profile-dropdown {
-            position: relative;
-        }
-        
-        .profile-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            margin-top: 12px;
-            min-width: 220px;
-            background: white;
-            border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.25s ease;
-            z-index: 1001;
-        }
-        
-        [dir="ltr"] .profile-dropdown-menu {
-            right: 0;
-            left: auto;
-        }
-        
-        [dir="rtl"] .profile-dropdown-menu {
-            left: 0;
-            right: auto;
-        }
-        
-        .dark .profile-dropdown-menu {
-            background: #2a241f;
-            border-color: rgba(193, 123, 76, 0.3);
-        }
-        
-        .profile-dropdown:hover .profile-dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .nav-part-right {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .dropdown-item:hover i {
             color: white;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
-            flex-shrink: 0;
         }
         
-        .action-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-        }
-        
-        .hamburger {
-            display: none;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .hamburger:hover {
-            transform: scale(1.05);
-        }
-        
-        .desktop-auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        @media (max-width: 1200px) {
-            .nav-link {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
-        }
-        
-        @media (max-width: 1100px) {
-            .nav-link {
-                padding: 8px 8px;
-                font-size: 12px;
-            }
-            .nav-part-center {
-                gap: 0.1rem;
-            }
-        }
-        
-        @media (max-width: 1000px) {
-            .nav-part-center {
-                display: none !important;
-            }
-            .desktop-auth-buttons {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: none !important;
-            }
-        }
-        
-        @media (min-width: 1001px) {
-            .hamburger {
-                display: none !important;
-            }
-            .nav-part-center {
-                display: flex !important;
-            }
-            .desktop-auth-buttons {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: block !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0.5rem 1rem;
-            }
-            .logo {
-                padding: 4px 6px;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .logo i {
-                font-size: 1.5rem;
-            }
-            .action-btn {
-                width: 36px;
-                height: 36px;
-            }
-            .hamburger {
-                width: 36px;
-                height: 36px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0.5rem 0.75rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .logo i {
-                font-size: 1.3rem;
-            }
-            .action-btn {
-                width: 34px;
-                height: 34px;
-            }
-            .hamburger {
-                width: 34px;
-                height: 34px;
-            }
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-overlay {
+        #mobileMenu {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 85%;
-            max-width: 380px;
+            width: 100%;
+            height: 100vh;
             background: rgba(255, 252, 248, 0.98);
             backdrop-filter: blur(20px);
             z-index: 2000;
             transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
         
-        .dark .mobile-menu {
+        .dark #mobileMenu {
             background: rgba(30, 26, 23, 0.98);
         }
         
-        .mobile-menu.open {
+        #mobileMenu.open {
             transform: translateX(0);
         }
         
@@ -454,148 +220,175 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 24px;
-            margin-bottom: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
             background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
+            border-radius: 30px;
         }
         
-        .mobile-close {
-            width: 48px;
-            height: 48px;
-            border-radius: 30px;
+        .close-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
             cursor: pointer;
             color: white;
             border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
         }
         
-        .mobile-nav-items {
-            padding: 0 20px 20px 20px;
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.1);
         }
         
-        .mobile-nav-link {
+        .mobile-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 14px 18px;
-            margin: 6px 0;
+            padding: 16px 20px;
+            margin: 8px 0;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 15px;
             color: #3a2c24;
             background: white;
             border: 1px solid rgba(193, 123, 76, 0.2);
             width: 100%;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
         }
         
-        .dark .mobile-nav-link {
+        .dark .mobile-link {
             color: #e8dfd8;
             background: rgba(193, 123, 76, 0.1);
-            border-color: rgba(193, 123, 76, 0.25);
+            border-color: rgba(193, 123, 76, 0.2);
         }
         
-        .mobile-nav-link:hover,
-        .mobile-nav-link.active {
+        .mobile-link:hover,
+        .mobile-link.active {
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             color: white !important;
-            transform: translateX(5px);
+            transform: translateX(10px);
             border-color: transparent;
         }
         
-        .mobile-submenu-items {
+        .mobile-submenu {
             margin-left: 20px;
-            padding-left: 18px;
+            padding-left: 20px;
             border-left: 2px solid #c17b4c;
             display: none;
-            animation: slideDown 0.25s ease;
+            animation: slideIn 0.3s ease;
         }
         
-        .mobile-submenu-items.open {
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        .mobile-submenu.open {
             display: block;
         }
         
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .mobile-submenu-items a {
+        .mobile-submenu a {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 18px;
+            padding: 14px 20px;
             margin: 8px 0;
             border-radius: 16px;
             color: #3a2c24;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 14px;
             text-decoration: none;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             background: white;
-            border: 1px solid rgba(193, 123, 76, 0.15);
+            border: 1px solid rgba(193, 123, 76, 0.2);
         }
         
-        .dark .mobile-submenu-items a {
+        .dark .mobile-submenu a {
             color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.08);
+            background: rgba(193, 123, 76, 0.1);
         }
         
-        .mobile-submenu-items a:hover,
-        .mobile-submenu-items a.active {
+        .mobile-submenu a:hover,
+        .mobile-submenu a.active {
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             color: white !important;
-            transform: translateX(5px);
+            transform: translateX(10px);
+            border-color: transparent;
         }
         
-        .mobile-settings {
+        .action-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 45px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(193, 123, 76, 0.5);
+        }
+        
+        .settings-section {
             background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border: 1px solid rgba(193, 123, 76, 0.3);
-            border-radius: 28px;
-            padding: 20px;
-            margin-top: 25px;
+            border: 2px solid rgba(193, 123, 76, 0.3);
+            border-radius: 30px;
+            padding: 24px;
+            margin-top: 30px;
         }
         
-        .mobile-setting-item {
+        .settings-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 12px 0;
         }
         
-        .mobile-setting-label {
+        .settings-label {
             font-weight: 600;
             color: #3a2c24;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
-        .dark .mobile-setting-label {
+        .dark .settings-label {
             color: #e8dfd8;
         }
         
-        /* About Page Unique Styles */
+        @media (max-width: 1024px) {
+            .desktop-menu { display: none !important; }
+            .desktop-auth { display: none !important; }
+            .mobile-toggle { display: flex !important; }
+        }
+        
+        @media (min-width: 1025px) {
+            .mobile-toggle { display: none !important; }
+            .desktop-menu { display: flex !important; }
+            .desktop-auth { display: block !important; }
+        }
+        
         .bg-grid-pattern {
             background-image: linear-gradient(rgba(193, 123, 76, 0.08) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(193, 123, 76, 0.08) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         
+        /* Hero Section - Gradient Background with Reduced Space */
         .hero-about-gradient {
             background: linear-gradient(135deg, #f8f5f2 0%, #f0ebe6 100%);
             position: relative;
@@ -646,6 +439,7 @@
             transform: scale(1.05);
         }
         
+        /* Enhanced Stats Styles */
         .stats-card-enhanced {
             transition: all 0.3s ease;
             border: 1px solid rgba(193,123,76,0.15);
@@ -693,6 +487,16 @@
             }
         }
         
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        /* Equal Footer Spacing */
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -715,21 +519,17 @@
 </head>
 <body class="light font-inter">
 
-    <!-- Perfect Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-3-part">
-                <!-- PART 1: LOGO -->
-                <div class="nav-part-left">
-                    <a href="index.html" class="logo">
-                        <i class="fas fa-cube"></i>
-                        <span class="logo-text">ARKI·VIZ</span>
-                    </a>
-                </div>
+    <!-- Navbar - Same as Home 1 & Home 2 -->
+    <nav class="navbar" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 py-2">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i>
+                    <span class="logo-text">ARKI VIZ</span>
+                </a>
 
-                <!-- PART 2: LINKS -->
-                <div class="nav-part-center">
-                    <div class="dropdown">
+                <div class="desktop-menu items-center gap-1">
+                    <div class="dropdown-group relative">
                         <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="index.html" class="dropdown-item">Home 1</a>
@@ -741,7 +541,7 @@
                     <a href="upload.html" class="nav-link">Upload</a>
                     <a href="feedback.html" class="nav-link">Feedback</a>
                     <a href="assets.html" class="nav-link">Assets</a>
-                    <div class="dropdown">
+                    <div class="dropdown-group relative">
                         <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="portfolio.html" class="dropdown-item">Portfolio</a>
@@ -751,7 +551,7 @@
                         </div>
                     </div>
                     <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="dropdown">
+                    <div class="dropdown-group relative">
                         <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
@@ -760,89 +560,53 @@
                     </div>
                 </div>
 
-                <!-- PART 3: ICONS -->
-                <div class="nav-part-right">
-                    <div class="desktop-auth-buttons">
+                <div class="flex items-center gap-2">
+                    <div class="desktop-menu flex items-center gap-2">
                         <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
                         <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
                     </div>
-                    <div class="profile-dropdown">
+                    <div class="desktop-auth dropdown-group relative">
                         <button class="action-btn"><i data-lucide="user" class="w-4 h-4"></i></button>
-                        <div class="profile-dropdown-menu">
+                        <div class="dropdown-menu" style="right: 0; left: auto;">
                             <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
                             <a href="signup.html" class="dropdown-item"><i data-lucide="user-plus"></i>Signup</a>
                         </div>
                     </div>
-                    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
-                        <i data-lucide="menu" class="w-5 h-5"></i>
-                    </button>
+                    <button onclick="toggleMobileMenu()" class="mobile-toggle action-btn"><i data-lucide="menu" class="w-5 h-5"></i></button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
-    <div class="mobile-menu" id="mobileMenuPanel">
+    <div id="mobileMenu">
         <div class="mobile-header">
-            <a href="index.html" class="logo" onclick="closeMobileMenu()"><i class="fas fa-cube"></i><span class="logo-text">ARKI·VIZ</span></a>
-            <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <a href="index.html" class="logo"><i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i><span class="logo-text">ARKI VIZ</span></a>
+            <button onclick="toggleMobileMenu()" class="close-btn"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
-        <div class="mobile-nav-items">
-            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-home mr-3"></i>HOME</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
-                <a href="index.html" onclick="closeMobileMenu()">Home 1</a>
-                <a href="home2.html" onclick="closeMobileMenu()">Home 2</a>
-            </div>
-            <a href="about.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="projects.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-folder-open mr-3"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="upload.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-cloud-upload-alt mr-3"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="feedback.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-comment-dots mr-3"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="assets.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-database mr-3"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileStudioSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-building mr-3"></i>STUDIO</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileStudioSubmenu" class="mobile-submenu-items">
-                <a href="portfolio.html" onclick="closeMobileMenu()">Portfolio</a>
-                <a href="rendering-queue.html" onclick="closeMobileMenu()">Rendering Queue</a>
-                <a href="collaboration.html" onclick="closeMobileMenu()">Collaboration</a>
-                <a href="team.html" onclick="closeMobileMenu()">Our Team</a>
-            </div>
-            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileDashSubmenu" class="mobile-submenu-items">
-                <a href="admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
-                <a href="user.html" onclick="closeMobileMenu()">User Dashboard</a>
-            </div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileAuthSubmenu" class="mobile-submenu-items">
-                <a href="login.html" onclick="closeMobileMenu()">Login</a>
-                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
-            </div>
-            <div class="mobile-settings">
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
-                    <button onclick="toggleDirectionMobile()" class="action-btn"><i class="fa-solid fa-left-right"></i></button>
-                </div>
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
-                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                </div>
+        <div class="px-4">
+            <button onclick="toggleMobileSubmenu('mobileHomeSub')" class="mobile-link"><span><i class="fas fa-home mr-2"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileHomeSub" class="mobile-submenu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
+            <a href="about.html" class="mobile-link active"><span><i class="fas fa-info-circle mr-2"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="projects.html" class="mobile-link"><span><i class="fas fa-folder-open mr-2"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="upload.html" class="mobile-link"><span><i class="fas fa-cloud-upload-alt mr-2"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="feedback.html" class="mobile-link"><span><i class="fas fa-comment-dots mr-2"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="assets.html" class="mobile-link"><span><i class="fas fa-database mr-2"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileStudioSub')" class="mobile-link"><span><i class="fas fa-building mr-2"></i>STUDIO</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileStudioSub" class="mobile-submenu"><a href="portfolio.html">Portfolio</a><a href="rendering-queue.html">Rendering Queue</a><a href="collaboration.html">Collaboration</a><a href="team.html">Our Team</a></div>
+            <a href="contact.html" class="mobile-link"><span><i class="fas fa-envelope mr-2"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSub')" class="mobile-link"><span><i class="fas fa-chalkboard-user mr-2"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileDashSub" class="mobile-submenu"><a href="admin.html">Admin Dashboard</a><a href="user.html">User Dashboard</a></div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSub')" class="mobile-link"><span><i class="fas fa-user-circle mr-2"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
+            <div id="mobileAuthSub" class="mobile-submenu"><a href="login.html">Login</a><a href="signup.html">Signup</a></div>
+            <div class="settings-section">
+                <div class="settings-item"><span class="settings-label"><i class="fa-solid fa-arrow-right-arrow-left"></i>DIRECTION</span><button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-left-right"></i></button></div>
+                <div class="settings-item"><span class="settings-label"><i data-lucide="moon"></i>THEME</span><button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section - Image Left, Content Right -->
+    <!-- Hero Section - Image Left, Content Right, Reduced Space -->
     <section class="hero-about-gradient relative min-h-[80vh] flex items-center pt-20 overflow-hidden">
         <div class="floating-shape top-20 left-10"></div>
         <div class="floating-shape bottom-20 right-10" style="animation-delay: -3s; width: 400px; height: 400px;"></div>
@@ -850,7 +614,7 @@
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 w-full">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Column - Image -->
+                <!-- Left Column - Image (New Image) -->
                 <div class="order-1 lg:order-1 relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
                         <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Creative Studio Workspace" class="w-full h-auto rounded-xl">
@@ -883,24 +647,36 @@
                             <i class="fas fa-images"></i> View Our Work
                         </a>
                     </div>
-                    <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
-                        <div class="flex -space-x-2">
-                            <div class="w-12 h-12 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary font-bold">MJ</div>
-                            <div class="w-12 h-12 rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center text-primary font-bold">SC</div>
-                            <div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center text-primary font-bold">AR</div>
-                            <div class="w-12 h-12 rounded-full bg-primary/25 border-2 border-primary flex items-center justify-center text-primary font-bold text-xs">+125</div>
-                        </div>
-                        <div class="text-gray-600 dark:text-gray-400 text-sm">
-                            <span class="font-bold text-gray-900 dark:text-white text-lg">500+</span> architects trust us
-                        </div>
-                    </div>
+                    <div class="mt-8">
+    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+               <div class="flex items-center gap-1">
+            <div class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-sm">MJ</div>
+            <div class="w-9 h-9 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-bold shadow-sm">SC</div>
+            <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">AR</div>
+            <div class="w-9 h-9 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">+24</div>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="text-right">
+                <div class="flex items-baseline gap-1">
+                    <span class="text-2xl font-bold text-primary">24</span>
+                    <span class="text-sm text-gray-500">+</span>
+                </div>
+                <p class="text-xs text-gray-500 dark:text-gray-400">active collaborations</p>
+            </div>
+            <div class="w-px h-8 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
+            <div class="hidden sm:block">
+                <p class="text-xs text-gray-500">this week</p>
+                <p class="text-xs font-semibold text-primary">↑ 12%</p>
+            </div>
+        </div>
+    </div>
+</div>
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
     </section>
 
-    <!-- Enhanced Stats Section -->
+    <!-- Enhanced Stats Section with Animations -->
     <section class="py-16 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
@@ -928,14 +704,15 @@
         </div>
     </section>
 
-    <!-- Our Story Section -->
+    <!-- Rest of the content remains the same... -->
+    <!-- Our Story Section - Removed Badge -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
                     <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Story</span>
                     <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Creating Visual Stories That Inspire</h2>
-                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Founded in 2015, ARKI·VIZ was born from a passion for architectural design and cutting-edge visualization technology. What started as a small team of 3D artists has grown into a premier architectural visualization studio serving clients across 45+ countries.</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Founded in 2015, ARKI VIZ was born from a passion for architectural design and cutting-edge visualization technology. What started as a small team of 3D artists has grown into a premier architectural visualization studio serving clients across 45+ countries.</p>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">We believe every architectural project deserves to be seen in its full glory. Our mission is to bridge the gap between architectural vision and reality through stunning photorealistic renderings that not only showcase design intent but evoke emotion and inspire action.</p>
                     <div class="flex flex-wrap gap-4 pt-4">
                         <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Photoreal Quality</span></div>
@@ -1020,7 +797,7 @@
         </div>
     </section>
 
-    <!-- Enhanced CTA Section - UNIQUE to About Page -->
+    <!-- Enhanced CTA Section -->
     <section class="py-20 bg-gradient-to-r from-amber-600 to-stone-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -1059,14 +836,15 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - Equal Spacing -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="footer-grid mb-10">
+                <!-- Logo & Description -->
                 <div>
                     <a href="index.html" class="flex items-center gap-2 mb-4">
                         <i class="fas fa-cube text-2xl text-primary"></i>
-                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI·VIZ</span>
+                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
                     </a>
                     <p class="text-gray-400 text-sm mb-4 leading-relaxed">
                         Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
@@ -1077,6 +855,8 @@
                         <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
                     </div>
                 </div>
+                
+                <!-- Quick Links -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
@@ -1087,6 +867,8 @@
                         <li><a href="contact.html" class="hover:text-white">Contact</a></li>
                     </ul>
                 </div>
+                
+                <!-- Our Services -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Our Services</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
@@ -1097,6 +879,8 @@
                         <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
                     </ul>
                 </div>
+                
+                <!-- Contact Info -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
                     <div class="space-y-3 text-gray-400 text-sm">
@@ -1107,8 +891,10 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Copyright -->
             <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
-                <p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
+                <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
                 <div class="flex gap-6">
                     <a href="#" class="hover:text-white">Privacy Policy</a>
                     <a href="#" class="hover:text-white">Terms of Service</a>
@@ -1121,59 +907,14 @@
     <script>
         lucide.createIcons();
         
-        function openMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.add('open');
-            document.getElementById('mobileOverlay').classList.add('active');
-            document.body.classList.add('menu-open');
-        }
+        function toggleMobileMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('open');document.body.classList.toggle('menu-open');setTimeout(()=>lucide.createIcons(),100);}
+        function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.classList.remove('menu-open');}
+        function toggleMobileSubmenu(id){const s=document.getElementById(id);if(s){s.classList.toggle('open');const btn=s.previousElementSibling;const icon=btn?.querySelector('i:last-child');if(icon){icon.style.transform=s.classList.contains('open')?'rotate(180deg)':'rotate(0deg)';}}setTimeout(()=>lucide.createIcons(),10);}
+        function toggleTheme(){document.documentElement.classList.toggle('dark');document.body.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');setTimeout(()=>lucide.createIcons(),10);}
+        function toggleDirection(){document.documentElement.dir=document.documentElement.dir==='rtl'?'ltr':'rtl';}
         
-        function closeMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.remove('open');
-            document.getElementById('mobileOverlay').classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-        
-        function toggleMobileSubmenu(id) {
-            const submenu = document.getElementById(id);
-            if (submenu) {
-                submenu.classList.toggle('open');
-                const btn = submenu.previousElementSibling;
-                const icon = btn?.querySelector('i:last-child');
-                if (icon) {
-                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-            }
-        }
-        
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-            setTimeout(() => lucide.createIcons(), 10);
-        }
-        
-        function toggleThemeMobile() {
-            toggleTheme();
-        }
-        
-        function toggleDirection() {
-            const currentDir = document.documentElement.dir;
-            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
-            document.documentElement.dir = newDir;
-        }
-        
-        function toggleDirectionMobile() {
-            toggleDirection();
-        }
-        
-        if (localStorage.getItem('theme') === 'dark') {
-            document.documentElement.classList.add('dark');
-            document.body.classList.add('dark');
-        }
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            lucide.createIcons();
-        });
+        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
+        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
         
         // Counter Animation
         const counters = document.querySelectorAll('.counter-number');
