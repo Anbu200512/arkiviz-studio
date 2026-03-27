@@ -17,7 +17,7 @@
                 extend: { 
                     colors: { 
                         primary: '#c17b4c',
-                        secondary: '#8b5a2b',
+                        secondary: '#a5653a',
                         darkBg: '#1e1a17'
                     },
                     fontFamily: {
@@ -55,40 +55,62 @@
             overflow: hidden;
         }
         
+        /* ===== PERFECT NAVBAR ===== */
         .navbar {
             position: fixed;
-            top: 0px;
-            left: 0px;
-            right: 0px;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             background: rgba(255, 252, 248, 0.95);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(193, 123, 76, 0.25);
+            border-bottom: 1px solid rgba(193, 123, 76, 0.25);
             transition: all 0.3s ease;
         }
         
         .dark .navbar {
             background: rgba(30, 26, 23, 0.95);
-            border-color: rgba(193, 123, 76, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(193, 123, 76, 0.2);
+            border-bottom-color: rgba(193, 123, 76, 0.4);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+        }
+        
+        .nav-3-part {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .nav-part-left {
+            flex-shrink: 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #c17b4c;
+            text-decoration: none;
+            padding: 6px 8px;
             transition: all 0.3s ease;
-            padding: 8px 16px;
         }
         
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: #c17b4c;
         }
         
         .logo-text {
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -101,22 +123,31 @@
             -webkit-text-fill-color: transparent;
         }
         
+        .nav-part-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+            overflow: visible;
+        }
+        
         .nav-link {
             font-size: 14px;
             font-weight: 600;
-            padding: 10px 18px;
+            padding: 8px 12px;
             border-radius: 40px;
             color: #3a2c24;
-            letter-spacing: 0.3px;
             transition: all 0.3s ease;
-            position: relative;
             background: transparent;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             text-decoration: none;
+            white-space: nowrap;
         }
         
         .dark .nav-link {
@@ -131,21 +162,25 @@
             transform: translateY(-2px);
         }
         
+        .dropdown {
+            position: relative;
+        }
+        
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            margin-top: 15px;
+            margin-top: 12px;
             min-width: 220px;
             background: white;
             border-radius: 24px;
-            padding: 12px;
-            box-shadow: 0 20px 40px -10px rgba(193, 123, 76, 0.2);
+            padding: 10px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(193, 123, 76, 0.2);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            z-index: 1001;
         }
         
         .dark .dropdown-menu {
@@ -153,7 +188,7 @@
             border-color: rgba(193, 123, 76, 0.3);
         }
         
-        .dropdown-group:hover .dropdown-menu {
+        .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -163,12 +198,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 16px;
+            padding: 10px 16px;
             border-radius: 16px;
             color: #3a2c24;
             font-weight: 500;
             font-size: 13px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             text-decoration: none;
         }
         
@@ -187,32 +222,231 @@
             transform: translateX(5px);
         }
         
-        .dropdown-item:hover i {
-            color: white;
+        .profile-dropdown {
+            position: relative;
         }
         
-        #mobileMenu {
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            margin-top: 12px;
+            min-width: 220px;
+            background: white;
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            z-index: 1001;
+        }
+        
+        [dir="ltr"] .profile-dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+        
+        [dir="rtl"] .profile-dropdown-menu {
+            left: 0;
+            right: auto;
+        }
+        
+        .dark .profile-dropdown-menu {
+            background: #2a241f;
+            border-color: rgba(193, 123, 76, 0.3);
+        }
+        
+        .profile-dropdown:hover .profile-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-part-right {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        .hamburger {
+            display: none;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .hamburger:hover {
+            transform: scale(1.05);
+        }
+        
+        .desktop-auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 1100px) {
+            .nav-link {
+                padding: 8px 8px;
+                font-size: 12px;
+            }
+            .nav-part-center {
+                gap: 0.1rem;
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .nav-part-center {
+                display: none !important;
+            }
+            .desktop-auth-buttons {
+                display: none !important;
+            }
+            .hamburger {
+                display: flex !important;
+            }
+            .profile-dropdown {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 1001px) {
+            .hamburger {
+                display: none !important;
+            }
+            .nav-part-center {
+                display: flex !important;
+            }
+            .desktop-auth-buttons {
+                display: flex !important;
+            }
+            .profile-dropdown {
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.5rem 1rem;
+            }
+            .logo {
+                padding: 4px 6px;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .logo i {
+                font-size: 1.5rem;
+            }
+            .action-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .hamburger {
+                width: 36px;
+                height: 36px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.5rem 0.75rem;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .logo i {
+                font-size: 1.3rem;
+            }
+            .action-btn {
+                width: 34px;
+                height: 34px;
+            }
+            .hamburger {
+                width: 34px;
+                height: 34px;
+            }
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            width: 100%;
-            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 380px;
             background: rgba(255, 252, 248, 0.98);
             backdrop-filter: blur(20px);
             z-index: 2000;
             transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             overflow-y: auto;
-            padding: 20px;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         }
         
-        .dark #mobileMenu {
+        .dark .mobile-menu {
             background: rgba(30, 26, 23, 0.98);
         }
         
-        #mobileMenu.open {
+        .mobile-menu.open {
             transform: translateX(0);
         }
         
@@ -220,183 +454,170 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
             background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
         
-        .close-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
+        .mobile-close {
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
             cursor: pointer;
             color: white;
             border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
         }
         
-        .close-btn:hover {
-            transform: rotate(90deg) scale(1.1);
+        .mobile-nav-items {
+            padding: 0 20px 20px 20px;
         }
         
-        .mobile-link {
+        .mobile-nav-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
-            margin: 8px 0;
+            padding: 14px 18px;
+            margin: 6px 0;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 1rem;
             color: #3a2c24;
             background: white;
             border: 1px solid rgba(193, 123, 76, 0.2);
             width: 100%;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-decoration: none;
         }
         
-        .dark .mobile-link {
+        .dark .mobile-nav-link {
             color: #e8dfd8;
             background: rgba(193, 123, 76, 0.1);
-            border-color: rgba(193, 123, 76, 0.2);
+            border-color: rgba(193, 123, 76, 0.25);
         }
         
-        .mobile-link:hover,
-        .mobile-link.active {
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             color: white !important;
-            transform: translateX(10px);
+            transform: translateX(5px);
             border-color: transparent;
         }
         
-        .mobile-submenu {
+        .mobile-submenu-items {
             margin-left: 20px;
-            padding-left: 20px;
+            padding-left: 18px;
             border-left: 2px solid #c17b4c;
             display: none;
-            animation: slideIn 0.3s ease;
+            animation: slideDown 0.25s ease;
         }
         
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .mobile-submenu.open {
+        .mobile-submenu-items.open {
             display: block;
         }
         
-        .mobile-submenu a {
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-submenu-items a {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 14px 20px;
+            padding: 12px 18px;
             margin: 8px 0;
             border-radius: 16px;
             color: #3a2c24;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 0.9rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             background: white;
-            border: 1px solid rgba(193, 123, 76, 0.2);
+            border: 1px solid rgba(193, 123, 76, 0.15);
         }
         
-        .dark .mobile-submenu a {
+        .dark .mobile-submenu-items a {
             color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.1);
+            background: rgba(193, 123, 76, 0.08);
         }
         
-        .mobile-submenu a:hover,
-        .mobile-submenu a.active {
+        .mobile-submenu-items a:hover,
+        .mobile-submenu-items a.active {
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             color: white !important;
-            transform: translateX(10px);
-            border-color: transparent;
+            transform: translateX(5px);
         }
         
-        .action-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 45px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(193, 123, 76, 0.5);
-        }
-        
-        .settings-section {
+        .mobile-settings {
             background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border: 2px solid rgba(193, 123, 76, 0.3);
-            border-radius: 30px;
-            padding: 24px;
-            margin-top: 30px;
+            border: 1px solid rgba(193, 123, 76, 0.3);
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 25px;
         }
         
-        .settings-item {
+        .mobile-setting-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 12px 0;
         }
         
-        .settings-label {
+        .mobile-setting-label {
             font-weight: 600;
             color: #3a2c24;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
-        .dark .settings-label {
+        .dark .mobile-setting-label {
             color: #e8dfd8;
         }
         
-        @media (max-width: 1024px) {
-            .desktop-menu { display: none !important; }
-            .desktop-auth { display: none !important; }
-            .mobile-toggle { display: flex !important; }
-        }
-        
-        @media (min-width: 1025px) {
-            .mobile-toggle { display: none !important; }
-            .desktop-menu { display: flex !important; }
-            .desktop-auth { display: block !important; }
-        }
-        
+        /* Projects Page Unique Styles */
         .bg-grid-pattern {
             background-image: linear-gradient(rgba(193, 123, 76, 0.08) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(193, 123, 76, 0.08) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         
-        .hero-projects-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+        .hero-projects-unique {
+            background: linear-gradient(135deg, #f8f5f2 0%, #f0ebe6 100%);
+            position: relative;
+            overflow: hidden;
         }
         
-        .dark .hero-projects-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        .dark .hero-projects-unique {
+            background: linear-gradient(135deg, #1a1613 0%, #0f0d0b 100%);
+        }
+        
+        .floating-shape {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(193,123,76,0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-30px) translateX(20px); }
         }
         
         .project-card {
@@ -424,33 +645,43 @@
             color: #c17b4c;
         }
         
-        .floating-card {
-            animation: float 6s ease-in-out infinite;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
         }
         
-        .category-badge {
-            transition: all 0.3s ease;
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     </style>
 </head>
 <body class="light font-inter">
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 py-2">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i>
-                    <span class="logo-text">ARKI·VIZ</span>
-                </a>
+    <!-- Perfect Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-3-part">
+                <!-- PART 1: LOGO -->
+                <div class="nav-part-left">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-cube"></i>
+                        <span class="logo-text">ARKI·VIZ</span>
+                    </a>
+                </div>
 
-                <div class="desktop-menu items-center gap-1">
-                    <div class="dropdown-group relative">
+                <!-- PART 2: LINKS -->
+                <div class="nav-part-center">
+                    <div class="dropdown">
                         <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="index.html" class="dropdown-item">Home 1</a>
@@ -462,16 +693,17 @@
                     <a href="upload.html" class="nav-link">Upload</a>
                     <a href="feedback.html" class="nav-link">Feedback</a>
                     <a href="assets.html" class="nav-link">Assets</a>
-                    <div class="dropdown-group relative">
+                    <div class="dropdown">
                         <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="portfolio.html" class="dropdown-item">Portfolio</a>
                             <a href="rendering-queue.html" class="dropdown-item">Rendering Queue</a>
                             <a href="collaboration.html" class="dropdown-item">Collaboration</a>
+                            <a href="team.html" class="dropdown-item">Our Team</a>
                         </div>
                     </div>
                     <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="dropdown-group relative">
+                    <div class="dropdown">
                         <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
@@ -480,221 +712,352 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <div class="desktop-menu flex items-center gap-2">
+                <!-- PART 3: ICONS -->
+                <div class="nav-part-right">
+                    <div class="desktop-auth-buttons">
                         <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
                         <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
                     </div>
-                    <div class="desktop-auth dropdown-group relative">
+                    <div class="profile-dropdown">
                         <button class="action-btn"><i data-lucide="user" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu" style="right: 0; left: auto;">
+                        <div class="profile-dropdown-menu">
                             <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
                             <a href="signup.html" class="dropdown-item"><i data-lucide="user-plus"></i>Signup</a>
                         </div>
                     </div>
-                    <button onclick="toggleMobileMenu()" class="mobile-toggle action-btn"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu">
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenuPanel">
         <div class="mobile-header">
-            <a href="index.html" class="logo"><i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i><span class="logo-text">ARKI·VIZ</span></a>
-            <button onclick="toggleMobileMenu()" class="close-btn"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <a href="index.html" class="logo" onclick="closeMobileMenu()"><i class="fas fa-cube"></i><span class="logo-text">ARKI·VIZ</span></a>
+            <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
-        <div class="px-4">
-            <button onclick="toggleMobileSubmenu('mobileHomeSub')" class="mobile-link"><span><i class="fas fa-home mr-2"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileHomeSub" class="mobile-submenu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
-            <a href="about.html" class="mobile-link"><span><i class="fas fa-info-circle mr-2"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="projects.html" class="mobile-link active"><span><i class="fas fa-folder-open mr-2"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="upload.html" class="mobile-link"><span><i class="fas fa-cloud-upload-alt mr-2"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="feedback.html" class="mobile-link"><span><i class="fas fa-comment-dots mr-2"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="assets.html" class="mobile-link"><span><i class="fas fa-database mr-2"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileStudioSub')" class="mobile-link"><span><i class="fas fa-building mr-2"></i>STUDIO</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileStudioSub" class="mobile-submenu"><a href="portfolio.html">Portfolio</a><a href="rendering-queue.html">Rendering Queue</a><a href="collaboration.html">Collaboration</a></div>
-            <a href="contact.html" class="mobile-link"><span><i class="fas fa-envelope mr-2"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSub')" class="mobile-link"><span><i class="fas fa-chalkboard-user mr-2"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileDashSub" class="mobile-submenu"><a href="admin.html">Admin Dashboard</a><a href="user.html">User Dashboard</a></div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSub')" class="mobile-link"><span><i class="fas fa-user-circle mr-2"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileAuthSub" class="mobile-submenu"><a href="login.html">Login</a><a href="signup.html">Signup</a></div>
-            <div class="settings-section">
-                <div class="settings-item"><span class="settings-label"><i class="fa-solid fa-arrow-right-arrow-left"></i>DIRECTION</span><button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-left-right"></i></button></div>
-                <div class="settings-item"><span class="settings-label"><i data-lucide="moon"></i>THEME</span><button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div>
+        <div class="mobile-nav-items">
+            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-home mr-3"></i>HOME</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
+                <a href="index.html" onclick="closeMobileMenu()">Home 1</a>
+                <a href="home2.html" onclick="closeMobileMenu()">Home 2</a>
+            </div>
+            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="projects.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-folder-open mr-3"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="upload.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-cloud-upload-alt mr-3"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="feedback.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-comment-dots mr-3"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="assets.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-database mr-3"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileStudioSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-building mr-3"></i>STUDIO</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileStudioSubmenu" class="mobile-submenu-items">
+                <a href="portfolio.html" onclick="closeMobileMenu()">Portfolio</a>
+                <a href="rendering-queue.html" onclick="closeMobileMenu()">Rendering Queue</a>
+                <a href="collaboration.html" onclick="closeMobileMenu()">Collaboration</a>
+                <a href="team.html" onclick="closeMobileMenu()">Our Team</a>
+            </div>
+            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileDashSubmenu" class="mobile-submenu-items">
+                <a href="admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
+                <a href="user.html" onclick="closeMobileMenu()">User Dashboard</a>
+            </div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileAuthSubmenu" class="mobile-submenu-items">
+                <a href="login.html" onclick="closeMobileMenu()">Login</a>
+                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
+            </div>
+            <div class="mobile-settings">
+                <div class="mobile-setting-item">
+                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
+                    <button onclick="toggleDirectionMobile()" class="action-btn"><i class="fa-solid fa-left-right"></i></button>
+                </div>
+                <div class="mobile-setting-item">
+                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
+                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section - Similar to Homepage with Different Image -->
-    <section class="hero-projects-bg relative min-h-screen flex items-center pt-16 overflow-hidden">
-        <div class="absolute inset-0 bg-grid-pattern opacity-20 z-0"></div>
+    <!-- Unique Hero Section for Projects Page -->
+    <section class="hero-projects-unique relative min-h-screen flex items-center pt-24 overflow-hidden">
+        <div class="floating-shape top-20 left-10"></div>
+        <div class="floating-shape bottom-20 right-10" style="animation-delay: -3s; width: 400px; height: 400px;"></div>
+        <div class="floating-shape top-1/2 left-1/3" style="animation-delay: -5s; width: 200px; height: 200px;"></div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Content -->
-                <div class="order-1 lg:order-1 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-amber-200 px-4 py-2 rounded-full text-sm font-semibold mb-6 mx-auto lg:mx-0">
-                        <i class="fas fa-cube"></i>
-                        <span>Our Portfolio</span>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-primary/20">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                        </span>
+                        Our Creative Portfolio
                     </div>
-                    
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
-                        Explore Our <br class="hidden lg:block"> Architectural <span class="text-amber-400">Masterpieces</span>
+                    <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] tracking-tight mb-6">
+                        Architectural <span class="text-primary">Masterpieces</span>
+                        <span class="block text-3xl md:text-4xl font-light mt-2 text-gray-600 dark:text-gray-400">3D Visualization Gallery</span>
                     </h1>
-                    
-                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-xl mx-auto lg:mx-0">
-                        Discover stunning photorealistic renders, interior visualizations, and commercial projects that showcase our expertise in architectural visualization.
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-lg">
+                        Explore our collection of stunning architectural renders, interior visualizations, and 3D animations that showcase our expertise in bringing architectural visions to life.
                     </p>
-                    
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                        <a href="upload.html" class="bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-amber-700 transition shadow-lg hover:shadow-xl flex items-center gap-2">
-                            <i class="fas fa-cloud-upload-alt"></i> Start Your Project
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects-grid" class="bg-primary text-white px-8 py-4 rounded-full font-semibold hover:bg-secondary transition shadow-lg hover:shadow-xl inline-flex items-center gap-2 group">
+                            Explore Projects
+                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
                         </a>
-                        <a href="#featured" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 flex items-center gap-2">
-                            <i class="fas fa-images"></i> View Featured Work
+                        <a href="upload.html" class="bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-8 py-4 rounded-full font-semibold hover:bg-gray-200 dark:hover:bg-gray-700 transition inline-flex items-center gap-2 border border-gray-200 dark:border-gray-700">
+                            <i class="fas fa-cloud-upload-alt"></i> Start a Project
                         </a>
                     </div>
-
-                    <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
+                    <div class="flex items-center gap-6 mt-10">
                         <div class="flex -space-x-2">
-                            <div class="w-10 h-10 rounded-full bg-amber-200 border-2 border-white flex items-center justify-center text-xs font-bold">MJ</div>
-                            <div class="w-10 h-10 rounded-full bg-stone-300 border-2 border-white flex items-center justify-center text-xs font-bold">SC</div>
-                            <div class="w-10 h-10 rounded-full bg-amber-300 border-2 border-white flex items-center justify-center text-xs font-bold">AR</div>
-                            <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs font-bold">+125</div>
+                            <div class="w-12 h-12 rounded-full bg-primary/20 border-2 border-primary flex items-center justify-center text-primary font-bold">MJ</div>
+                            <div class="w-12 h-12 rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center text-primary font-bold">SC</div>
+                            <div class="w-12 h-12 rounded-full bg-primary/10 border-2 border-primary flex items-center justify-center text-primary font-bold">AR</div>
+                            <div class="w-12 h-12 rounded-full bg-primary/25 border-2 border-primary flex items-center justify-center text-primary font-bold text-xs">+125</div>
                         </div>
-                        <span class="text-sm text-gray-200">Trusted by 500+ architects worldwide</span>
-                    </div>
-                </div>
-
-                <!-- Right Content - Floating Image Card -->
-                <div class="order-2 lg:order-2 mt-8 lg:mt-0">
-                    <div class="floating-card relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500 max-w-md mx-auto lg:max-w-none bg-white/10 backdrop-blur-sm p-4 rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Featured Architectural Project" class="w-full h-auto rounded-xl">
-                        <div class="absolute bottom-4 left-4 right-4 bg-black/70 backdrop-blur-sm p-3 rounded-xl">
-                            <div class="flex justify-between text-white text-sm"><span>Luxury Hillside Villa - 4K Render</span><span>Featured Project</span></div>
-                            <div class="w-full bg-gray-600 rounded-full h-1.5 mt-2"><div class="bg-amber-500 h-1.5 rounded-full" style="width:100%"></div></div>
+                        <div class="text-gray-600 dark:text-gray-400 text-sm">
+                            <span class="font-bold text-gray-900 dark:text-white text-lg">2,500+</span> projects delivered globally
                         </div>
                     </div>
                 </div>
+                <div class="order-1 lg:order-2 relative">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Featured Project" class="w-full h-auto rounded-xl">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="text-gray-900 dark:text-white font-semibold">Featured Project</p>
+                                    <p class="text-gray-500 dark:text-gray-400 text-sm">Contemporary Hillside Villa</p>
+                                </div>
+                                <div class="w-32 bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+                                    <div class="bg-primary h-2 rounded-full" style="width:100%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-2xl -z-10"></div>
+                    <div class="absolute -bottom-6 -left-6 w-40 h-40 bg-secondary/15 rounded-full blur-2xl -z-10"></div>
+                </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-16 bg-amber-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">500+</div><div class="text-amber-100">Projects Delivered</div></div>
-                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">45+</div><div class="text-amber-100">Countries Served</div></div>
-                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">98%</div><div class="text-amber-100">Client Satisfaction</div></div>
-                <div class="text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">2.4K</div><div class="text-amber-100">Assets Created</div></div>
-            </div>
-        </div>
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
     </section>
 
     <!-- Filter Section -->
     <section class="py-12 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-wrap justify-center gap-3">
-                <button class="filter-btn active px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="all">All Projects</button>
+                <button class="filter-btn active px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="all">All Work</button>
                 <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="exterior">Exterior</button>
                 <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="interior">Interior</button>
                 <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="commercial">Commercial</button>
                 <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="residential">Residential</button>
-                <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="landscape">Landscape</button>
+                <button class="filter-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-700 font-medium transition" data-filter="animation">Animation</button>
             </div>
         </div>
     </section>
 
     <!-- Projects Grid -->
-    <section id="featured" class="py-20 bg-gray-50 dark:bg-gray-800">
+    <section id="projects-grid" class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <span class="text-amber-600 text-sm font-semibold uppercase tracking-wide">Featured Work</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">Recent Architectural Masterpieces</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Explore our collection of stunning architectural visualizations from around the world</p>
+                <span class="text-primary font-semibold text-sm uppercase tracking-wide">Our Portfolio</span>
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Featured Projects</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Explore our finest architectural visualization projects from around the world</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projectsGrid">
-                <!-- Project 1 - Exterior Residential -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior residential">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Santorini Villa" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Exterior</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">4K Resolution</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">SkyVilla Santorini</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Luxury residential villa with infinity pool overlooking the Aegean Sea. Photorealistic exterior visualization showcasing mediterranean architecture with golden hour lighting.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">VRay 6</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 2 - Interior Commercial -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="interior commercial">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Lobby" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Interior</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">VRay 6</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Neo Tower Corporate Lobby</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Stunning corporate lobby with marble finishes, ambient lighting, and contemporary furniture design. Features dramatic ceiling installation and natural light integration.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">Commercial</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 3 - Landscape -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="landscape">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Urban Park" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Landscape</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">Lumion 12</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Urban Oasis Park</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Sustainable urban park design with native planting, water features, and integrated seating areas. Perfect blend of nature and modern architecture.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">Lumion</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 4 - Residential Interior -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="interior residential">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Minimalist Living" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Interior</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">Corona 9</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Minimalist Residence Living Room</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Contemporary living space with natural light, Scandinavian furniture, and warm wood accents. Open concept design with panoramic windows.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">Corona</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 5 - Commercial Exterior -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior commercial">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate HQ" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Commercial</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">3ds Max</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Tech Hub Corporate Headquarters</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Modern glass facade office building with sustainable design elements, green terraces, and landscaped surroundings. Iconic architectural landmark.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">3ds Max</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 6 - Residential Exterior -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior residential">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beach House" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Exterior</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">4K Ultra HD</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Coastal Beach Residence</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Luxury beachfront property with panoramic ocean views, infinity pool, tropical landscaping, and modern coastal architecture.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">4K</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 7 - Restaurant Interior -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="interior commercial">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rooftop Restaurant" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Interior</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">VRay</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Rooftop Sky Lounge & Restaurant</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Elegant dining space with panoramic city views, ambient lighting, modern minimalist design, and luxurious finishes.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">VRay</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
-                <!-- Project 8 - Landscape Garden -->
-                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="landscape">
-                    <div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Japanese Garden" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Landscape</div><div class="absolute bottom-4 left-4 bg-black/60 text-white px-3 py-1 rounded-full text-xs">Lumion</div></div>
-                    <div class="p-6"><h3 class="text-xl font-bold mb-2">Zen Japanese Garden</h3><p class="text-gray-600 dark:text-gray-400 text-sm mb-3">Tranquil garden design with koi pond, traditional stone lanterns, Japanese maples, bamboo groves, and meditation spaces.</p><div class="flex justify-between items-center pt-3 border-t border-gray-100 dark:border-gray-800"><div class="flex items-center gap-2"><i class="fas fa-camera text-amber-600 text-sm"></i><span class="text-xs text-gray-500">Lumion</span></div><a href="#" class="text-amber-600 font-semibold text-sm hover:underline">View Details →</a></div></div>
-                </div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior residential"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Exterior</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">SkyVilla Santorini</h3><p class="text-gray-500 text-sm mb-3">Luxury residential villa with infinity pool overlooking the Aegean Sea</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">4K · VRay</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="interior commercial"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Interior</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Neo Tower Corporate Lobby</h3><p class="text-gray-500 text-sm mb-3">Stunning corporate lobby with marble finishes and ambient lighting</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">4K · Corona</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="landscape"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Landscape</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Urban Oasis Park</h3><p class="text-gray-500 text-sm mb-3">Sustainable urban park design with native planting and water features</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Lumion · 4K</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="interior residential"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Interior</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Minimalist Residence Living Room</h3><p class="text-gray-500 text-sm mb-3">Contemporary living space with Scandinavian furniture and warm wood accents</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Corona · 4K</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior commercial"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Commercial</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Tech Hub Corporate Headquarters</h3><p class="text-gray-500 text-sm mb-3">Modern glass facade office building with sustainable design elements</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">3ds Max · 4K</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="animation"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-semibold">Animation</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Villa Walkthrough Animation</h3><p class="text-gray-500 text-sm mb-3">Cinematic 3D walkthrough showcasing the complete architectural experience</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">MP4 · 2min</span><span class="text-primary text-sm font-semibold">Watch Video →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="interior commercial"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Interior</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Rooftop Sky Lounge & Restaurant</h3><p class="text-gray-500 text-sm mb-3">Elegant dining space with panoramic city views and ambient lighting</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">VRay · 4K</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior residential"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Exterior</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Coastal Beach Residence</h3><p class="text-gray-500 text-sm mb-3">Luxury beachfront property with infinity pool and tropical landscaping</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">4K Ultra HD</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
+                <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="landscape"><div class="relative h-64 overflow-hidden"><img src="https://images.unsplash.com/photo-1448375240586-882707db888b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Landscape</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Zen Japanese Garden</h3><p class="text-gray-500 text-sm mb-3">Tranquil garden design with koi pond and traditional stone lanterns</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Lumion · 4K</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
             </div>
-            <div class="text-center mt-12"><a href="upload.html" class="inline-flex items-center gap-2 bg-amber-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-amber-700 transition">Start Your Project <i class="fas fa-arrow-right"></i></a></div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-amber-600 to-stone-700">
-        <div class="max-w-4xl mx-auto text-center px-4">
-            <h2 class="text-3xl md:text-4xl font-black text-white mb-4">Ready to Create Your Masterpiece?</h2>
-            <p class="text-xl text-amber-100 mb-8">Let's bring your architectural vision to life with stunning 3D visualization.</p>
-            <a href="upload.html" class="bg-white text-amber-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition inline-flex items-center gap-2"><i class="fas fa-cloud-upload-alt"></i> Start Your Project</a>
+    <!-- Card Style CTA Section - UNIQUE to Projects Page -->
+    <section class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="relative order-2 lg:order-1">
+                    <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center"><i class="fas fa-chart-line text-primary text-xl"></i></div>
+                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">Success Rate</p><p class="text-2xl font-bold text-gray-900 dark:text-white">98%</p></div>
+                        </div>
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center"><i class="fas fa-clock text-primary text-xl"></i></div>
+                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">Average Completion</p><p class="text-2xl font-bold text-gray-900 dark:text-white">3-5 Days</p></div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center"><i class="fas fa-star text-primary text-xl"></i></div>
+                            <div><p class="text-gray-500 dark:text-gray-400 text-sm">Client Rating</p><p class="text-2xl font-bold text-gray-900 dark:text-white">4.9/5</p></div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm italic">"The team's attention to detail and photorealism exceeded our expectations. Highly recommended!"</p>
+                            <p class="text-primary text-sm font-semibold mt-2">— Sarah Johnson, Principal Architect</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                        <i class="fas fa-rocket"></i>
+                        <span>Ready to Create</span>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">Have a Project in Mind?</h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-6">Let's bring your architectural vision to life with stunning 3D visualization.</p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <a href="upload.html" class="bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-secondary transition shadow-lg inline-flex items-center gap-2"><i class="fas fa-cloud-upload-alt"></i> Start Your Project</a>
+                        <a href="contact.html" class="border-2 border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 px-8 py-4 rounded-xl font-bold hover:border-primary hover:text-primary transition inline-flex items-center gap-2"><i class="fas fa-calendar-alt"></i> Schedule Consultation</a>
+                    </div>
+                    <div class="flex flex-wrap gap-4 mt-6 justify-center lg:justify-start">
+                        <span class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-check-circle text-primary"></i> Free Consultation</span>
+                        <span class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-check-circle text-primary"></i> No Obligation Quote</span>
+                        <span class="flex items-center gap-2 text-sm text-gray-500"><i class="fas fa-check-circle text-primary"></i> Fast Turnaround</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-10 pb-6">
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 mb-10">
-                <div class="col-span-2 lg:col-span-1"><a href="index.html" class="flex items-center gap-2 mb-3"><i class="fas fa-cube text-2xl text-amber-500"></i><span class="font-black text-2xl bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">ARKI·VIZ</span></a><p class="text-gray-400 text-sm mb-4">Architectural visualization & rendering studio.</p><div class="flex gap-3"><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-instagram text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-behance text-xs"></i></a></div></div>
-                <div><h4 class="font-bold mb-4 text-amber-400">Explore</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="projects.html" class="hover:text-white">Projects</a></li><li><a href="upload.html" class="hover:text-white">Upload</a></li><li><a href="assets.html" class="hover:text-white">Assets</a></li></ul></div>
-                <div><h4 class="font-bold mb-4 text-amber-400">Studio</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li><li><a href="rendering-queue.html" class="hover:text-white">Rendering</a></li><li><a href="contact.html" class="hover:text-white">Contact</a></li></ul></div>
-                <div><h4 class="font-bold mb-4 text-amber-400">Contact</h4><div class="text-gray-400 text-sm"><p><i class="fas fa-map-marker-alt mr-2 text-amber-500"></i> Barcelona, Spain</p><p><i class="fas fa-envelope mr-2 text-amber-500"></i> studio@arkiviz.com</p></div></div>
+            <div class="footer-grid mb-10">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-cube text-2xl text-primary"></i>
+                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI·VIZ</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                        Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="projects.html" class="hover:text-white">Projects</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Our Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
+                        <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
+                        <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
+                        <li><a href="#" class="hover:text-white">3D Animation</a></li>
+                        <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Barcelona, Spain</p>
+                        <p><i class="fas fa-envelope text-primary mr-2"></i> <a href="mailto:studio@arkiviz.com" class="hover:text-white">studio@arkiviz.com</a></p>
+                        <p><i class="fas fa-phone text-primary mr-2"></i> <a href="tel:+34931234567" class="hover:text-white">+34 93 123 4567</a></p>
+                        <p><i class="fas fa-clock text-primary mr-2"></i> Mon-Fri: 9AM - 8PM</p>
+                    </div>
+                </div>
             </div>
-            <div class="pt-6 border-t border-gray-800 text-center text-gray-500 text-xs"><p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering</p></div>
+            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+                <p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">Cookie Policy</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
         
-        function toggleMobileMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('open');document.body.classList.toggle('menu-open');setTimeout(()=>lucide.createIcons(),100);}
-        function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.classList.remove('menu-open');}
-        function toggleMobileSubmenu(id){const s=document.getElementById(id);if(s){s.classList.toggle('open');const btn=s.previousElementSibling;const icon=btn?.querySelector('i:last-child');if(icon){icon.style.transform=s.classList.contains('open')?'rotate(180deg)':'rotate(0deg)';}}setTimeout(()=>lucide.createIcons(),10);}
-        function toggleTheme(){document.documentElement.classList.toggle('dark');document.body.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');setTimeout(()=>lucide.createIcons(),10);}
-        function toggleDirection(){document.documentElement.dir=document.documentElement.dir==='rtl'?'ltr':'rtl';}
+        function openMobileMenu() {
+            document.getElementById('mobileMenuPanel').classList.add('open');
+            document.getElementById('mobileOverlay').classList.add('active');
+            document.body.classList.add('menu-open');
+        }
         
-        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
-        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
+        function closeMobileMenu() {
+            document.getElementById('mobileMenuPanel').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+        
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id);
+            if (submenu) {
+                submenu.classList.toggle('open');
+                const btn = submenu.previousElementSibling;
+                const icon = btn?.querySelector('i:last-child');
+                if (icon) {
+                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        }
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            setTimeout(() => lucide.createIcons(), 10);
+        }
+        
+        function toggleThemeMobile() {
+            toggleTheme();
+        }
+        
+        function toggleDirection() {
+            const currentDir = document.documentElement.dir;
+            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+        }
+        
+        function toggleDirectionMobile() {
+            toggleDirection();
+        }
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
         
         // Filter functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -705,7 +1068,6 @@
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
                 const filterValue = btn.getAttribute('data-filter');
-                
                 projects.forEach(project => {
                     const categories = project.getAttribute('data-category');
                     if (filterValue === 'all' || categories.includes(filterValue)) {

@@ -1,0 +1,259 @@
+<!-- footer-component.html - Reusable Footer Component -->
+<!-- This file contains the footer HTML structure and CSS that should be included in all pages -->
+<!-- To use, copy the content inside the <footer> tags into your page -->
+
+<style>
+    /* Footer Styles - Include these in your page's <style> section */
+    footer {
+        background-color: #111827;
+        color: white;
+        padding-top: 3rem;
+        padding-bottom: 1.5rem;
+    }
+    
+    .dark footer {
+        background-color: #1a1a1a;
+    }
+    
+    .footer-container {
+        max-width: 80rem;
+        margin: 0 auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    @media (min-width: 640px) {
+        .footer-container {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .footer-container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+    
+    .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+    
+    @media (min-width: 768px) {
+        .footer-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .footer-grid {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+    
+    .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-logo-icon {
+        font-size: 1.5rem;
+        color: #c17b4c;
+    }
+    
+    .footer-logo-text {
+        font-weight: 900;
+        font-size: 1.25rem;
+        background: linear-gradient(135deg, #c17b4c, #a5653a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .footer-description {
+        color: #9ca3af;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        line-height: 1.625;
+    }
+    
+    .footer-social {
+        display: flex;
+        gap: 0.75rem;
+    }
+    
+    .footer-social-link {
+        width: 2rem;
+        height: 2rem;
+        background-color: #1f2937;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        color: white;
+    }
+    
+    .footer-social-link:hover {
+        background-color: #c17b4c;
+    }
+    
+    .footer-heading {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #c17b4c;
+        font-size: 1rem;
+    }
+    
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .footer-links a {
+        color: #9ca3af;
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+        color: white;
+    }
+    
+    .footer-contact-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        color: #9ca3af;
+        font-size: 0.875rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .footer-contact-icon {
+        color: #c17b4c;
+        margin-top: 0.125rem;
+    }
+    
+    .footer-bottom {
+        padding-top: 1.5rem;
+        border-top: 1px solid #374151;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        color: #6b7280;
+        font-size: 0.75rem;
+    }
+    
+    @media (min-width: 768px) {
+        .footer-bottom {
+            flex-direction: row;
+        }
+    }
+    
+    .footer-bottom-links {
+        display: flex;
+        gap: 1.5rem;
+    }
+    
+    .footer-bottom-links a {
+        color: #6b7280;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .footer-bottom-links a:hover {
+        color: white;
+    }
+</style>
+
+<!-- Footer HTML Structure -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-grid">
+            <!-- Logo & Description -->
+            <div>
+                <a href="index.html" class="footer-logo">
+                    <i class="fas fa-cube footer-logo-icon"></i>
+                    <span class="footer-logo-text">ARKI·VIZ</span>
+                </a>
+                <p class="footer-description">
+                    Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
+                </p>
+                <div class="footer-social">
+                    <a href="#" class="footer-social-link"><i class="fab fa-instagram text-xs"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fab fa-linkedin-in text-xs"></i></a>
+                    <a href="#" class="footer-social-link"><i class="fas fa-envelope text-xs"></i></a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <!-- Our Services -->
+            <div>
+                <h4 class="footer-heading">Our Services</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Exterior Rendering</a></li>
+                    <li><a href="#">Interior Visualization</a></li>
+                    <li><a href="#">360° VR Tours</a></li>
+                    <li><a href="#">3D Animation</a></li>
+                    <li><a href="#">Virtual Staging</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div>
+                <h4 class="footer-heading">Contact Info</h4>
+                <div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt footer-contact-icon"></i>
+                        <span>Barcelona, Spain</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope footer-contact-icon"></i>
+                        <a href="mailto:studio@arkiviz.com" style="color: #9ca3af; text-decoration: none;">studio@arkiviz.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone footer-contact-icon"></i>
+                        <a href="tel:+34931234567" style="color: #9ca3af; text-decoration: none;">+34 93 123 4567</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-clock footer-contact-icon"></i>
+                        <span>Mon-Fri: 9AM - 8PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</footer>

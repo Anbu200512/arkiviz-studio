@@ -55,40 +55,62 @@
             overflow: hidden;
         }
         
+        /* ===== PERFECT NAVBAR ===== */
         .navbar {
             position: fixed;
-            top: 0px;
-            left: 0px;
-            right: 0px;
+            top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             background: rgba(255, 252, 248, 0.95);
             backdrop-filter: blur(20px);
-            border: 1px solid rgba(193, 123, 76, 0.25);
+            border-bottom: 1px solid rgba(193, 123, 76, 0.25);
             transition: all 0.3s ease;
         }
         
         .dark .navbar {
             background: rgba(30, 26, 23, 0.95);
-            border-color: rgba(193, 123, 76, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(193, 123, 76, 0.2);
+            border-bottom-color: rgba(193, 123, 76, 0.4);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0.75rem 1.5rem;
+        }
+        
+        .nav-3-part {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        .nav-part-left {
+            flex-shrink: 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
-            color: #c17b4c;
+            text-decoration: none;
+            padding: 6px 8px;
             transition: all 0.3s ease;
-            padding: 8px 16px;
         }
         
         .logo:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+            color: #c17b4c;
         }
         
         .logo-text {
             font-weight: 900;
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -101,22 +123,31 @@
             -webkit-text-fill-color: transparent;
         }
         
+        .nav-part-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+            overflow: visible;
+        }
+        
         .nav-link {
             font-size: 14px;
             font-weight: 600;
-            padding: 10px 18px;
+            padding: 8px 12px;
             border-radius: 40px;
             color: #3a2c24;
-            letter-spacing: 0.3px;
             transition: all 0.3s ease;
-            position: relative;
             background: transparent;
             border: none;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 5px;
             text-decoration: none;
+            white-space: nowrap;
         }
         
         .dark .nav-link {
@@ -131,21 +162,25 @@
             transform: translateY(-2px);
         }
         
+        .dropdown {
+            position: relative;
+        }
+        
         .dropdown-menu {
             position: absolute;
             top: 100%;
-            margin-top: 15px;
+            margin-top: 12px;
             min-width: 220px;
             background: white;
             border-radius: 24px;
-            padding: 12px;
-            box-shadow: 0 20px 40px -10px rgba(193, 123, 76, 0.2);
+            padding: 10px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
             border: 1px solid rgba(193, 123, 76, 0.2);
             opacity: 0;
             visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            z-index: 1000;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            z-index: 1001;
         }
         
         .dark .dropdown-menu {
@@ -153,7 +188,7 @@
             border-color: rgba(193, 123, 76, 0.3);
         }
         
-        .dropdown-group:hover .dropdown-menu {
+        .dropdown:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -163,12 +198,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 12px 16px;
+            padding: 10px 16px;
             border-radius: 16px;
             color: #3a2c24;
             font-weight: 500;
             font-size: 13px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             text-decoration: none;
         }
         
@@ -187,32 +222,231 @@
             transform: translateX(5px);
         }
         
-        .dropdown-item:hover i {
-            color: white;
+        .profile-dropdown {
+            position: relative;
         }
         
-        #mobileMenu {
+        .profile-dropdown-menu {
+            position: absolute;
+            top: 100%;
+            margin-top: 12px;
+            min-width: 220px;
+            background: white;
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(193, 123, 76, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.25s ease;
+            z-index: 1001;
+        }
+        
+        [dir="ltr"] .profile-dropdown-menu {
+            right: 0;
+            left: auto;
+        }
+        
+        [dir="rtl"] .profile-dropdown-menu {
+            left: 0;
+            right: auto;
+        }
+        
+        .dark .profile-dropdown-menu {
+            background: #2a241f;
+            border-color: rgba(193, 123, 76, 0.3);
+        }
+        
+        .profile-dropdown:hover .profile-dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-part-right {
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+        }
+        
+        .hamburger {
+            display: none;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            border: none;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+        
+        .hamburger:hover {
+            transform: scale(1.05);
+        }
+        
+        .desktop-auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .nav-link {
+                padding: 8px 10px;
+                font-size: 13px;
+            }
+        }
+        
+        @media (max-width: 1100px) {
+            .nav-link {
+                padding: 8px 8px;
+                font-size: 12px;
+            }
+            .nav-part-center {
+                gap: 0.1rem;
+            }
+        }
+        
+        @media (max-width: 1000px) {
+            .nav-part-center {
+                display: none !important;
+            }
+            .desktop-auth-buttons {
+                display: none !important;
+            }
+            .hamburger {
+                display: flex !important;
+            }
+            .profile-dropdown {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 1001px) {
+            .hamburger {
+                display: none !important;
+            }
+            .nav-part-center {
+                display: flex !important;
+            }
+            .desktop-auth-buttons {
+                display: flex !important;
+            }
+            .profile-dropdown {
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0.5rem 1rem;
+            }
+            .logo {
+                padding: 4px 6px;
+            }
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            .logo i {
+                font-size: 1.5rem;
+            }
+            .action-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .hamburger {
+                width: 36px;
+                height: 36px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0.5rem 0.75rem;
+            }
+            .logo-text {
+                font-size: 1rem;
+            }
+            .logo i {
+                font-size: 1.3rem;
+            }
+            .action-btn {
+                width: 34px;
+                height: 34px;
+            }
+            .hamburger {
+                width: 34px;
+                height: 34px;
+            }
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-menu-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            width: 100%;
-            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 380px;
             background: rgba(255, 252, 248, 0.98);
             backdrop-filter: blur(20px);
             z-index: 2000;
             transform: translateX(100%);
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             overflow-y: auto;
-            padding: 20px;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
         }
         
-        .dark #mobileMenu {
+        .dark .mobile-menu {
             background: rgba(30, 26, 23, 0.98);
         }
         
-        #mobileMenu.open {
+        .mobile-menu.open {
             transform: translateX(0);
         }
         
@@ -220,177 +454,150 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
             background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
         }
         
-        .close-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
+        .mobile-close {
+            width: 48px;
+            height: 48px;
+            border-radius: 30px;
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
             cursor: pointer;
             color: white;
             border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
+            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
         }
         
-        .close-btn:hover {
-            transform: rotate(90deg) scale(1.1);
+        .mobile-nav-items {
+            padding: 0 20px 20px 20px;
         }
         
-        .mobile-link {
+        .mobile-nav-link {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
-            margin: 8px 0;
+            padding: 14px 18px;
+            margin: 6px 0;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 1rem;
             color: #3a2c24;
             background: white;
             border: 1px solid rgba(193, 123, 76, 0.2);
             width: 100%;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-decoration: none;
         }
         
-        .dark .mobile-link {
+        .dark .mobile-nav-link {
             color: #e8dfd8;
             background: rgba(193, 123, 76, 0.1);
-            border-color: rgba(193, 123, 76, 0.2);
+            border-color: rgba(193, 123, 76, 0.25);
         }
         
-        .mobile-link:hover,
-        .mobile-link.active {
+        .mobile-nav-link:hover,
+        .mobile-nav-link.active {
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             color: white !important;
-            transform: translateX(10px);
+            transform: translateX(5px);
             border-color: transparent;
         }
         
-        .mobile-submenu {
+        .mobile-submenu-items {
             margin-left: 20px;
-            padding-left: 20px;
+            padding-left: 18px;
             border-left: 2px solid #c17b4c;
             display: none;
-            animation: slideIn 0.3s ease;
+            animation: slideDown 0.25s ease;
         }
         
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-10px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        .mobile-submenu.open {
+        .mobile-submenu-items.open {
             display: block;
         }
         
-        .mobile-submenu a {
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-submenu-items a {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 14px 20px;
+            padding: 12px 18px;
             margin: 8px 0;
             border-radius: 16px;
             color: #3a2c24;
             font-weight: 500;
-            font-size: 14px;
+            font-size: 0.9rem;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             background: white;
-            border: 1px solid rgba(193, 123, 76, 0.2);
+            border: 1px solid rgba(193, 123, 76, 0.15);
         }
         
-        .dark .mobile-submenu a {
+        .dark .mobile-submenu-items a {
             color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.1);
+            background: rgba(193, 123, 76, 0.08);
         }
         
-        .mobile-submenu a:hover,
-        .mobile-submenu a.active {
+        .mobile-submenu-items a:hover,
+        .mobile-submenu-items a.active {
             background: linear-gradient(135deg, #c17b4c, #a5653a);
             color: white !important;
-            transform: translateX(10px);
-            border-color: transparent;
+            transform: translateX(5px);
         }
         
-        .action-btn {
-            width: 45px;
-            height: 45px;
-            border-radius: 45px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(193, 123, 76, 0.5);
-        }
-        
-        .settings-section {
+        .mobile-settings {
             background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border: 2px solid rgba(193, 123, 76, 0.3);
-            border-radius: 30px;
-            padding: 24px;
-            margin-top: 30px;
+            border: 1px solid rgba(193, 123, 76, 0.3);
+            border-radius: 28px;
+            padding: 20px;
+            margin-top: 25px;
         }
         
-        .settings-item {
+        .mobile-setting-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 12px 0;
         }
         
-        .settings-label {
+        .mobile-setting-label {
             font-weight: 600;
             color: #3a2c24;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         
-        .dark .settings-label {
+        .dark .mobile-setting-label {
             color: #e8dfd8;
         }
         
-        @media (max-width: 1024px) {
-            .desktop-menu { display: none !important; }
-            .desktop-auth { display: none !important; }
-            .mobile-toggle { display: flex !important; }
-        }
-        
-        @media (min-width: 1025px) {
-            .mobile-toggle { display: none !important; }
-            .desktop-menu { display: flex !important; }
-            .desktop-auth { display: block !important; }
-        }
-        
+        /* Upload Page Unique Styles */
         .bg-grid-pattern {
             background-image: linear-gradient(rgba(193, 123, 76, 0.08) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(193, 123, 76, 0.08) 1px, transparent 1px);
             background-size: 50px 50px;
         }
         
-        /* Unique Hero Section with Different Background Image - Modern Architecture Style */
-        .upload-hero-unique {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        .hero-upload-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -398,81 +605,93 @@
             overflow: hidden;
         }
         
-        .dark .upload-hero-unique {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+        .dark .hero-upload-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
         }
         
-        .upload-hero-unique::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(193,123,76,0.15) 0%, transparent 50%);
-            z-index: 0;
-        }
-        
-        .floating-card {
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-        }
-        
-        .dropzone {
+        .step-indicator {
             transition: all 0.3s ease;
         }
         
-        .dropzone.dragover {
-            background: rgba(193, 123, 76, 0.1);
+        .step-indicator.active .step-number {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white;
             border-color: #c17b4c;
-            transform: scale(1.02);
         }
         
-        .file-item {
-            animation: slideInUp 0.3s ease;
+        .step-indicator.completed .step-number {
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            color: white;
+            border-color: #c17b4c;
         }
         
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .service-card {
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            border: 2px solid #e5e7eb;
+            background: white;
             transition: all 0.3s ease;
         }
         
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px -12px rgba(193, 123, 76, 0.2);
+        .dark .step-number {
+            background: #2a241f;
+            border-color: #4b5563;
         }
         
-        .stats-card {
+        .form-card {
             transition: all 0.3s ease;
         }
         
-        .stats-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.1);
+        .faq-item {
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
         }
     </style>
 </head>
 <body class="light font-inter">
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 py-2">
-            <div class="flex items-center justify-between">
-                <a href="index.html" class="logo">
-                    <i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i>
-                    <span class="logo-text">ARKI·VIZ</span>
-                </a>
+    <!-- Perfect Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-3-part">
+                <!-- PART 1: LOGO -->
+                <div class="nav-part-left">
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-cube"></i>
+                        <span class="logo-text">ARKI·VIZ</span>
+                    </a>
+                </div>
 
-                <div class="desktop-menu items-center gap-1">
-                    <div class="dropdown-group relative">
+                <!-- PART 2: LINKS -->
+                <div class="nav-part-center">
+                    <div class="dropdown">
                         <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="index.html" class="dropdown-item">Home 1</a>
@@ -484,7 +703,7 @@
                     <a href="upload.html" class="nav-link active">Upload</a>
                     <a href="feedback.html" class="nav-link">Feedback</a>
                     <a href="assets.html" class="nav-link">Assets</a>
-                    <div class="dropdown-group relative">
+                    <div class="dropdown">
                         <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="portfolio.html" class="dropdown-item">Portfolio</a>
@@ -494,7 +713,7 @@
                         </div>
                     </div>
                     <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="dropdown-group relative">
+                    <div class="dropdown">
                         <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
                         <div class="dropdown-menu">
                             <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
@@ -503,287 +722,524 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-2">
-                    <div class="desktop-menu flex items-center gap-2">
+                <!-- PART 3: ICONS -->
+                <div class="nav-part-right">
+                    <div class="desktop-auth-buttons">
                         <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
                         <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
                     </div>
-                    <div class="desktop-auth dropdown-group relative">
+                    <div class="profile-dropdown">
                         <button class="action-btn"><i data-lucide="user" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu" style="right: 0; left: auto;">
+                        <div class="profile-dropdown-menu">
                             <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
                             <a href="signup.html" class="dropdown-item"><i data-lucide="user-plus"></i>Signup</a>
                         </div>
                     </div>
-                    <button onclick="toggleMobileMenu()" class="mobile-toggle action-btn"><i data-lucide="menu" class="w-5 h-5"></i></button>
+                    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu">
+    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+    <div class="mobile-menu" id="mobileMenuPanel">
         <div class="mobile-header">
-            <a href="index.html" class="logo"><i class="fas fa-cube text-2xl" style="color: #c17b4c;"></i><span class="logo-text">ARKI·VIZ</span></a>
-            <button onclick="toggleMobileMenu()" class="close-btn"><i data-lucide="x" class="w-6 h-6"></i></button>
+            <a href="index.html" class="logo" onclick="closeMobileMenu()"><i class="fas fa-cube"></i><span class="logo-text">ARKI·VIZ</span></a>
+            <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
         </div>
-        <div class="px-4">
-            <button onclick="toggleMobileSubmenu('mobileHomeSub')" class="mobile-link"><span><i class="fas fa-home mr-2"></i>HOME</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileHomeSub" class="mobile-submenu"><a href="index.html">Home 1</a><a href="home2.html">Home 2</a></div>
-            <a href="about.html" class="mobile-link"><span><i class="fas fa-info-circle mr-2"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="projects.html" class="mobile-link"><span><i class="fas fa-folder-open mr-2"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="upload.html" class="mobile-link active"><span><i class="fas fa-cloud-upload-alt mr-2"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="feedback.html" class="mobile-link"><span><i class="fas fa-comment-dots mr-2"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="assets.html" class="mobile-link"><span><i class="fas fa-database mr-2"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileStudioSub')" class="mobile-link"><span><i class="fas fa-building mr-2"></i>STUDIO</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileStudioSub" class="mobile-submenu"><a href="portfolio.html">Portfolio</a><a href="rendering-queue.html">Rendering Queue</a><a href="collaboration.html">Collaboration</a><a href="team.html">Our Team</a></div>
-            <a href="contact.html" class="mobile-link"><span><i class="fas fa-envelope mr-2"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSub')" class="mobile-link"><span><i class="fas fa-chalkboard-user mr-2"></i>DASHBOARD</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileDashSub" class="mobile-submenu"><a href="admin.html">Admin Dashboard</a><a href="user.html">User Dashboard</a></div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSub')" class="mobile-link"><span><i class="fas fa-user-circle mr-2"></i>ACCOUNT</span><i data-lucide="chevron-down" class="w-5 h-5"></i></button>
-            <div id="mobileAuthSub" class="mobile-submenu"><a href="login.html">Login</a><a href="signup.html">Signup</a></div>
-            <div class="settings-section">
-                <div class="settings-item"><span class="settings-label"><i class="fa-solid fa-arrow-right-arrow-left"></i>DIRECTION</span><button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-left-right"></i></button></div>
-                <div class="settings-item"><span class="settings-label"><i data-lucide="moon"></i>THEME</span><button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button></div>
+        <div class="mobile-nav-items">
+            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-home mr-3"></i>HOME</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
+                <a href="index.html" onclick="closeMobileMenu()">Home 1</a>
+                <a href="home2.html" onclick="closeMobileMenu()">Home 2</a>
+            </div>
+            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="projects.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-folder-open mr-3"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="upload.html" class="mobile-nav-link active" onclick="closeMobileMenu()"><span><i class="fas fa-cloud-upload-alt mr-3"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="feedback.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-comment-dots mr-3"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <a href="assets.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-database mr-3"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileStudioSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-building mr-3"></i>STUDIO</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileStudioSubmenu" class="mobile-submenu-items">
+                <a href="portfolio.html" onclick="closeMobileMenu()">Portfolio</a>
+                <a href="rendering-queue.html" onclick="closeMobileMenu()">Rendering Queue</a>
+                <a href="collaboration.html" onclick="closeMobileMenu()">Collaboration</a>
+                <a href="team.html" onclick="closeMobileMenu()">Our Team</a>
+            </div>
+            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileDashSubmenu" class="mobile-submenu-items">
+                <a href="admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
+                <a href="user.html" onclick="closeMobileMenu()">User Dashboard</a>
+            </div>
+            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link">
+                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
+                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            </button>
+            <div id="mobileAuthSubmenu" class="mobile-submenu-items">
+                <a href="login.html" onclick="closeMobileMenu()">Login</a>
+                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
+            </div>
+            <div class="mobile-settings">
+                <div class="mobile-setting-item">
+                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
+                    <button onclick="toggleDirectionMobile()" class="action-btn"><i class="fa-solid fa-left-right"></i></button>
+                </div>
+                <div class="mobile-setting-item">
+                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
+                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Hero Section with Unique Background Image -->
-    <section class="upload-hero-unique relative min-h-screen flex items-center pt-16 overflow-hidden">
+    <!-- Hero Section with Unique Image Background -->
+    <section class="hero-upload-bg relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div class="absolute inset-0 bg-grid-pattern opacity-20 z-0"></div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Content -->
-                <div class="order-1 lg:order-1 text-center lg:text-left">
-                    <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-amber-200 px-4 py-2 rounded-full text-sm font-semibold mb-6 mx-auto lg:mx-0">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                        <span>Start Your Project</span>
-                    </div>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white leading-tight mb-6">
-                        Upload Your <br class="hidden lg:block"> Architectural <span class="text-amber-400">Files</span>
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-xl mx-auto lg:mx-0">
-                        Upload your project files, specify rendering preferences, and our team will start visualizing your vision with stunning photorealistic quality.
-                    </p>
-                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                        <a href="#upload-form" class="bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-amber-700 transition shadow-lg hover:shadow-xl flex items-center gap-2">
-                            <i class="fas fa-cloud-upload-alt"></i> Upload Now
-                        </a>
-                        <a href="projects.html" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 flex items-center gap-2">
-                            <i class="fas fa-images"></i> View Portfolio
-                        </a>
-                    </div>
-                    <div class="flex items-center gap-6 mt-8 justify-center lg:justify-start">
-                        <div class="flex -space-x-2">
-                            <div class="w-10 h-10 rounded-full bg-amber-200 border-2 border-white flex items-center justify-center text-xs font-bold">MJ</div>
-                            <div class="w-10 h-10 rounded-full bg-stone-300 border-2 border-white flex items-center justify-center text-xs font-bold">SC</div>
-                            <div class="w-10 h-10 rounded-full bg-amber-300 border-2 border-white flex items-center justify-center text-xs font-bold">AR</div>
-                            <div class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs font-bold">+125</div>
-                        </div>
-                        <span class="text-sm text-gray-200">Trusted by 500+ architects worldwide</span>
-                    </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-semibold mb-6 border border-white/30">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span>Start Your Project</span>
                 </div>
-
-                <!-- Right Content - Floating Upload Card -->
-                <div class="order-2 lg:order-2 mt-8 lg:mt-0">
-                    <div class="floating-card relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500 max-w-md mx-auto lg:max-w-none bg-white/10 backdrop-blur-sm p-6 rounded-2xl">
-                        <div class="text-center text-white">
-                            <i class="fas fa-file-upload text-5xl text-amber-400 mb-4"></i>
-                            <h3 class="text-2xl font-bold mb-2">Quick Upload</h3>
-                            <p class="text-gray-200 text-sm mb-4">Drag & drop your files or click to browse</p>
-                            <div class="bg-white/20 rounded-xl p-4 backdrop-blur-sm">
-                                <div class="flex justify-between text-sm mb-2"><span>Supported formats</span><span>.skp .rvt .max .fbx .obj</span></div>
-                                <div class="w-full bg-gray-600 rounded-full h-2"><div class="bg-amber-500 h-2 rounded-full" style="width:100%"></div></div>
-                                <p class="text-xs text-gray-300 mt-2">Max file size: 2GB per file</p>
-                            </div>
-                        </div>
-                    </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+                    Upload Your <span class="text-amber-400">Architectural Project</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                    Share your design files, reference images, and project details. Our team will start working on your 3D visualization within 24 hours.
+                </p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <a href="#upload-form" class="bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-amber-700 transition shadow-lg inline-flex items-center gap-2">
+                        <i class="fas fa-upload"></i> Start Upload
+                    </a>
+                    <a href="#faq" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 inline-flex items-center gap-2">
+                        <i class="fas fa-question-circle"></i> FAQ
+                    </a>
                 </div>
-            </div>
-        </div>
-        <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-16 bg-amber-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div class="stats-card text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">500+</div><div class="text-amber-100">Projects Uploaded</div></div>
-                <div class="stats-card text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">2.4K</div><div class="text-amber-100">Assets Created</div></div>
-                <div class="stats-card text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">98%</div><div class="text-amber-100">Client Satisfaction</div></div>
-                <div class="stats-card text-center text-white"><div class="text-4xl md:text-5xl font-black mb-2">24/7</div><div class="text-amber-100">Render Support</div></div>
+                <div class="flex flex-wrap gap-6 justify-center mt-10">
+                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-amber-400"></i> Free Consultation</div>
+                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-amber-400"></i> Fast Turnaround</div>
+                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-amber-400"></i> Unlimited Revisions</div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Upload Form Section -->
-    <section id="upload-form" class="py-20 bg-white dark:bg-gray-900">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Progress Steps -->
-            <div class="flex justify-between items-center mb-12">
-                <div class="flex-1 text-center"><div class="w-10 h-10 bg-amber-600 text-white rounded-full flex items-center justify-center mx-auto mb-2">1</div><p class="text-sm font-medium text-amber-600">Project Details</p></div>
-                <div class="flex-1 h-0.5 bg-gray-300 dark:bg-gray-700"></div>
-                <div class="flex-1 text-center"><div class="w-10 h-10 bg-gray-300 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center mx-auto mb-2">2</div><p class="text-sm font-medium text-gray-500">Upload Files</p></div>
-                <div class="flex-1 h-0.5 bg-gray-300 dark:bg-gray-700"></div>
-                <div class="flex-1 text-center"><div class="w-10 h-10 bg-gray-300 dark:bg-gray-700 text-gray-600 dark:text-gray-400 rounded-full flex items-center justify-center mx-auto mb-2">3</div><p class="text-sm font-medium text-gray-500">Confirm & Submit</p></div>
-            </div>
-
-            <!-- Form -->
-            <form id="uploadForm" class="space-y-8">
-                <!-- Project Information -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Project Information</h2>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Project Name *</label><input type="text" id="projectName" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-amber-500 focus:border-transparent" placeholder="e.g., Modern Villa Visualization" required></div>
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Project Type *</label><select id="projectType" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:ring-2 focus:ring-amber-500"><option value="">Select Type</option><option value="exterior">Exterior Rendering</option><option value="interior">Interior Visualization</option><option value="commercial">Commercial Space</option><option value="residential">Residential</option><option value="landscape">Landscape Design</option><option value="animation">3D Animation</option></select></div>
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Resolution *</label><select id="resolution" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900"><option value="HD">HD (1920x1080)</option><option value="4K" selected>4K (3840x2160)</option><option value="8K">8K (7680x4320)</option></select></div>
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Rendering Engine</label><select id="engine" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900"><option value="vray">VRay</option><option value="corona">Corona Renderer</option><option value="lumion">Lumion</option><option value="unreal">Unreal Engine</option></select></div>
-                        <div class="md:col-span-2"><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Project Description</label><textarea id="description" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="Describe your project, specific requirements, camera angles, lighting preferences..."></textarea></div>
-                    </div>
-                </div>
-
-                <!-- File Upload Area -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Upload Files</h2>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Supported formats: .skp, .rvt, .max, .fbx, .obj, .dwg, .jpg, .png, .zip</p>
-                    
-                    <div id="dropzone" class="dropzone border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-8 text-center cursor-pointer hover:border-amber-500 transition">
-                        <i class="fas fa-cloud-upload-alt text-5xl text-gray-400 mb-4"></i>
-                        <p class="text-gray-600 dark:text-gray-400 mb-2">Drag & drop your files here or click to browse</p>
-                        <p class="text-gray-500 dark:text-gray-500 text-sm">Maximum file size: 2GB per file</p>
-                        <input type="file" id="fileInput" multiple class="hidden" accept=".skp,.rvt,.max,.fbx,.obj,.dwg,.jpg,.png,.jpeg,.zip">
-                        <button type="button" id="browseBtn" class="mt-4 bg-amber-600 text-white px-6 py-2 rounded-full text-sm font-semibold hover:bg-amber-700 transition">Select Files</button>
-                    </div>
-                    <div id="fileList" class="mt-6 space-y-3"></div>
-                </div>
-
-                <!-- Additional Options -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Additional Options</h2>
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Delivery Date Preference</label><select id="delivery" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900"><option value="standard">Standard (5-7 business days)</option><option value="express">Express (2-3 business days) +30%</option><option value="priority">Priority (24 hours) +50%</option></select></div>
-                        <div><label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Revision Rounds</label><select id="revisions" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900"><option value="2">2 Revisions Included</option><option value="unlimited">Unlimited Revisions (+$199)</option></select></div>
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <button type="submit" class="bg-amber-600 text-white px-12 py-4 rounded-xl font-bold text-lg hover:bg-amber-700 transition shadow-lg hover:shadow-xl inline-flex items-center gap-3">
-                        <i class="fas fa-paper-plane"></i> Submit Project for Rendering
-                    </button>
-                    <p class="text-gray-500 dark:text-gray-400 text-sm mt-4">Our team will review your files and provide a quote within 24 hours</p>
-                </div>
-            </form>
-        </div>
-    </section>
-
-    <!-- Supported Formats Section -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">File Compatibility</span>
-            <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Supported File Formats</h2>
-            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">We accept all major 3D file formats and reference images</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-6">
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-cube text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.skp</span><p class="text-xs text-gray-500">SketchUp</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-drafting-compass text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.rvt</span><p class="text-xs text-gray-500">Revit</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-chart-line text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.max</span><p class="text-xs text-gray-500">3ds Max</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-shapes text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.fbx</span><p class="text-xs text-gray-500">Autodesk FBX</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-cube text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.obj</span><p class="text-xs text-gray-500">Wavefront OBJ</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-draw-polygon text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.dwg</span><p class="text-xs text-gray-500">AutoCAD</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-image text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.jpg/.png</span><p class="text-xs text-gray-500">Reference Images</p></div>
-                <div class="bg-white dark:bg-gray-900 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700 service-card"><i class="fas fa-file-archive text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">.zip</span><p class="text-xs text-gray-500">Archives</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-20 bg-white dark:bg-gray-900">
+    <section id="upload-form" class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12"><span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Got Questions?</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Frequently Asked Questions</h2></div>
-            <div class="space-y-4"><div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5"><h3 class="font-semibold text-gray-900 dark:text-white mb-2">How long does rendering take?</h3><p class="text-gray-600 dark:text-gray-400">Standard delivery is 5-7 business days. Express delivery (2-3 days) and priority (24 hours) options are available for urgent projects.</p></div>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5"><h3 class="font-semibold text-gray-900 dark:text-white mb-2">What file formats do you accept?</h3><p class="text-gray-600 dark:text-gray-400">We accept SketchUp (.skp), Revit (.rvt), 3ds Max (.max), FBX, OBJ, DWG, reference images, and ZIP archives.</p></div>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5"><h3 class="font-semibold text-gray-900 dark:text-white mb-2">Can I request revisions?</h3><p class="text-gray-600 dark:text-gray-400">Yes! Every project includes 2 rounds of revisions. Unlimited revisions are available as an add-on option.</p></div>
-            <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-5"><h3 class="font-semibold text-gray-900 dark:text-white mb-2">How do I track my project status?</h3><p class="text-gray-600 dark:text-gray-400">Once submitted, you can track your project progress in the User Dashboard, receive notifications, and provide feedback on drafts.</p></div></div>
+            
+            <!-- Step Indicators -->
+            <div class="flex justify-between mb-12">
+                <div class="step-indicator active text-center flex-1" id="step1Indicator">
+                    <div class="step-number mx-auto mb-2">1</div>
+                    <p class="text-sm font-semibold text-gray-900 dark:text-white">Project Details</p>
+                </div>
+                <div class="step-indicator text-center flex-1" id="step2Indicator">
+                    <div class="step-number mx-auto mb-2">2</div>
+                    <p class="text-sm font-semibold text-gray-500">Upload Files</p>
+                </div>
+                <div class="step-indicator text-center flex-1" id="step3Indicator">
+                    <div class="step-number mx-auto mb-2">3</div>
+                    <p class="text-sm font-semibold text-gray-500">Confirm & Submit</p>
+                </div>
+            </div>
+
+            <!-- Step 1: Project Details -->
+            <div id="step1" class="form-card bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-8 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Project Details</h2>
+                <form id="projectForm">
+                    <div class="mb-5">
+                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Project Name *</label>
+                        <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary" placeholder="e.g., Modern Hillside Villa">
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Project Type *</label>
+                        <select class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary">
+                            <option>Exterior Rendering</option>
+                            <option>Interior Visualization</option>
+                            <option>360° VR Tour</option>
+                            <option>3D Animation / Walkthrough</option>
+                            <option>Virtual Staging</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
+                        <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Description *</label>
+                        <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary" placeholder="Describe your project, specific requirements, and any special instructions..."></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Desired Resolution</label>
+                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                                <option>HD (1920x1080)</option>
+                                <option selected>4K (3840x2160)</option>
+                                <option>8K (7680x4320)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Deadline</label>
+                            <input type="date" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary">
+                        </div>
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="button" onclick="nextStep()" class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-md">Next Step →</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Step 2: Upload Files -->
+            <div id="step2" class="form-card bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-8 border border-gray-200 dark:border-gray-700 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Upload Files</h2>
+                <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-8 text-center hover:border-primary transition">
+                    <i class="fas fa-cloud-upload-alt text-5xl text-primary mb-4"></i>
+                    <p class="text-gray-600 dark:text-gray-400 mb-2">Drag & drop your files here, or click to select</p>
+                    <p class="text-sm text-gray-500">Supported: .zip, .rar, .skp, .dwg, .max, .fbx, .obj, .jpg, .png</p>
+                    <input type="file" multiple class="hidden" id="fileInput">
+                    <button onclick="document.getElementById('fileInput').click()" class="mt-4 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-2 rounded-xl hover:bg-primary hover:text-white transition">Select Files</button>
+                </div>
+                <div id="fileList" class="mt-6 space-y-2"></div>
+                <div class="flex justify-between mt-8">
+                    <button type="button" onclick="prevStep()" class="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">← Back</button>
+                    <button type="button" onclick="nextStep()" class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-md">Next Step →</button>
+                </div>
+            </div>
+
+            <!-- Step 3: Confirm & Submit -->
+            <div id="step3" class="form-card bg-white dark:bg-gray-900 rounded-2xl shadow-lg p-6 md:p-8 border border-gray-200 dark:border-gray-700 hidden">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Confirm & Submit</h2>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 mb-6">
+                    <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Project Summary</h3>
+                    <div class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                        <p><strong>Project Name:</strong> <span id="summaryName">-</span></p>
+                        <p><strong>Project Type:</strong> <span id="summaryType">-</span></p>
+                        <p><strong>Resolution:</strong> <span id="summaryResolution">-</span></p>
+                        <p><strong>Deadline:</strong> <span id="summaryDeadline">-</span></p>
+                        <p><strong>Files Uploaded:</strong> <span id="summaryFiles">0</span> files</p>
+                    </div>
+                </div>
+                <div class="flex justify-between">
+                    <button type="button" onclick="prevStep()" class="px-6 py-3 rounded-xl border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">← Back</button>
+                    <button type="button" onclick="submitProject()" class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-md">Submit Project →</button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-amber-600 to-stone-700">
-        <div class="max-w-4xl mx-auto text-center px-4"><h2 class="text-3xl md:text-4xl font-black text-white mb-4">Need Help with Your Upload?</h2><p class="text-xl text-amber-100 mb-8">Our team is ready to assist you with any questions about file formats or project requirements.</p><a href="contact.html" class="bg-white text-amber-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition inline-flex items-center gap-2"><i class="fas fa-headset"></i> Contact Support</a></div>
+    <!-- Enhanced FAQ Section -->
+    <section id="faq" class="py-20 bg-white dark:bg-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wide">FAQ</span>
+                <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Frequently Asked Questions</h2>
+                <p class="text-gray-600 dark:text-gray-400 mt-4">Everything you need to know about our upload process</p>
+            </div>
+            <div class="space-y-4">
+                <div class="faq-item bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">What file formats do you accept?</h3>
+                        <i class="fas fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                        <p>We accept a wide range of formats including: .zip, .rar, .skp (SketchUp), .dwg (AutoCAD), .max (3ds Max), .fbx, .obj, .jpg, .png, .psd. For best results, please include all reference images and 3D models in a compressed folder.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">How long does the rendering process take?</h3>
+                        <i class="fas fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                        <p>Standard delivery time is 3-5 business days for most projects. Express delivery (24-48 hours) is available for an additional fee. Complex animations may require additional time.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Can I request revisions?</h3>
+                        <i class="fas fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                        <p>Yes! We offer unlimited revisions until you're completely satisfied with the results. Our collaborative feedback system allows you to review drafts and provide comments directly on the renders.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">What is the pricing structure?</h3>
+                        <i class="fas fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                        <p>Pricing varies based on project complexity, resolution, and deadline. We provide free quotes before starting. Typical exterior renders start at $299, interior renders at $249, and animations at $999+. Contact us for a custom quote.</p>
+                    </div>
+                </div>
+                <div class="faq-item bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
+                    <button onclick="toggleFaq(this)" class="flex justify-between items-center w-full text-left">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Is my project confidential?</h3>
+                        <i class="fas fa-chevron-down text-primary transition-transform"></i>
+                    </button>
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                        <p>Absolutely! We take client confidentiality seriously. All project files and designs are protected under strict NDA agreements. Your intellectual property remains yours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA as Card - UNIQUE to Upload Page -->
+    <section class="py-20 bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 md:p-12 shadow-2xl">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Get Started?</h2>
+                        <p class="text-white/90 text-lg mb-6">Have questions about the upload process? Our team is here to help you every step of the way.</p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="contact.html" class="bg-white text-primary px-8 py-3 rounded-xl font-semibold hover:bg-gray-100 transition shadow-lg inline-flex items-center gap-2">
+                                <i class="fas fa-headset"></i> Contact Support
+                            </a>
+                            <a href="portfolio.html" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white hover:text-primary transition inline-flex items-center gap-2">
+                                <i class="fas fa-images"></i> View Portfolio
+                            </a>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-4 text-center">
+                            <i class="fas fa-clock text-2xl text-white mb-2"></i>
+                            <p class="text-white font-bold text-lg">24h</p>
+                            <p class="text-white/80 text-sm">Response Time</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-4 text-center">
+                            <i class="fas fa-chart-line text-2xl text-white mb-2"></i>
+                            <p class="text-white font-bold text-lg">98%</p>
+                            <p class="text-white/80 text-sm">Satisfaction Rate</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-4 text-center">
+                            <i class="fas fa-globe text-2xl text-white mb-2"></i>
+                            <p class="text-white font-bold text-lg">45+</p>
+                            <p class="text-white/80 text-sm">Countries</p>
+                        </div>
+                        <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-4 text-center">
+                            <i class="fas fa-image text-2xl text-white mb-2"></i>
+                            <p class="text-white font-bold text-lg">2.5K+</p>
+                            <p class="text-white/80 text-sm">Projects</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-10 pb-6">
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-8 mb-10">
-                <div class="col-span-2 lg:col-span-1"><a href="index.html" class="flex items-center gap-2 mb-3"><i class="fas fa-cube text-2xl text-amber-500"></i><span class="font-black text-2xl bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">ARKI·VIZ</span></a><p class="text-gray-400 text-sm mb-4">Architectural visualization & rendering studio.</p><div class="flex gap-3"><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-instagram text-xs"></i></a><a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600"><i class="fab fa-behance text-xs"></i></a></div></div>
-                <div><h4 class="font-bold mb-4 text-amber-400">Explore</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="projects.html" class="hover:text-white">Projects</a></li><li><a href="upload.html" class="hover:text-white">Upload</a></li><li><a href="assets.html" class="hover:text-white">Assets</a></li></ul></div>
-                <div><h4 class="font-bold mb-4 text-amber-400">Studio</h4><ul class="space-y-2 text-gray-400 text-sm"><li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li><li><a href="rendering-queue.html" class="hover:text-white">Rendering</a></li><li><a href="contact.html" class="hover:text-white">Contact</a></li></ul></div>
-                <div><h4 class="font-bold mb-4 text-amber-400">Contact</h4><div class="text-gray-400 text-sm"><p><i class="fas fa-map-marker-alt mr-2 text-amber-500"></i> Barcelona, Spain</p><p><i class="fas fa-envelope mr-2 text-amber-500"></i> studio@arkiviz.com</p></div></div>
+            <div class="footer-grid mb-10">
+                <div>
+                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-cube text-2xl text-primary"></i>
+                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI·VIZ</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                        Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="projects.html" class="hover:text-white">Projects</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Our Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
+                        <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
+                        <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
+                        <li><a href="#" class="hover:text-white">3D Animation</a></li>
+                        <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Barcelona, Spain</p>
+                        <p><i class="fas fa-envelope text-primary mr-2"></i> <a href="mailto:studio@arkiviz.com" class="hover:text-white">studio@arkiviz.com</a></p>
+                        <p><i class="fas fa-phone text-primary mr-2"></i> <a href="tel:+34931234567" class="hover:text-white">+34 93 123 4567</a></p>
+                        <p><i class="fas fa-clock text-primary mr-2"></i> Mon-Fri: 9AM - 8PM</p>
+                    </div>
+                </div>
             </div>
-            <div class="pt-6 border-t border-gray-800 text-center text-gray-500 text-xs"><p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering</p></div>
+            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+                <p>© 2026 ARKI·VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">Cookie Policy</a>
+                </div>
+            </div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
         
+        let currentStep = 1;
         let uploadedFiles = [];
         
-        function toggleMobileMenu(){const m=document.getElementById('mobileMenu');m.classList.toggle('open');document.body.classList.toggle('menu-open');setTimeout(()=>lucide.createIcons(),100);}
-        function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open');document.body.classList.remove('menu-open');}
-        function toggleMobileSubmenu(id){const s=document.getElementById(id);if(s){s.classList.toggle('open');const btn=s.previousElementSibling;const icon=btn?.querySelector('i:last-child');if(icon){icon.style.transform=s.classList.contains('open')?'rotate(180deg)':'rotate(0deg)';}}setTimeout(()=>lucide.createIcons(),10);}
-        function toggleTheme(){document.documentElement.classList.toggle('dark');document.body.classList.toggle('dark');localStorage.setItem('theme',document.documentElement.classList.contains('dark')?'dark':'light');setTimeout(()=>lucide.createIcons(),10);}
-        function toggleDirection(){document.documentElement.dir=document.documentElement.dir==='rtl'?'ltr':'rtl';}
-        
-        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
-        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
-        
-        const dropzone = document.getElementById('dropzone');
-        const fileInput = document.getElementById('fileInput');
-        const browseBtn = document.getElementById('browseBtn');
-        const fileList = document.getElementById('fileList');
-        
-        browseBtn.addEventListener('click', () => fileInput.click());
-        dropzone.addEventListener('click', () => fileInput.click());
-        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
-        dropzone.addEventListener('dragleave', () => { dropzone.classList.remove('dragover'); });
-        dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
-        fileInput.addEventListener('change', (e) => { handleFiles(e.target.files); });
-        
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (file.size > 2 * 1024 * 1024 * 1024) { alert(`File ${file.name} exceeds 2GB limit`); return; }
-                uploadedFiles.push(file);
-                displayFileList();
-            });
+        function openMobileMenu() {
+            document.getElementById('mobileMenuPanel').classList.add('open');
+            document.getElementById('mobileOverlay').classList.add('active');
+            document.body.classList.add('menu-open');
         }
         
-        function displayFileList() {
+        function closeMobileMenu() {
+            document.getElementById('mobileMenuPanel').classList.remove('open');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+        
+        function toggleMobileSubmenu(id) {
+            const submenu = document.getElementById(id);
+            if (submenu) {
+                submenu.classList.toggle('open');
+                const btn = submenu.previousElementSibling;
+                const icon = btn?.querySelector('i:last-child');
+                if (icon) {
+                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                }
+            }
+        }
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            setTimeout(() => lucide.createIcons(), 10);
+        }
+        
+        function toggleThemeMobile() {
+            toggleTheme();
+        }
+        
+        function toggleDirection() {
+            const currentDir = document.documentElement.dir;
+            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+        }
+        
+        function toggleDirectionMobile() {
+            toggleDirection();
+        }
+        
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+        
+        function nextStep() {
+            if (currentStep < 3) {
+                document.getElementById(`step${currentStep}`).classList.add('hidden');
+                currentStep++;
+                document.getElementById(`step${currentStep}`).classList.remove('hidden');
+                updateStepIndicators();
+                if (currentStep === 3) updateSummary();
+            }
+        }
+        
+        function prevStep() {
+            if (currentStep > 1) {
+                document.getElementById(`step${currentStep}`).classList.add('hidden');
+                currentStep--;
+                document.getElementById(`step${currentStep}`).classList.remove('hidden');
+                updateStepIndicators();
+            }
+        }
+        
+        function updateStepIndicators() {
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`step${i}Indicator`);
+                if (i < currentStep) {
+                    indicator.classList.add('completed');
+                    indicator.classList.remove('active');
+                } else if (i === currentStep) {
+                    indicator.classList.add('active');
+                    indicator.classList.remove('completed');
+                } else {
+                    indicator.classList.remove('active', 'completed');
+                }
+            }
+        }
+        
+        function updateSummary() {
+            const projectName = document.querySelector('#step1 input[type="text"]')?.value || '-';
+            const projectType = document.querySelector('#step1 select')?.value || '-';
+            const resolution = document.querySelector('#step1 select:last-of-type')?.value || '-';
+            const deadline = document.querySelector('#step1 input[type="date"]')?.value || '-';
+            
+            document.getElementById('summaryName').innerText = projectName;
+            document.getElementById('summaryType').innerText = projectType;
+            document.getElementById('summaryResolution').innerText = resolution;
+            document.getElementById('summaryDeadline').innerText = deadline;
+            document.getElementById('summaryFiles').innerText = uploadedFiles.length;
+        }
+        
+        function submitProject() {
+            alert('Project submitted successfully! Our team will review your files and get back to you within 24 hours.');
+        }
+        
+        document.getElementById('fileInput')?.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            uploadedFiles = [...uploadedFiles, ...files];
+            const fileList = document.getElementById('fileList');
             fileList.innerHTML = '';
             uploadedFiles.forEach((file, index) => {
-                const fileSize = (file.size / (1024 * 1024)).toFixed(2);
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item flex items-center justify-between bg-white dark:bg-gray-900 p-3 rounded-lg border border-gray-200 dark:border-gray-700';
-                fileItem.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-file-alt text-amber-600"></i><div><p class="font-medium text-sm">${file.name}</p><p class="text-xs text-gray-500">${fileSize} MB</p></div></div><button type="button" onclick="removeFile(${index})" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>`;
-                fileList.appendChild(fileItem);
+                fileList.innerHTML += `<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 flex justify-between items-center">
+                    <span class="text-sm">📄 ${file.name}</span>
+                    <button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700">✕</button>
+                </div>`;
             });
-            if (uploadedFiles.length === 0) fileList.innerHTML = '<p class="text-gray-500 text-center py-4">No files selected</p>';
+        });
+        
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            const fileList = document.getElementById('fileList');
+            fileList.innerHTML = '';
+            uploadedFiles.forEach((file, i) => {
+                fileList.innerHTML += `<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 flex justify-between items-center">
+                    <span class="text-sm">📄 ${file.name}</span>
+                    <button onclick="removeFile(${i})" class="text-red-500 hover:text-red-700">✕</button>
+                </div>`;
+            });
         }
         
-        window.removeFile = function(index) { uploadedFiles.splice(index, 1); displayFileList(); };
-        
-        document.getElementById('uploadForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const projectName = document.getElementById('projectName').value;
-            if (!projectName) { alert('Please enter a project name'); return; }
-            if (uploadedFiles.length === 0) { alert('Please upload at least one file'); return; }
-            alert(`Project "${projectName}" submitted successfully!\n\nOur team will review your ${uploadedFiles.length} file(s) and contact you within 24 hours with a quote and estimated timeline.\n\nYou can track your project status in the User Dashboard.`);
-            document.getElementById('uploadForm').reset();
-            uploadedFiles = [];
-            displayFileList();
-        });
+        function toggleFaq(button) {
+            const content = button.parentElement.querySelector('.faq-content');
+            const icon = button.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
     </script>
 </body>
 </html>
