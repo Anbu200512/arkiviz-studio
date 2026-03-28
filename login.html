@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="light">
+<html lang="en" id="htmlTag" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Login | ARKI VIZ - 3D Architectural Rendering Studio</title>
     <link rel="icon" type="images/jpg" href="images/growwpark_logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -17,1092 +16,339 @@
                 extend: { 
                     colors: { 
                         primary: '#c17b4c',
-                        secondary: '#a5653a',
-                        darkBg: '#1e1a17'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
+                        secondary: '#a5653a'
                     }
                 } 
             }
         }
     </script>
-    
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif !important;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
         }
         
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            width: 100%;
+        body { 
+            background: #F5F2F0;
             min-height: 100vh;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #f8f5f2 0%, #f0ebe6 100%);
-        }
-        
-        body.dark {
-            background: linear-gradient(135deg, #1a1613 0%, #0f0d0b 100%);
-        }
-        
-        body.menu-open {
-            overflow: hidden;
-        }
-        
-        /* ===== PERFECT NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 252, 248, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(193, 123, 76, 0.25);
-            transition: all 0.3s ease;
-        }
-        
-        .dark .navbar {
-            background: rgba(30, 26, 23, 0.95);
-            border-bottom-color: rgba(193, 123, 76, 0.4);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-        }
-        
-        .nav-3-part {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            justify-content: center;
+            margin: 0;
+            padding: 12px;
         }
         
-        .nav-part-left {
-            flex-shrink: 0;
+        .dark body {
+            background: #1E1A17;
         }
-        
+
+        /* Logo - Primary Color Gradient */
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
-            padding: 6px 8px;
             transition: all 0.3s ease;
+            padding: 8px 16px;
+            justify-content: center;
+            text-decoration: none;
         }
         
         .logo:hover {
-            transform: scale(1.02);
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-            color: #c17b4c;
-        }
-        
-        .logo-text {
-            font-weight: 900;
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-        
-        .dark .logo-text {
-            background: linear-gradient(135deg, #d69462, #c17b4c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .nav-part-center {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.25rem;
-            white-space: nowrap;
-            overflow: visible;
-        }
-        
-        .nav-link {
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 40px;
-            color: #3a2c24;
-            transition: all 0.3s ease;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-        
-        .dark .nav-link {
-            color: #e8dfd8;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white !important;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            margin-top: 12px;
-            min-width: 220px;
-            background: white;
-            border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.25s ease;
-            z-index: 1001;
-        }
-        
-        .dark .dropdown-menu {
-            background: #2a241f;
-            border-color: rgba(193, 123, 76, 0.3);
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
-            border-radius: 16px;
-            color: #3a2c24;
-            font-weight: 500;
-            font-size: 13px;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-        
-        .dark .dropdown-item {
-            color: #e8dfd8;
-        }
-        
-        .dropdown-item i {
-            width: 18px;
-            color: #c17b4c;
-        }
-        
-        .dropdown-item:hover {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white;
-            transform: translateX(5px);
-        }
-        
-        .profile-dropdown {
-            position: relative;
-        }
-        
-        .profile-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            margin-top: 12px;
-            min-width: 220px;
-            background: white;
-            border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.25s ease;
-            z-index: 1001;
-        }
-        
-        [dir="ltr"] .profile-dropdown-menu {
-            right: 0;
-            left: auto;
-        }
-        
-        [dir="rtl"] .profile-dropdown-menu {
-            left: 0;
-            right: auto;
-        }
-        
-        .dark .profile-dropdown-menu {
-            background: #2a241f;
-            border-color: rgba(193, 123, 76, 0.3);
-        }
-        
-        .profile-dropdown:hover .profile-dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .nav-part-right {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
-            flex-shrink: 0;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-        }
-        
-        .hamburger {
-            display: none;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .hamburger:hover {
             transform: scale(1.05);
         }
         
-        .desktop-auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        @media (max-width: 1200px) {
-            .nav-link {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
-        }
-        
-        @media (max-width: 1100px) {
-            .nav-link {
-                padding: 8px 8px;
-                font-size: 12px;
-            }
-            .nav-part-center {
-                gap: 0.1rem;
-            }
-        }
-        
-        @media (max-width: 1000px) {
-            .nav-part-center {
-                display: none !important;
-            }
-            .desktop-auth-buttons {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: none !important;
-            }
-        }
-        
-        @media (min-width: 1001px) {
-            .hamburger {
-                display: none !important;
-            }
-            .nav-part-center {
-                display: flex !important;
-            }
-            .desktop-auth-buttons {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: block !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0.5rem 1rem;
-            }
-            .logo {
-                padding: 4px 6px;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .logo i {
-                font-size: 1.5rem;
-            }
-            .action-btn {
-                width: 36px;
-                height: 36px;
-            }
-            .hamburger {
-                width: 36px;
-                height: 36px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0.5rem 0.75rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .logo i {
-                font-size: 1.3rem;
-            }
-            .action-btn {
-                width: 34px;
-                height: 34px;
-            }
-            .hamburger {
-                width: 34px;
-                height: 34px;
-            }
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
+        .action-btn {
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(193, 123, 76, 0.1);
+            border: 1px solid #e5e7eb;
+            color: #c17b4c;
             transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 85%;
-            max-width: 380px;
-            background: rgba(255, 252, 248, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 2000;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .mobile-menu {
-            background: rgba(30, 26, 23, 0.98);
-        }
-        
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-        
-        .mobile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 24px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-        }
-        
-        .mobile-close {
-            width: 48px;
-            height: 48px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            min-width: 36px;
+            min-height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: white;
-            border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
         }
         
-        .mobile-nav-items {
-            padding: 0 20px 20px 20px;
+        .dark .action-btn {
+            background: #2A241F;
+            border-color: #4b5563;
+            color: #d69462;
         }
         
-        .mobile-nav-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            margin: 6px 0;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #3a2c24;
-            background: white;
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-decoration: none;
+        .action-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.2);
         }
-        
-        .dark .mobile-nav-link {
-            color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.1);
-            border-color: rgba(193, 123, 76, 0.25);
-        }
-        
-        .mobile-nav-link:hover,
-        .mobile-nav-link.active {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white !important;
-            transform: translateX(5px);
-            border-color: transparent;
-        }
-        
-        .mobile-submenu-items {
-            margin-left: 20px;
-            padding-left: 18px;
-            border-left: 2px solid #c17b4c;
+
+        /* Icon visibility for dark mode */
+        .dark .dark\:hidden {
             display: none;
-            animation: slideDown 0.25s ease;
         }
         
-        .mobile-submenu-items.open {
+        .dark .hidden.dark\:block {
             display: block;
         }
         
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .mobile-submenu-items a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 18px;
-            margin: 8px 0;
-            border-radius: 16px;
-            color: #3a2c24;
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            background: white;
-            border: 1px solid rgba(193, 123, 76, 0.15);
-        }
-        
-        .dark .mobile-submenu-items a {
-            color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.08);
-        }
-        
-        .mobile-submenu-items a:hover,
-        .mobile-submenu-items a.active {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white !important;
-            transform: translateX(5px);
-        }
-        
-        .mobile-settings {
-            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border: 1px solid rgba(193, 123, 76, 0.3);
-            border-radius: 28px;
-            padding: 20px;
-            margin-top: 25px;
-        }
-        
-        .mobile-setting-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-        }
-        
-        .mobile-setting-label {
-            font-weight: 600;
-            color: #3a2c24;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .dark .mobile-setting-label {
-            color: #e8dfd8;
-        }
-        
-        /* Login Form Styles */
-        .login-card {
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        
-        .login-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 40px -12px rgba(193, 123, 76, 0.25);
-        }
-        
-        .form-input {
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            border-color: #c17b4c;
-            box-shadow: 0 0 0 3px rgba(193, 123, 76, 0.1);
-            outline: none;
-        }
-        
-        .modal {
+        .dark\:block {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
         }
         
-        .modal.active {
-            display: flex;
+        .dark .dark\:block {
+            display: block;
         }
         
-        .modal-content {
-            background: white;
-            border-radius: 24px;
-            max-width: 400px;
-            width: 90%;
+        .dark .dark\:hidden {
+            display: none;
+        }
+
+        /* Fix for Font Awesome icons */
+        .fab, .fas, .far {
+            font-family: 'Font Awesome 6 Brands' !important;
+            font-weight: 400;
         }
         
-        .dark .modal-content {
-            background: #1e1a17;
+        .fas {
+            font-family: 'Font Awesome 6 Free' !important;
+            font-weight: 900;
         }
         
-        .hero-left {
-            background: linear-gradient(135deg, #c17b4c10, #a5653a10);
-            border-radius: 24px;
+        .fa-left-right::before {
+            content: "\f07e";
         }
         
-        .main-content {
-            padding-top: 100px;
-            padding-bottom: 60px;
-            min-height: calc(100vh - 80px);
-        }
-        
-        /* Simple CTA Section - Like Home Page */
-        .cta-simple {
-            background: linear-gradient(135deg, #c17b4c 0%, #a5653a 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-simple::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .footer-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
+        /* No scroll - perfect fit */
+       
     </style>
 </head>
-<body class="light font-inter">
-
-    <!-- Perfect Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-3-part">
-                <!-- PART 1: LOGO -->
-                <div class="nav-part-left">
-                    <a href="index.html" class="logo">
-                        <i class="fas fa-cube"></i>
-                        <span class="logo-text">ARKI VIZ</span>
-                    </a>
-                </div>
-
-                <!-- PART 2: LINKS -->
-                <div class="nav-part-center">
-                    <div class="dropdown">
-                        <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu">
-                            <a href="index.html" class="dropdown-item">Home 1</a>
-                            <a href="home2.html" class="dropdown-item">Home 2</a>
-                        </div>
-                    </div>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="upload.html" class="nav-link">Upload</a>
-                    <a href="feedback.html" class="nav-link">Feedback</a>
-                    <a href="assets.html" class="nav-link">Assets</a>
-                    <div class="dropdown">
-                        <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu">
-                            <a href="portfolio.html" class="dropdown-item">Portfolio</a>
-                            <a href="rendering-queue.html" class="dropdown-item">Rendering Queue</a>
-                            <a href="collaboration.html" class="dropdown-item">Collaboration</a>
-                            <a href="team.html" class="dropdown-item">Our Team</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="dropdown">
-                        <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu">
-                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
-                            <a href="user.html" class="dropdown-item">User Dashboard</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PART 3: ICONS -->
-                <div class="nav-part-right">
-                    <div class="desktop-auth-buttons">
-                        <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
-                        <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                    </div>
-                    <div class="profile-dropdown">
-                        <button class="action-btn active"><i data-lucide="user" class="w-4 h-4"></i></button>
-                        <div class="profile-dropdown-menu">
-                            <a href="login.html" class="dropdown-item active"><i data-lucide="log-in"></i>Login</a>
-                            <a href="signup.html" class="dropdown-item"><i data-lucide="user-plus"></i>Signup</a>
-                        </div>
-                    </div>
-                    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
-                        <i data-lucide="menu" class="w-5 h-5"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
-    <div class="mobile-menu" id="mobileMenuPanel">
-        <div class="mobile-header">
-            <a href="index.html" class="logo" onclick="closeMobileMenu()"><i class="fas fa-cube"></i><span class="logo-text">ARKI VIZ</span></a>
-            <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
-        </div>
-        <div class="mobile-nav-items">
-            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-home mr-3"></i>HOME</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+<body class="bg-gradient-to-br from-amber-50 to-stone-100 dark:from-[#1E1A17] dark:to-[#2A241F]">
+    
+    <!-- Top Right Controls - With Working Icons -->
+    <div class="fixed top-3 right-3 sm:top-4 sm:right-4 md:top-5 md:right-5 z-50">
+        <div class="desktop-menu flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-1.5 rounded-xl shadow-lg border border-amber-200 dark:border-gray-700">
+            <button onclick="toggleDirection()" class="action-btn" title="Toggle Direction">
+                <i class="fas fa-arrows-left-right"></i>
             </button>
-            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
-                <a href="index.html" onclick="closeMobileMenu()">Home 1</a>
-                <a href="home2.html" onclick="closeMobileMenu()">Home 2</a>
-            </div>
-            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="projects.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-folder-open mr-3"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="upload.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-cloud-upload-alt mr-3"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="feedback.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-comment-dots mr-3"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="assets.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-database mr-3"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileStudioSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-building mr-3"></i>STUDIO</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            <button onclick="toggleTheme()" class="action-btn" title="Toggle Theme">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
             </button>
-            <div id="mobileStudioSubmenu" class="mobile-submenu-items">
-                <a href="portfolio.html" onclick="closeMobileMenu()">Portfolio</a>
-                <a href="rendering-queue.html" onclick="closeMobileMenu()">Rendering Queue</a>
-                <a href="collaboration.html" onclick="closeMobileMenu()">Collaboration</a>
-                <a href="team.html" onclick="closeMobileMenu()">Our Team</a>
-            </div>
-            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileDashSubmenu" class="mobile-submenu-items">
-                <a href="admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
-                <a href="user.html" onclick="closeMobileMenu()">User Dashboard</a>
-            </div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link active">
-                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileAuthSubmenu" class="mobile-submenu-items open">
-                <a href="login.html" class="active" onclick="closeMobileMenu()">Login</a>
-                <a href="signup.html" onclick="closeMobileMenu()">Signup</a>
-            </div>
-            <div class="mobile-settings">
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
-                    <button onclick="toggleDirectionMobile()" class="action-btn"><i class="fa-solid fa-left-right"></i></button>
-                </div>
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
-                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Main Content - Two Column Layout -->
-    <div class="main-content">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <!-- Left Side - Hero Content -->
-                <div class="hero-left p-8 md:p-10">
-                    <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                        <i class="fas fa-cube"></i>
-                        <span>Premium 3D Visualization Studio</span>
-                    </div>
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                        Bring Your Architecture to <span class="text-primary">Life</span>
-                    </h1>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        Access your projects, track rendering progress, collaborate with our team, and download your high-resolution assets.
-                    </p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">Real-time Rendering Progress</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">Collaborative Feedback System</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">High-Resolution Asset Downloads</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">24/7 Expert Support</span>
-                        </div>
-                    </div>
-                    <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-                        <p class="text-sm text-gray-500 italic">"Architecture is the learned game, correct and magnificent, of forms assembled in the light."</p>
-                        <p class="text-xs text-gray-400 mt-1">— Le Corbusier</p>
+    <!-- Login Card - Responsive -->
+    <div class="w-full max-w-[90%] sm:max-w-[380px] md:max-w-[400px] lg:max-w-[420px] mx-auto">
+        <div class="bg-white dark:bg-[#2A241F] rounded-xl sm:rounded-2xl shadow-xl border border-amber-200 dark:border-gray-700 p-5 sm:p-6 md:p-7">
+            
+            <!-- Logo - ARKI VIZ with Gradient -->
+            <div class="flex justify-center mb-6 sm:mb-7 md:mb-8">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cube text-2xl sm:text-2xl md:text-3xl" style="color: #c17b4c;"></i>
+                    <span class="font-black text-2xl sm:text-2xl md:text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
+                </a>
+            </div>
+            
+            <!-- Title -->
+            <h1 class="text-xl sm:text-xl md:text-2xl font-black text-center text-gray-900 dark:text-white mb-2">
+                Welcome <span class="text-primary">Back</span>
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-5 sm:mb-6 md:mb-7">
+                Sign in to continue to your account
+            </p>
+            
+            <!-- Form -->
+            <form id="loginForm" class="space-y-4 sm:space-y-5">
+                <!-- Email Field with Icon -->
+                <div>
+                    <label class="text-[9px] sm:text-[10px] md:text-xs font-black text-primary uppercase tracking-wider block mb-1 ml-1">
+                        <i class="fas fa-envelope mr-1 text-xs"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="loginEmail" placeholder="studio@arkiviz.com" 
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                </div>
+                
+                <!-- Password Field with Icon -->
+                <div>
+                    <label class="text-[9px] sm:text-[10px] md:text-xs font-black text-primary uppercase tracking-wider block mb-1 ml-1">
+                        <i class="fas fa-lock mr-1 text-xs"></i>
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="loginPassword" placeholder="Enter your password" 
+                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all pr-9 sm:pr-10 placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                        <button type="button" onclick="togglePassword()" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                            <i id="passwordIcon" class="fas fa-eye"></i>
+                        </button>
                     </div>
                 </div>
-
-                <!-- Right Side - Login Form -->
-                <div>
-                    <div class="login-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-                        <div class="text-center mb-6">
-                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Login</h2>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Welcome back! Please enter your details</p>
-                        </div>
-                        
-                        <form id="loginForm" class="space-y-5">
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                                <input type="email" id="loginEmail" class="form-input w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter your email" required>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
-                                <div class="relative">
-                                    <input type="password" id="loginPassword" class="form-input w-full px-4 pr-12 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter password" required>
-                                    <button type="button" onclick="togglePassword()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
-                                        <i id="passwordToggleIcon" class="fas fa-eye text-sm"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-center justify-between">
-                                <label class="flex items-center gap-2 cursor-pointer">
-                                    <input type="checkbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary">
-                                    <span class="text-xs text-gray-600 dark:text-gray-400">Remember me</span>
-                                </label>
-                                <a href="#" onclick="showForgotModal()" class="text-xs text-primary hover:underline">Forgot Password?</a>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-lg flex items-center justify-center gap-2">
-                                <i class="fas fa-arrow-right-to-bracket"></i>
-                                Sign In
-                            </button>
-                        </form>
-                        
-                        <div class="relative my-6">
-                            <div class="absolute inset-0 flex items-center">
-                                <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
-                            </div>
-                            <div class="relative flex justify-center text-sm">
-                                <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">Or continue with</span>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="socialLogin('google')" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 transition">
-                                <i class="fab fa-google text-red-500"></i>
-                                <span class="text-sm font-medium">Google</span>
-                            </button>
-                            <button onclick="socialLogin('github')" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 transition">
-                                <i class="fab fa-github text-gray-800 dark:text-white"></i>
-                                <span class="text-sm font-medium">GitHub</span>
-                            </button>
-                        </div>
-                        
-                        <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
-                            New to ARKI VIZ? 
-                            <a href="signup.html" class="text-primary font-semibold hover:underline">Create Account</a>
-                        </p>
-                    </div>
+                
+                <!-- Remember Me & Forgot Password -->
+                <div class="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-3 xs:gap-0">
+                    <label class="flex items-center gap-1.5 sm:gap-2 cursor-pointer group">
+                        <input type="checkbox" class="accent-primary w-3.5 h-3.5 sm:w-4 sm:h-4 rounded">
+                        <span class="text-[10px] sm:text-xs md:text-sm text-gray-600 dark:text-gray-400 group-hover:text-primary transition-colors">Remember me</span>
+                    </label>
+                    <a href="#" onclick="showForgotModal()" class="text-[10px] sm:text-xs md:text-sm font-bold text-primary hover:underline hover:scale-105 transition-all">
+                        Forgot password?
+                    </a>
+                </div>
+                
+                <!-- Login Button -->
+                <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-2.5 sm:py-3 md:py-3.5 px-4 rounded-lg transition-all shadow-md text-xs sm:text-sm md:text-base mt-2 transform hover:scale-[1.02]">
+                    <i class="fas fa-sign-in-alt mr-2"></i>
+                    Log In
+                </button>
+            </form>
+            
+            <!-- Divider -->
+            <div class="relative my-5 sm:my-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                </div>
+                <div class="relative flex justify-center text-[9px] sm:text-[10px] md:text-xs">
+                    <span class="bg-white dark:bg-[#2A241F] px-3 text-gray-500">or continue with</span>
                 </div>
             </div>
+            
+            <!-- Social Icons with Names -->
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-5 sm:mb-6">
+                <button onclick="socialLogin('google')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
+                    <i class="fab fa-google text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Google</span>
+                </button>
+                <button onclick="socialLogin('apple')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
+                    <i class="fab fa-apple text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Apple</span>
+                </button>
+                <button onclick="socialLogin('facebook')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
+                    <i class="fab fa-facebook-f text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Facebook</span>
+                </button>
+            </div>
+            
+            <!-- Sign Up Link -->
+            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                Don't have an account? 
+                <a href="signup.html" class="text-primary font-bold hover:underline hover:scale-105 inline-block transition-all">
+                    Create new account
+                </a>
+            </p>
+
+            <!-- Footer -->
+            <p class="text-center text-[8px] sm:text-[9px] md:text-xs text-gray-400 dark:text-gray-500 mt-4 sm:mt-5">
+                © 2026 ARKI VIZ Studio. All rights reserved.
+            </p>
         </div>
     </div>
-
-    <!-- Simple CTA Section - Like Home Page -->
-    <section class="cta-simple py-20">
-        <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">Need Help with Your Account?</h2>
-            <p class="text-xl text-white/90 mb-8">Contact our support team for assistance with login issues or account setup.</p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="contact.html" class="bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg inline-flex items-center gap-2 group">
-                    <i class="fas fa-headset"></i> Contact Support
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
-                </a>
-                <a href="signup.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-primary transition inline-flex items-center gap-2">
-                    <i class="fas fa-user-plus"></i> Create New Account
-                </a>
-            </div>
-            <div class="flex flex-wrap gap-6 mt-8 justify-center">
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> 24/7 Support</span>
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> Quick Response</span>
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> Account Recovery</span>
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> Free Help</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="footer-grid mb-10">
-                <div>
-                    <a href="index.html" class="flex items-center gap-2 mb-4">
-                        <i class="fas fa-cube text-2xl text-primary"></i>
-                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
-                    </a>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                        <li><a href="projects.html" class="hover:text-white">Projects</a></li>
-                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
-                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-primary">Our Services</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
-                        <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
-                        <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
-                        <li><a href="#" class="hover:text-white">3D Animation</a></li>
-                        <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
-                    <div class="space-y-3 text-gray-400 text-sm">
-                        <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Barcelona, Spain</p>
-                        <p><i class="fas fa-envelope text-primary mr-2"></i> <a href="mailto:studio@arkiviz.com" class="hover:text-white">studio@arkiviz.com</a></p>
-                        <p><i class="fas fa-phone text-primary mr-2"></i> <a href="tel:+34931234567" class="hover:text-white">+34 93 123 4567</a></p>
-                        <p><i class="fas fa-clock text-primary mr-2"></i> Mon-Fri: 9AM - 8PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
-                <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Service</a>
-                    <a href="#" class="hover:text-white">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- Forgot Password Modal -->
-    <div id="forgotModal" class="modal">
-        <div class="modal-content p-6">
+    <div id="forgotModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[2000] hidden items-center justify-center">
+        <div class="bg-white dark:bg-[#2A241F] rounded-xl max-w-[90%] sm:max-w-[380px] w-full p-5 sm:p-6">
             <div class="text-center mb-4">
                 <i class="fas fa-key text-4xl text-primary mb-2"></i>
-                <h3 class="text-xl font-bold">Reset Password</h3>
-                <p class="text-sm text-gray-500 mt-1">Enter your email to receive reset instructions</p>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">Reset Password</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Enter your email to receive reset instructions</p>
             </div>
-            <input type="email" id="resetEmail" class="w-full p-3 border rounded-xl mb-4" placeholder="your@email.com">
+            <input type="email" id="resetEmail" class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-sm mb-4 focus:border-primary focus:outline-none" placeholder="your@email.com">
             <div class="flex gap-3">
-                <button onclick="closeForgotModal()" class="flex-1 py-2 border rounded-lg">Cancel</button>
-                <button onclick="sendResetLink()" class="flex-1 py-2 bg-primary text-white rounded-lg">Send Reset Link</button>
+                <button onclick="closeForgotModal()" class="flex-1 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition">Cancel</button>
+                <button onclick="sendResetLink()" class="flex-1 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition">Send Reset Link</button>
             </div>
         </div>
     </div>
 
     <script>
-        lucide.createIcons();
-        
-        let passwordVisible = false;
-        
+        // Theme Toggle Function
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Check saved dark mode
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+
+        // Direction Toggle
+        function toggleDirection() {
+            const html = document.getElementById('htmlTag');
+            html.dir = html.dir === 'ltr' ? 'rtl' : 'ltr';
+        }
+
+        // Password Visibility Toggle
         function togglePassword() {
-            const passwordInput = document.getElementById('loginPassword');
-            const icon = document.getElementById('passwordToggleIcon');
-            passwordVisible = !passwordVisible;
-            passwordInput.type = passwordVisible ? 'text' : 'password';
-            icon.className = passwordVisible ? 'fas fa-eye-slash text-sm' : 'fas fa-eye text-sm';
-        }
-        
-        function openMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.add('open');
-            document.getElementById('mobileOverlay').classList.add('active');
-            document.body.classList.add('menu-open');
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.remove('open');
-            document.getElementById('mobileOverlay').classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-        
-        function toggleMobileSubmenu(id) {
-            const submenu = document.getElementById(id);
-            if (submenu) {
-                submenu.classList.toggle('open');
-                const btn = submenu.previousElementSibling;
-                const icon = btn?.querySelector('i:last-child');
-                if (icon) {
-                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
+            const password = document.getElementById('loginPassword');
+            const icon = document.getElementById('passwordIcon');
+            
+            if (password.type === 'password') {
+                password.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                password.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
             }
         }
         
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-            setTimeout(() => lucide.createIcons(), 10);
+        // Forgot Password Modal Functions
+        function showForgotModal() {
+            document.getElementById('forgotModal').style.display = 'flex';
         }
         
-        function toggleThemeMobile() {
-            toggleTheme();
+        function closeForgotModal() {
+            document.getElementById('forgotModal').style.display = 'none';
         }
         
-        function toggleDirection() {
-            const currentDir = document.documentElement.dir;
-            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
-            document.documentElement.dir = newDir;
+        function sendResetLink() {
+            const email = document.getElementById('resetEmail').value;
+            if(email && email.includes('@')) {
+                alert(`Password reset link sent to ${email}`);
+                closeForgotModal();
+                document.getElementById('resetEmail').value = '';
+            } else {
+                alert('Please enter a valid email address');
+            }
         }
         
-        function toggleDirectionMobile() {
-            toggleDirection();
+        // Social Login
+        function socialLogin(provider) {
+            alert(`Login with ${provider} would redirect to OAuth. Demo mode: redirecting to dashboard.`);
+            window.location.href = 'user.html';
         }
         
-        function showForgotModal(){document.getElementById('forgotModal').classList.add('active');}
-        function closeForgotModal(){document.getElementById('forgotModal').classList.remove('active');}
-        function sendResetLink(){const email=document.getElementById('resetEmail').value;if(email&&email.includes('@')){alert(`Password reset link sent to ${email}`);closeForgotModal();}else alert('Please enter a valid email address');}
+        // Initialize any required scripts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure dark mode icon is correct on load
+            if (document.documentElement.classList.contains('dark')) {
+                // Already handled by CSS
+            }
+        });
         
-        function socialLogin(provider){alert(`Login with ${provider} would redirect to OAuth. Demo mode: redirecting to dashboard.`);window.location.href='user.html';}
-        
-        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
-        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
-        
-        document.getElementById('loginForm').addEventListener('submit',(e)=>{
+        // Login Form Submit
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const email=document.getElementById('loginEmail').value;
-            const password=document.getElementById('loginPassword').value;
-            if(email&&password){
-                if(email==='admin@arkiviz.com' && password==='admin123'){window.location.href='admin.html';}
-                else if(email && password){window.location.href='user.html';}
-                else{alert('Invalid credentials. Demo: Use any email/password to continue as user.');}
-            }else{alert('Please fill in all fields');}
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            if(email && password) {
+                if(email === 'admin@arkiviz.com' && password === 'admin123') {
+                    window.location.href = 'admin.html';
+                } else if(email && password) {
+                    window.location.href = 'user.html';
+                } else {
+                    alert('Invalid credentials. Demo: Use any email/password to continue as user.');
+                }
+            } else {
+                alert('Please fill in all fields');
+            }
         });
     </script>
 </body>

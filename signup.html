@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" class="light">
+<html lang="en" id="htmlTag" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Sign Up | ARKI VIZ - 3D Architectural Rendering Studio</title>
     <link rel="icon" type="images/jpg" href="images/growwpark_logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -17,1262 +16,404 @@
                 extend: { 
                     colors: { 
                         primary: '#c17b4c',
-                        secondary: '#a5653a',
-                        darkBg: '#1e1a17'
-                    },
-                    fontFamily: {
-                        'inter': ['Inter', 'sans-serif']
+                        secondary: '#a5653a'
                     }
                 } 
             }
         }
     </script>
-    
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            font-family: 'Inter', sans-serif !important;
+            transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
         }
         
-        body {
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-            width: 100%;
+        body { 
+            background: #F5F2F0;
             min-height: 100vh;
-            transition: all 0.3s ease;
-            background: linear-gradient(135deg, #f8f5f2 0%, #f0ebe6 100%);
-        }
-        
-        body.dark {
-            background: linear-gradient(135deg, #1a1613 0%, #0f0d0b 100%);
-        }
-        
-        body.menu-open {
-            overflow: hidden;
-        }
-        
-        /* ===== PERFECT NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 252, 248, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(193, 123, 76, 0.25);
-            transition: all 0.3s ease;
-        }
-        
-        .dark .navbar {
-            background: rgba(30, 26, 23, 0.95);
-            border-bottom-color: rgba(193, 123, 76, 0.4);
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0.75rem 1.5rem;
-        }
-        
-        .nav-3-part {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
+            justify-content: center;
+            margin: 0;
+            padding: 12px;
         }
         
-        .nav-part-left {
-            flex-shrink: 0;
+        .dark body {
+            background: #1E1A17;
         }
-        
+
+        /* Logo - Primary Color Gradient */
         .logo {
             display: flex;
             align-items: center;
             gap: 8px;
-            text-decoration: none;
-            padding: 6px 8px;
             transition: all 0.3s ease;
+            padding: 8px 16px;
+            justify-content: center;
+            text-decoration: none;
         }
         
         .logo:hover {
-            transform: scale(1.02);
-        }
-        
-        .logo i {
-            font-size: 1.8rem;
-            color: #c17b4c;
-        }
-        
-        .logo-text {
-            font-weight: 900;
-            font-size: 1.4rem;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-        
-        .dark .logo-text {
-            background: linear-gradient(135deg, #d69462, #c17b4c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        .nav-part-center {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.25rem;
-            white-space: nowrap;
-            overflow: visible;
-        }
-        
-        .nav-link {
-            font-size: 14px;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 40px;
-            color: #3a2c24;
-            transition: all 0.3s ease;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            text-decoration: none;
-            white-space: nowrap;
-        }
-        
-        .dark .nav-link {
-            color: #e8dfd8;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white !important;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.4);
-            transform: translateY(-2px);
-        }
-        
-        .dropdown {
-            position: relative;
-        }
-        
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            margin-top: 12px;
-            min-width: 220px;
-            background: white;
-            border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.25s ease;
-            z-index: 1001;
-        }
-        
-        .dark .dropdown-menu {
-            background: #2a241f;
-            border-color: rgba(193, 123, 76, 0.3);
-        }
-        
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .dropdown-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 10px 16px;
-            border-radius: 16px;
-            color: #3a2c24;
-            font-weight: 500;
-            font-size: 13px;
-            transition: all 0.2s ease;
-            text-decoration: none;
-        }
-        
-        .dark .dropdown-item {
-            color: #e8dfd8;
-        }
-        
-        .dropdown-item i {
-            width: 18px;
-            color: #c17b4c;
-        }
-        
-        .dropdown-item:hover {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white;
-            transform: translateX(5px);
-        }
-        
-        .profile-dropdown {
-            position: relative;
-        }
-        
-        .profile-dropdown-menu {
-            position: absolute;
-            top: 100%;
-            margin-top: 12px;
-            min-width: 220px;
-            background: white;
-            border-radius: 24px;
-            padding: 10px;
-            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: all 0.25s ease;
-            z-index: 1001;
-        }
-        
-        [dir="ltr"] .profile-dropdown-menu {
-            right: 0;
-            left: auto;
-        }
-        
-        [dir="rtl"] .profile-dropdown-menu {
-            left: 0;
-            right: auto;
-        }
-        
-        .dark .profile-dropdown-menu {
-            background: #2a241f;
-            border-color: rgba(193, 123, 76, 0.3);
-        }
-        
-        .profile-dropdown:hover .profile-dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        
-        .nav-part-right {
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .action-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
-            flex-shrink: 0;
-        }
-        
-        .action-btn:hover {
-            transform: translateY(-2px) scale(1.05);
-        }
-        
-        .hamburger {
-            display: none;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            border: none;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 40px;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.3);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-        }
-        
-        .hamburger:hover {
             transform: scale(1.05);
         }
         
-        .desktop-auth-buttons {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        @media (max-width: 1200px) {
-            .nav-link {
-                padding: 8px 10px;
-                font-size: 13px;
-            }
-        }
-        
-        @media (max-width: 1100px) {
-            .nav-link {
-                padding: 8px 8px;
-                font-size: 12px;
-            }
-            .nav-part-center {
-                gap: 0.1rem;
-            }
-        }
-        
-        @media (max-width: 1000px) {
-            .nav-part-center {
-                display: none !important;
-            }
-            .desktop-auth-buttons {
-                display: none !important;
-            }
-            .hamburger {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: none !important;
-            }
-        }
-        
-        @media (min-width: 1001px) {
-            .hamburger {
-                display: none !important;
-            }
-            .nav-part-center {
-                display: flex !important;
-            }
-            .desktop-auth-buttons {
-                display: flex !important;
-            }
-            .profile-dropdown {
-                display: block !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-container {
-                padding: 0.5rem 1rem;
-            }
-            .logo {
-                padding: 4px 6px;
-            }
-            .logo-text {
-                font-size: 1.2rem;
-            }
-            .logo i {
-                font-size: 1.5rem;
-            }
-            .action-btn {
-                width: 36px;
-                height: 36px;
-            }
-            .hamburger {
-                width: 36px;
-                height: 36px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 0.5rem 0.75rem;
-            }
-            .logo-text {
-                font-size: 1rem;
-            }
-            .logo i {
-                font-size: 1.3rem;
-            }
-            .action-btn {
-                width: 34px;
-                height: 34px;
-            }
-            .hamburger {
-                width: 34px;
-                height: 34px;
-            }
-        }
-        
-        /* Mobile Menu Styles */
-        .mobile-menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1999;
-            opacity: 0;
-            visibility: hidden;
+        .action-btn {
+            padding: 8px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(193, 123, 76, 0.1);
+            border: 1px solid #e5e7eb;
+            color: #c17b4c;
             transition: all 0.3s ease;
-        }
-        
-        .mobile-menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 85%;
-            max-width: 380px;
-            background: rgba(255, 252, 248, 0.98);
-            backdrop-filter: blur(20px);
-            z-index: 2000;
-            transform: translateX(100%);
-            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            overflow-y: auto;
-            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .dark .mobile-menu {
-            background: rgba(30, 26, 23, 0.98);
-        }
-        
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-        
-        .mobile-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 24px;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border-bottom-left-radius: 30px;
-            border-bottom-right-radius: 30px;
-        }
-        
-        .mobile-close {
-            width: 48px;
-            height: 48px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            min-width: 36px;
+            min-height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            color: white;
-            border: none;
-            box-shadow: 0 5px 15px rgba(193, 123, 76, 0.3);
         }
         
-        .mobile-nav-items {
-            padding: 0 20px 20px 20px;
+        .dark .action-btn {
+            background: #2A241F;
+            border-color: #4b5563;
+            color: #d69462;
         }
         
-        .mobile-nav-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 18px;
-            margin: 6px 0;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 1rem;
-            color: #3a2c24;
-            background: white;
-            border: 1px solid rgba(193, 123, 76, 0.2);
-            width: 100%;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            text-decoration: none;
+        .action-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(193, 123, 76, 0.2);
         }
-        
-        .dark .mobile-nav-link {
-            color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.1);
-            border-color: rgba(193, 123, 76, 0.25);
-        }
-        
-        .mobile-nav-link:hover,
-        .mobile-nav-link.active {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white !important;
-            transform: translateX(5px);
-            border-color: transparent;
-        }
-        
-        .mobile-submenu-items {
-            margin-left: 20px;
-            padding-left: 18px;
-            border-left: 2px solid #c17b4c;
+
+        /* Icon visibility for dark mode */
+        .dark .dark\:hidden {
             display: none;
-            animation: slideDown 0.25s ease;
         }
         
-        .mobile-submenu-items.open {
+        .dark .hidden.dark\:block {
             display: block;
         }
         
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .mobile-submenu-items a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 18px;
-            margin: 8px 0;
-            border-radius: 16px;
-            color: #3a2c24;
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            background: white;
-            border: 1px solid rgba(193, 123, 76, 0.15);
-        }
-        
-        .dark .mobile-submenu-items a {
-            color: #e8dfd8;
-            background: rgba(193, 123, 76, 0.08);
-        }
-        
-        .mobile-submenu-items a:hover,
-        .mobile-submenu-items a.active {
-            background: linear-gradient(135deg, #c17b4c, #a5653a);
-            color: white !important;
-            transform: translateX(5px);
-        }
-        
-        .mobile-settings {
-            background: linear-gradient(135deg, rgba(193, 123, 76, 0.1), rgba(165, 101, 58, 0.1));
-            border: 1px solid rgba(193, 123, 76, 0.3);
-            border-radius: 28px;
-            padding: 20px;
-            margin-top: 25px;
-        }
-        
-        .mobile-setting-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px 0;
-        }
-        
-        .mobile-setting-label {
-            font-weight: 600;
-            color: #3a2c24;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        
-        .dark .mobile-setting-label {
-            color: #e8dfd8;
-        }
-        
-        /* Signup Form Styles */
-        .signup-card {
-            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            width: 100%;
-            max-width: 500px;
-            margin: 0 auto;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .signup-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 40px -12px rgba(193, 123, 76, 0.25);
-        }
-        
-        .form-input {
-            transition: all 0.3s ease;
-        }
-        
-        .form-input:focus {
-            border-color: #c17b4c;
-            box-shadow: 0 0 0 3px rgba(193, 123, 76, 0.1);
-            outline: none;
-        }
-        
-        .modal {
+        .dark\:block {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
         }
         
-        .modal.active {
-            display: flex;
+        .dark .dark\:block {
+            display: block;
         }
         
-        .modal-content {
-            background: white;
-            border-radius: 24px;
-            max-width: 400px;
-            width: 90%;
+        .dark .dark\:hidden {
+            display: none;
+        }
+
+        /* Fix for Font Awesome icons */
+        .fab, .fas, .far {
+            font-family: 'Font Awesome 6 Brands' !important;
+            font-weight: 400;
         }
         
-        .dark .modal-content {
-            background: #1e1a17;
+        .fas {
+            font-family: 'Font Awesome 6 Free' !important;
+            font-weight: 900;
         }
         
-        .hero-left {
-            background: linear-gradient(135deg, #c17b4c10, #a5653a10);
-            border-radius: 24px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+        .fa-left-right::before {
+            content: "\f07e";
         }
         
-        .main-content {
-            padding-top: 100px;
-            padding-bottom: 60px;
-            min-height: calc(100vh - 80px);
-        }
+        /* No scroll - perfect fit */
+       
         
-        /* Simple CTA Section - Like Home Page */
-        .cta-simple {
-            background: linear-gradient(135deg, #c17b4c 0%, #a5653a 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-simple::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.2); opacity: 0.8; }
-        }
-        
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-        
-        @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-        }
-        
-        @media (max-width: 640px) {
-            .footer-grid {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-        
-        .password-strength-bar {
+        /* Password Strength Bar */
+        .strength-bar {
             transition: all 0.3s ease;
-        }
-        
-        .equal-height {
-            display: flex;
-            align-items: stretch;
-        }
-        
-        .equal-height > div {
-            display: flex;
-        }
-        
-        .hero-left, .signup-card {
-            flex: 1;
-        }
-        
-        .avatar {
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        
-        .avatar:hover {
-            transform: translateY(-3px);
-        }
-        
-        .testimonial-quote {
-            font-style: italic;
-            position: relative;
-            padding-left: 20px;
-            border-left: 3px solid #c17b4c;
         }
     </style>
 </head>
-<body class="light font-inter">
-
-    <!-- Perfect Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-3-part">
-                <!-- PART 1: LOGO -->
-                <div class="nav-part-left">
-                    <a href="index.html" class="logo">
-                        <i class="fas fa-cube"></i>
-                        <span class="logo-text">ARKI VIZ</span>
-                    </a>
-                </div>
-
-                <!-- PART 2: LINKS -->
-                <div class="nav-part-center">
-                    <div class="dropdown">
-                        <button class="nav-link">Home <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu">
-                            <a href="index.html" class="dropdown-item">Home 1</a>
-                            <a href="home2.html" class="dropdown-item">Home 2</a>
-                        </div>
-                    </div>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="upload.html" class="nav-link">Upload</a>
-                    <a href="feedback.html" class="nav-link">Feedback</a>
-                    <a href="assets.html" class="nav-link">Assets</a>
-                    <div class="dropdown">
-                        <button class="nav-link">Studio <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu">
-                            <a href="portfolio.html" class="dropdown-item">Portfolio</a>
-                            <a href="rendering-queue.html" class="dropdown-item">Rendering Queue</a>
-                            <a href="collaboration.html" class="dropdown-item">Collaboration</a>
-                            <a href="team.html" class="dropdown-item">Our Team</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-link">Contact</a>
-                    <div class="dropdown">
-                        <button class="nav-link">Dashboard <i data-lucide="chevron-down" class="w-4 h-4"></i></button>
-                        <div class="dropdown-menu">
-                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
-                            <a href="user.html" class="dropdown-item">User Dashboard</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- PART 3: ICONS -->
-                <div class="nav-part-right">
-                    <div class="desktop-auth-buttons">
-                        <button onclick="toggleDirection()" class="action-btn"><i class="fa-solid fa-arrow-right-arrow-left"></i></button>
-                        <button onclick="toggleTheme()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                    </div>
-                    <div class="profile-dropdown">
-                        <button class="action-btn active"><i data-lucide="user" class="w-4 h-4"></i></button>
-                        <div class="profile-dropdown-menu">
-                            <a href="login.html" class="dropdown-item"><i data-lucide="log-in"></i>Login</a>
-                            <a href="signup.html" class="dropdown-item active"><i data-lucide="user-plus"></i>Signup</a>
-                        </div>
-                    </div>
-                    <button class="hamburger" onclick="openMobileMenu()" aria-label="Menu">
-                        <i data-lucide="menu" class="w-5 h-5"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
-    <div class="mobile-menu" id="mobileMenuPanel">
-        <div class="mobile-header">
-            <a href="index.html" class="logo" onclick="closeMobileMenu()"><i class="fas fa-cube"></i><span class="logo-text">ARKI VIZ</span></a>
-            <button onclick="closeMobileMenu()" class="mobile-close"><i data-lucide="x" class="w-6 h-6"></i></button>
-        </div>
-        <div class="mobile-nav-items">
-            <button onclick="toggleMobileSubmenu('mobileHomeSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-home mr-3"></i>HOME</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+<body class="bg-gradient-to-br from-amber-50 to-stone-100 dark:from-[#1E1A17] dark:to-[#2A241F]">
+    
+    <!-- Top Right Controls - With Working Icons -->
+    <div class="fixed top-3 right-3 sm:top-4 sm:right-4 md:top-5 md:right-5 z-50">
+        <div class="desktop-menu flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-1.5 rounded-xl shadow-lg border border-amber-200 dark:border-gray-700">
+            <button onclick="toggleDirection()" class="action-btn" title="Toggle Direction">
+                <i class="fas fa-arrows-left-right"></i>
             </button>
-            <div id="mobileHomeSubmenu" class="mobile-submenu-items">
-                <a href="index.html" onclick="closeMobileMenu()">Home 1</a>
-                <a href="home2.html" onclick="closeMobileMenu()">Home 2</a>
-            </div>
-            <a href="about.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-info-circle mr-3"></i>ABOUT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="projects.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-folder-open mr-3"></i>PROJECTS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="upload.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-cloud-upload-alt mr-3"></i>UPLOAD</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="feedback.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-comment-dots mr-3"></i>FEEDBACK</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <a href="assets.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-database mr-3"></i>ASSETS</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileStudioSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-building mr-3"></i>STUDIO</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
+            <button onclick="toggleTheme()" class="action-btn" title="Toggle Theme">
+                <i class="fas fa-moon dark:hidden"></i>
+                <i class="fas fa-sun hidden dark:block"></i>
             </button>
-            <div id="mobileStudioSubmenu" class="mobile-submenu-items">
-                <a href="portfolio.html" onclick="closeMobileMenu()">Portfolio</a>
-                <a href="rendering-queue.html" onclick="closeMobileMenu()">Rendering Queue</a>
-                <a href="collaboration.html" onclick="closeMobileMenu()">Collaboration</a>
-                <a href="team.html" onclick="closeMobileMenu()">Our Team</a>
-            </div>
-            <a href="contact.html" class="mobile-nav-link" onclick="closeMobileMenu()"><span><i class="fas fa-envelope mr-3"></i>CONTACT</span><i data-lucide="arrow-right" class="w-5 h-5"></i></a>
-            <button onclick="toggleMobileSubmenu('mobileDashSubmenu')" class="mobile-nav-link">
-                <span><i class="fas fa-chalkboard-user mr-3"></i>DASHBOARD</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileDashSubmenu" class="mobile-submenu-items">
-                <a href="admin.html" onclick="closeMobileMenu()">Admin Dashboard</a>
-                <a href="user.html" onclick="closeMobileMenu()">User Dashboard</a>
-            </div>
-            <button onclick="toggleMobileSubmenu('mobileAuthSubmenu')" class="mobile-nav-link active">
-                <span><i class="fas fa-user-circle mr-3"></i>ACCOUNT</span>
-                <i data-lucide="chevron-down" class="w-5 h-5"></i>
-            </button>
-            <div id="mobileAuthSubmenu" class="mobile-submenu-items open">
-                <a href="login.html" onclick="closeMobileMenu()">Login</a>
-                <a href="signup.html" class="active" onclick="closeMobileMenu()">Signup</a>
-            </div>
-            <div class="mobile-settings">
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> DIRECTION</span>
-                    <button onclick="toggleDirectionMobile()" class="action-btn"><i class="fa-solid fa-left-right"></i></button>
-                </div>
-                <div class="mobile-setting-item">
-                    <span class="mobile-setting-label"><i data-lucide="moon"></i> THEME</span>
-                    <button onclick="toggleThemeMobile()" class="action-btn"><i data-lucide="moon" class="w-4 h-4 dark:hidden"></i><i data-lucide="sun" class="w-4 h-4 hidden dark:block"></i></button>
-                </div>
-            </div>
         </div>
     </div>
 
-    <!-- Main Content - Two Column Layout with Equal Height -->
-    <div class="main-content">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-stretch">
-                <!-- Left Side - Hero Content -->
-                <div class="hero-left p-8 md:p-10">
-                    <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-semibold mb-6">
-                        <i class="fas fa-cube"></i>
-                        <span>Join the Studio</span>
-                    </div>
-                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                        Create Your <span class="text-primary">Studio Account</span>
-                    </h1>
-                    <p class="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        Start visualizing your architectural projects with our professional rendering studio. Upload, collaborate, and download stunning 4K renders.
-                    </p>
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">Upload & Manage Projects</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">Real-time Rendering Progress</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">Collaborative Feedback System</span>
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <i class="fas fa-check-circle text-primary text-sm"></i>
-                            <span class="text-gray-700 dark:text-gray-300 text-sm">High-Resolution Asset Downloads</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Filled Space with Additional Content -->
-                    <div class="space-y-4 mb-6">
-                        <div class="testimonial-quote text-gray-600 dark:text-gray-400 text-sm">
-                            "The team at ARKI VIZ transformed our architectural concepts into stunning visualizations. Their attention to detail and fast turnaround exceeded our expectations."
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                                <i class="fas fa-star text-primary text-xs"></i>
-                            </div>
-                            <div class="flex text-primary text-xs">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <span class="text-xs text-gray-500">Rated 4.9/5 by 500+ architects</span>
-                        </div>
-                        <div class="flex items-center gap-2 text-gray-500 text-xs">
-                            <i class="fas fa-clock text-primary"></i>
-                            <span>Average render time: 3-5 days</span>
-                            <i class="fas fa-shield-alt text-primary ml-3"></i>
-                            <span>100% confidential</span>
-                        </div>
-                    </div>
-                    
-                    <div class="pt-4 border-t border-gray-200 dark:border-gray-700 mt-auto">
-                        <div class="mt-8">
-    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-               <div class="flex items-center gap-1">
-            <div class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-sm">MJ</div>
-            <div class="w-9 h-9 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-bold shadow-sm">SC</div>
-            <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">AR</div>
-            <div class="w-9 h-9 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">+24</div>
-        </div>
-        <div class="flex items-center gap-2">
-            <div class="text-right">
-                <div class="flex items-baseline gap-1">
-                    <span class="text-2xl font-bold text-primary">24</span>
-                    <span class="text-sm text-gray-500">+</span>
-                </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400">active collaborations</p>
-            </div>
-            <div class="w-px h-8 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
-            <div class="hidden sm:block">
-                <p class="text-xs text-gray-500">this week</p>
-                <p class="text-xs font-semibold text-primary">↑ 12%</p>
-            </div>
-        </div>
-    </div>
-</div>
-                    </div>
-                </div>
-
-                <!-- Right Side - Signup Form -->
-                <div>
-                    <div class="signup-card bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
-                        <div class="text-center mb-6">
-                            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <i class="fas fa-user-plus text-2xl text-primary"></i>
-                            </div>
-                            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create Account</h2>
-                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Start your journey with ARKI VIZ</p>
-                        </div>
-                        
-                        <form id="signupForm" class="space-y-4 flex-1">
-                            <div class="grid grid-cols-2 gap-3">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">First Name</label>
-                                    <input type="text" id="firstName" class="form-input w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="John" required>
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Last Name</label>
-                                    <input type="text" id="lastName" class="form-input w-full px-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="Doe" required>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email Address</label>
-                                <div class="relative">
-                                    <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                                    <input type="email" id="signupEmail" class="form-input w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="studio@arkiviz.com" required>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Password</label>
-                                <div class="relative">
-                                    <i class="fas fa-key absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                                    <input type="password" id="signupPassword" class="form-input w-full pl-10 pr-12 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="••••••••" required>
-                                    <button type="button" onclick="toggleSignupPassword()" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
-                                        <i id="signupPasswordIcon" class="fas fa-eye text-sm"></i>
-                                    </button>
-                                </div>
-                                <div id="passwordStrength" class="mt-2">
-                                    <div class="flex gap-1 h-1">
-                                        <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span>
-                                        <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span>
-                                        <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span>
-                                        <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 password-strength-bar"></span>
-                                    </div>
-                                    <p id="strengthText" class="text-[10px] text-gray-500 mt-1">Use 8+ characters with mix of letters & numbers</p>
-                                </div>
-                            </div>
-                            
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Confirm Password</label>
-                                <div class="relative">
-                                    <i class="fas fa-check-circle absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                                    <input type="password" id="confirmPassword" class="form-input w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900" placeholder="••••••••" required>
-                                </div>
-                                <p id="passwordMatchMsg" class="text-[10px] mt-1"></p>
-                            </div>
-                            
-                            <div class="flex items-center gap-2">
-                                <input type="checkbox" id="termsCheckbox" class="w-4 h-4 text-primary rounded border-gray-300 focus:ring-primary">
-                                <label class="text-xs text-gray-600 dark:text-gray-400">I agree to the <a href="#" class="text-primary hover:underline">Terms of Service</a> and <a href="#" class="text-primary hover:underline">Privacy Policy</a></label>
-                            </div>
-                            
-                            <button type="submit" class="w-full bg-primary text-white py-3 rounded-xl font-semibold hover:bg-secondary transition shadow-lg flex items-center justify-center gap-2">
-                                <i class="fas fa-user-plus"></i> Create Free Account
-                            </button>
-                        </form>
-                        
-                        <div class="relative my-5">
-                            <div class="absolute inset-0 flex items-center">
-                                <div class="w-full border-t border-gray-300 dark:border-gray-700"></div>
-                            </div>
-                            <div class="relative flex justify-center text-sm">
-                                <span class="px-2 bg-white dark:bg-gray-800 text-gray-500">Or sign up with</span>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-3">
-                            <button onclick="socialSignup('google')" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 transition">
-                                <i class="fab fa-google text-red-500"></i>
-                                <span class="text-sm font-medium">Google</span>
-                            </button>
-                            <button onclick="socialSignup('github')" class="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-300 dark:border-gray-600 hover:border-primary hover:bg-primary/5 transition">
-                                <i class="fab fa-github text-gray-800 dark:text-white"></i>
-                                <span class="text-sm font-medium">GitHub</span>
-                            </button>
-                        </div>
-                        
-                        <p class="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
-                            Already have an account? 
-                            <a href="login.html" class="text-primary font-semibold hover:underline">Sign in</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Simple CTA Section - Like Home Page -->
-    <section class="cta-simple py-20">
-        <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">Ready to Start Your Journey?</h2>
-            <p class="text-xl text-white/90 mb-8">Join 500+ architects and designers who trust ARKI VIZ for their architectural visualization needs.</p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="login.html" class="bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg inline-flex items-center gap-2 group">
-                    <i class="fas fa-sign-in-alt"></i> Sign In
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition"></i>
-                </a>
-                <a href="upload.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-primary transition inline-flex items-center gap-2">
-                    <i class="fas fa-cloud-upload-alt"></i> Start a Project
+    <!-- Signup Card - Responsive -->
+    <div class="w-full max-w-[90%] sm:max-w-[400px] md:max-w-[420px] lg:max-w-[440px] mx-auto">
+        <div class="bg-white dark:bg-[#2A241F] rounded-xl sm:rounded-2xl shadow-xl border border-amber-200 dark:border-gray-700 p-5 sm:p-6 md:p-7">
+            
+            <!-- Logo - ARKI VIZ with Gradient -->
+            <div class="flex justify-center mb-5 sm:mb-6 md:mb-7">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-cube text-2xl sm:text-2xl md:text-3xl" style="color: #c17b4c;"></i>
+                    <span class="font-black text-2xl sm:text-2xl md:text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
                 </a>
             </div>
-            <div class="flex flex-wrap gap-6 mt-8 justify-center">
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> Free Account</span>
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> No Credit Card Required</span>
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> Cancel Anytime</span>
-                <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> 24/7 Support</span>
+            
+            <!-- Title -->
+            <h1 class="text-xl sm:text-xl md:text-2xl font-black text-center text-gray-900 dark:text-white mb-2">
+                Create <span class="text-primary">Account</span>
+            </h1>
+            
+            <!-- Subtitle -->
+            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-5 sm:mb-6 md:mb-7">
+                Join ARKI VIZ and start visualizing your architectural projects
+            </p>
+            
+            <!-- Form -->
+            <form id="signupForm" class="space-y-3 sm:space-y-4">
+                <!-- Full Name Field -->
+                <div>
+                    <label class="text-[9px] sm:text-[10px] md:text-xs font-black text-primary uppercase tracking-wider block mb-1 ml-1">
+                        <i class="fas fa-user mr-1 text-xs"></i>
+                        Full Name
+                    </label>
+                    <input type="text" id="fullName" placeholder="John Doe" 
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                </div>
+                
+                <!-- Email Field with Icon -->
+                <div>
+                    <label class="text-[9px] sm:text-[10px] md:text-xs font-black text-primary uppercase tracking-wider block mb-1 ml-1">
+                        <i class="fas fa-envelope mr-1 text-xs"></i>
+                        Email Address
+                    </label>
+                    <input type="email" id="signupEmail" placeholder="studio@arkiviz.com" 
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                </div>
+                
+                <!-- Password Field with Icon -->
+                <div>
+                    <label class="text-[9px] sm:text-[10px] md:text-xs font-black text-primary uppercase tracking-wider block mb-1 ml-1">
+                        <i class="fas fa-lock mr-1 text-xs"></i>
+                        Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="signupPassword" placeholder="Create a password" 
+                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all pr-9 sm:pr-10 placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                        <button type="button" onclick="togglePassword()" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                            <i id="passwordIcon" class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <!-- Password Strength Indicator -->
+                    <div class="mt-2">
+                        <div class="flex gap-1 h-1">
+                            <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 strength-bar" id="strengthBar1"></span>
+                            <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 strength-bar" id="strengthBar2"></span>
+                            <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 strength-bar" id="strengthBar3"></span>
+                            <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 strength-bar" id="strengthBar4"></span>
+                        </div>
+                        <p id="strengthText" class="text-[9px] text-gray-500 mt-1">Use 8+ characters with mix of letters & numbers</p>
+                    </div>
+                </div>
+                
+                <!-- Confirm Password Field -->
+                <div>
+                    <label class="text-[9px] sm:text-[10px] md:text-xs font-black text-primary uppercase tracking-wider block mb-1 ml-1">
+                        <i class="fas fa-check-circle mr-1 text-xs"></i>
+                        Confirm Password
+                    </label>
+                    <div class="relative">
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" 
+                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                    </div>
+                    <p id="matchMsg" class="text-[9px] mt-1"></p>
+                </div>
+                
+                <!-- Terms & Conditions -->
+                <div class="flex items-start gap-2">
+                    <input type="checkbox" id="termsCheckbox" class="accent-primary w-3.5 h-3.5 sm:w-4 sm:h-4 rounded mt-0.5">
+                    <label class="text-[9px] sm:text-[10px] md:text-xs text-gray-600 dark:text-gray-400">
+                        I agree to the <a href="#" class="text-primary font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-primary font-semibold hover:underline">Privacy Policy</a>
+                    </label>
+                </div>
+                
+                <!-- Sign Up Button -->
+                <button type="submit" class="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white font-bold py-2.5 sm:py-3 md:py-3.5 px-4 rounded-lg transition-all shadow-md text-xs sm:text-sm md:text-base mt-2 transform hover:scale-[1.02]">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Create Account
+                </button>
+            </form>
+            
+            <!-- Divider -->
+            <div class="relative my-5 sm:my-6">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                </div>
+                <div class="relative flex justify-center text-[9px] sm:text-[10px] md:text-xs">
+                    <span class="bg-white dark:bg-[#2A241F] px-3 text-gray-500">or sign up with</span>
+                </div>
             </div>
-        </div>
-    </section>
+            
+            <!-- Social Icons with Names -->
+            <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-5 sm:mb-6">
+                <button onclick="socialSignup('google')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
+                    <i class="fab fa-google text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Google</span>
+                </button>
+                <button onclick="socialSignup('apple')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
+                    <i class="fab fa-apple text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Apple</span>
+                </button>
+                <button onclick="socialSignup('facebook')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
+                    <i class="fab fa-facebook-f text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Facebook</span>
+                </button>
+            </div>
+            
+            <!-- Login Link -->
+            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                Already have an account? 
+                <a href="login.html" class="text-primary font-bold hover:underline hover:scale-105 inline-block transition-all">
+                    Sign in
+                </a>
+            </p>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-12 pb-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="footer-grid mb-10">
-                <div>
-                    <a href="index.html" class="flex items-center gap-2 mb-4">
-                        <i class="fas fa-cube text-2xl text-primary"></i>
-                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
-                    </a>
-                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                        Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
-                    </p>
-                    <div class="flex gap-3">
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-xs"></i></a>
-                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                        <li><a href="projects.html" class="hover:text-white">Projects</a></li>
-                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
-                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-primary">Our Services</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
-                        <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
-                        <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
-                        <li><a href="#" class="hover:text-white">3D Animation</a></li>
-                        <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
-                    <div class="space-y-3 text-gray-400 text-sm">
-                        <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Barcelona, Spain</p>
-                        <p><i class="fas fa-envelope text-primary mr-2"></i> <a href="mailto:studio@arkiviz.com" class="hover:text-white">studio@arkiviz.com</a></p>
-                        <p><i class="fas fa-phone text-primary mr-2"></i> <a href="tel:+34931234567" class="hover:text-white">+34 93 123 4567</a></p>
-                        <p><i class="fas fa-clock text-primary mr-2"></i> Mon-Fri: 9AM - 8PM</p>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
-                <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Service</a>
-                    <a href="#" class="hover:text-white">Cookie Policy</a>
-                </div>
-            </div>
+            <!-- Footer -->
+            <p class="text-center text-[8px] sm:text-[9px] md:text-xs text-gray-400 dark:text-gray-500 mt-4 sm:mt-5">
+                © 2026 ARKI VIZ Studio. All rights reserved.
+            </p>
         </div>
-    </footer>
+    </div>
 
     <script>
-        lucide.createIcons();
-        
-        let signupPasswordVisible = false;
-        
-        function toggleSignupPassword() {
-            const passwordInput = document.getElementById('signupPassword');
-            const icon = document.getElementById('signupPasswordIcon');
-            signupPasswordVisible = !signupPasswordVisible;
-            passwordInput.type = signupPasswordVisible ? 'text' : 'password';
-            icon.className = signupPasswordVisible ? 'fas fa-eye-slash text-sm' : 'fas fa-eye text-sm';
-        }
-        
-        function openMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.add('open');
-            document.getElementById('mobileOverlay').classList.add('active');
-            document.body.classList.add('menu-open');
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenuPanel').classList.remove('open');
-            document.getElementById('mobileOverlay').classList.remove('active');
-            document.body.classList.remove('menu-open');
-        }
-        
-        function toggleMobileSubmenu(id) {
-            const submenu = document.getElementById(id);
-            if (submenu) {
-                submenu.classList.toggle('open');
-                const btn = submenu.previousElementSibling;
-                const icon = btn?.querySelector('i:last-child');
-                if (icon) {
-                    icon.style.transform = submenu.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-            }
-        }
-        
+        // Theme Toggle Function
         function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-            document.body.classList.toggle('dark');
-            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-            setTimeout(() => lucide.createIcons(), 10);
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.setItem('darkMode', html.classList.contains('dark') ? 'dark' : 'light');
         }
-        
-        function toggleThemeMobile() {
-            toggleTheme();
+
+        // Check saved dark mode
+        if (localStorage.getItem('darkMode') === 'dark') {
+            document.documentElement.classList.add('dark');
         }
-        
+
+        // Direction Toggle
         function toggleDirection() {
-            const currentDir = document.documentElement.dir;
-            const newDir = currentDir === 'rtl' ? 'ltr' : 'rtl';
-            document.documentElement.dir = newDir;
+            const html = document.getElementById('htmlTag');
+            html.dir = html.dir === 'ltr' ? 'rtl' : 'ltr';
+        }
+
+        // Password Visibility Toggle
+        let passwordVisible = false;
+        function togglePassword() {
+            const passwordInput = document.getElementById('signupPassword');
+            const icon = document.getElementById('passwordIcon');
+            passwordVisible = !passwordVisible;
+            passwordInput.type = passwordVisible ? 'text' : 'password';
+            icon.className = passwordVisible ? 'fas fa-eye-slash' : 'fas fa-eye';
         }
         
-        function toggleDirectionMobile() {
-            toggleDirection();
-        }
+        // Password Strength Checker
+        const passwordInput = document.getElementById('signupPassword');
+        const strengthBars = {
+            bar1: document.getElementById('strengthBar1'),
+            bar2: document.getElementById('strengthBar2'),
+            bar3: document.getElementById('strengthBar3'),
+            bar4: document.getElementById('strengthBar4')
+        };
+        const strengthText = document.getElementById('strengthText');
         
-        function socialSignup(provider){alert(`Sign up with ${provider} would redirect to OAuth. Demo mode: redirecting to dashboard.`);window.location.href='user.html';}
-        
-        document.getElementById('signupPassword').addEventListener('input', function() {
+        passwordInput.addEventListener('input', function() {
             const password = this.value;
-            const bars = document.querySelectorAll('.password-strength-bar');
-            const strengthText = document.getElementById('strengthText');
             let strength = 0;
             if (password.length >= 8) strength++;
             if (password.match(/[A-Z]/)) strength++;
             if (password.match(/[0-9]/)) strength++;
             if (password.match(/[^A-Za-z0-9]/)) strength++;
-            bars.forEach((bar, i) => { 
-                if (i < strength) { 
-                    bar.classList.remove('bg-gray-200', 'dark:bg-gray-700'); 
-                    bar.classList.add('bg-primary'); 
-                } else { 
-                    bar.classList.remove('bg-primary'); 
-                    bar.classList.add('bg-gray-200', 'dark:bg-gray-700'); 
-                } 
+            
+            // Update bars
+            const bars = [strengthBars.bar1, strengthBars.bar2, strengthBars.bar3, strengthBars.bar4];
+            bars.forEach((bar, i) => {
+                if (i < strength) {
+                    bar.classList.remove('bg-gray-200', 'dark:bg-gray-700');
+                    bar.classList.add('bg-primary');
+                } else {
+                    bar.classList.remove('bg-primary');
+                    bar.classList.add('bg-gray-200', 'dark:bg-gray-700');
+                }
             });
-            if (password.length === 0) { 
-                strengthText.textContent = 'Use 8+ characters with mix of letters & numbers'; 
-                strengthText.className = 'text-[10px] text-gray-500 mt-1'; 
-            }
-            else if (strength <= 1) { 
-                strengthText.textContent = 'Weak - Use at least 8 characters'; 
-                strengthText.className = 'text-[10px] text-red-500 mt-1'; 
-            }
-            else if (strength === 2) { 
-                strengthText.textContent = 'Fair - Add numbers and symbols'; 
-                strengthText.className = 'text-[10px] text-yellow-500 mt-1'; 
-            }
-            else if (strength === 3) { 
-                strengthText.textContent = 'Good - Add special characters for strong password'; 
-                strengthText.className = 'text-[10px] text-blue-500 mt-1'; 
-            }
-            else { 
-                strengthText.textContent = 'Strong password!'; 
-                strengthText.className = 'text-[10px] text-green-500 mt-1'; 
+            
+            // Update text
+            if (password.length === 0) {
+                strengthText.textContent = 'Use 8+ characters with mix of letters & numbers';
+                strengthText.className = 'text-[9px] text-gray-500 mt-1';
+            } else if (strength <= 1) {
+                strengthText.textContent = 'Weak - Use at least 8 characters';
+                strengthText.className = 'text-[9px] text-red-500 mt-1';
+            } else if (strength === 2) {
+                strengthText.textContent = 'Fair - Add numbers and symbols';
+                strengthText.className = 'text-[9px] text-yellow-500 mt-1';
+            } else if (strength === 3) {
+                strengthText.textContent = 'Good - Add special characters for strong password';
+                strengthText.className = 'text-[9px] text-blue-500 mt-1';
+            } else {
+                strengthText.textContent = 'Strong password!';
+                strengthText.className = 'text-[9px] text-green-500 mt-1';
             }
         });
         
-        document.getElementById('confirmPassword').addEventListener('input', function() {
+        // Confirm Password Match Checker
+        const confirmInput = document.getElementById('confirmPassword');
+        const matchMsg = document.getElementById('matchMsg');
+        
+        confirmInput.addEventListener('input', function() {
             const password = document.getElementById('signupPassword').value;
             const confirm = this.value;
-            const matchMsg = document.getElementById('passwordMatchMsg');
+            
             if (confirm.length > 0) {
-                if (password === confirm) { 
-                    matchMsg.textContent = '✓ Passwords match'; 
-                    matchMsg.className = 'text-[10px] text-green-500 mt-1'; 
+                if (password === confirm) {
+                    matchMsg.textContent = '✓ Passwords match';
+                    matchMsg.className = 'text-[9px] text-green-500 mt-1';
+                } else {
+                    matchMsg.textContent = '✗ Passwords do not match';
+                    matchMsg.className = 'text-[9px] text-red-500 mt-1';
                 }
-                else { 
-                    matchMsg.textContent = '✗ Passwords do not match'; 
-                    matchMsg.className = 'text-[10px] text-red-500 mt-1'; 
-                }
-            } else { 
-                matchMsg.textContent = ''; 
+            } else {
+                matchMsg.textContent = '';
             }
         });
         
-        if(localStorage.getItem('theme')==='dark'){document.documentElement.classList.add('dark');document.body.classList.add('dark');}
-        document.addEventListener('DOMContentLoaded',()=>{lucide.createIcons();});
+        // Social Signup
+        function socialSignup(provider) {
+            alert(`Sign up with ${provider} would redirect to OAuth. Demo mode: redirecting to dashboard.`);
+            window.location.href = 'user.html';
+        }
         
-        document.getElementById('signupForm').addEventListener('submit',(e)=>{
+        // Form Submit
+        document.getElementById('signupForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            const firstName = document.getElementById('firstName').value;
-            const lastName = document.getElementById('lastName').value;
+            const fullName = document.getElementById('fullName').value;
             const email = document.getElementById('signupEmail').value;
             const password = document.getElementById('signupPassword').value;
             const confirm = document.getElementById('confirmPassword').value;
             const terms = document.getElementById('termsCheckbox').checked;
-            if(!firstName || !lastName || !email || !password){alert('Please fill in all required fields');return;}
-            if(password !== confirm){alert('Passwords do not match');return;}
-            if(!terms){alert('Please agree to the Terms of Service and Privacy Policy');return;}
-            if(password.length < 8){alert('Password must be at least 8 characters long');return;}
-            alert(`Welcome to ARKI VIZ, ${firstName} ${lastName}!\n\nYour account has been created successfully. You can now log in to access your dashboard.\n\nDemo mode: Redirecting to login page.`);
-            window.location.href='login.html';
+            
+            if(!fullName) { alert('Please enter your full name'); return; }
+            if(!email) { alert('Please enter your email address'); return; }
+            if(!email.includes('@')) { alert('Please enter a valid email address'); return; }
+            if(!password) { alert('Please create a password'); return; }
+            if(password.length < 8) { alert('Password must be at least 8 characters long'); return; }
+            if(password !== confirm) { alert('Passwords do not match'); return; }
+            if(!terms) { alert('Please agree to the Terms of Service and Privacy Policy'); return; }
+            
+            alert(`Welcome to ARKI VIZ, ${fullName}!\n\nYour account has been created successfully. You can now log in to access your dashboard.\n\nDemo mode: Redirecting to login page.`);
+            window.location.href = 'login.html';
+        });
+        
+        // Initialize any required scripts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ensure dark mode icon is correct on load
+            if (document.documentElement.classList.contains('dark')) {
+                // Already handled by CSS
+            }
         });
     </script>
 </body>
