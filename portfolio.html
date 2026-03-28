@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Portfolio | ARKI VIZ - 3D Architectural Rendering Studio</title>
-    <link rel="icon" type="images/jpg" href="images/growwpark_logo.png">
+    <link rel="icon" type="image/jpg" href="images/arki_viz_logo3.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -693,23 +693,65 @@
             50% { transform: scale(1.2); opacity: 0.8; }
         }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+        /* Footer logo uses same styles as navbar logo */
+        footer .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        
+
+        footer .logo i {
+            font-size: 1.8rem;
+            color: #c17b4c;
+            transition: all 0.3s ease;
+        }
+
+        footer .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Dark mode support for footer logo */
+        .dark footer .logo-text {
+            background: linear-gradient(135deg, #d69462, #c17b4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Responsive footer logo - matches navbar exactly */
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+            footer .logo i {
+                font-size: 1.5rem !important;
+            }
+            footer .logo-text {
+                font-size: 1.2rem !important;
             }
         }
-        
-        @media (max-width: 640px) {
-            .footer-grid {
-                grid-template-columns: repeat(1, 1fr);
+
+        @media (max-width: 480px) {
+            footer .logo i {
+                font-size: 1.3rem !important;
             }
+            footer .logo-text {
+                font-size: 1rem !important;
+            }
+        }
+
+        /* Hover effect same as navbar */
+        footer .logo:hover {
+            transform: scale(1.02);
+        }
+
+        footer .logo:hover i,
+        footer .logo:hover .logo-text {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -842,7 +884,7 @@
         </div>
     </div>
 
-    <!-- Hero Section - Like About Page -->
+    <!-- Hero Section -->
     <section class="hero-portfolio-gradient relative min-h-[80vh] flex items-center pt-20 overflow-hidden">
         <div class="floating-shape top-20 left-10"></div>
         <div class="floating-shape bottom-20 right-10" style="animation-delay: -3s; width: 400px; height: 400px;"></div>
@@ -850,7 +892,6 @@
         
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 w-full">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <!-- Left Column - Content -->
                 <div class="order-2 lg:order-1 text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-5 py-2 rounded-full text-sm font-semibold mb-6 border border-primary/20">
                         <span class="relative flex h-2 w-2">
@@ -874,32 +915,8 @@
                             <i class="fas fa-cloud-upload-alt"></i> Start a Project
                         </a>
                     </div>
-                   <div class="mt-8">
-    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-               <div class="flex items-center gap-1">
-            <div class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-sm">MJ</div>
-            <div class="w-9 h-9 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-bold shadow-sm">SC</div>
-            <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">AR</div>
-            <div class="w-9 h-9 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">+24</div>
-        </div>
-        <div class="flex items-center gap-2">
-            <div class="text-right">
-                <div class="flex items-baseline gap-1">
-                    <span class="text-2xl font-bold text-primary">24</span>
-                    <span class="text-sm text-gray-500">+</span>
+                    
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400">active collaborations</p>
-            </div>
-            <div class="w-px h-8 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
-            <div class="hidden sm:block">
-                <p class="text-xs text-gray-500">this week</p>
-                <p class="text-xs font-semibold text-primary">↑ 12%</p>
-            </div>
-        </div>
-    </div>
-</div>
-                </div>
-                <!-- Right Column - Image -->
                 <div class="order-1 lg:order-2 relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
                         <img src="images/about_hero.jpg" alt="Featured Portfolio" class="w-full h-auto rounded-xl">
@@ -975,7 +992,7 @@
         </div>
     </section>
 
-    <!-- Simple CTA Section - Like Home Page (No Stats Card, No Background Image) -->
+    <!-- Simple CTA Section - Like Home Page -->
     <section class="cta-simple py-20">
         <div class="max-w-4xl mx-auto text-center px-4 relative z-10">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4">Ready to Visualize Your Next Project?</h2>
@@ -1001,11 +1018,11 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="footer-grid mb-10">
+            <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
                 <div>
-                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
                         <i class="fas fa-cube text-2xl text-primary"></i>
-                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
+                        <span class="logo-text">ARKI VIZ</span>
                     </a>
                     <p class="text-gray-400 text-sm mb-4 leading-relaxed">
                         Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.

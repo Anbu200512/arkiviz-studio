@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Assets | ARKI VIZ - 3D Architectural Rendering Studio</title>
-    <link rel="icon" type="images/jpg" href="images/growwpark_logo.png">
+    <link rel="icon" type="image/jpg" href="images/logo.jpg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -637,23 +637,65 @@
             transition: width 0.5s ease;
         }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+        /* Footer logo uses same styles as navbar logo */
+        footer .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
         
+        footer .logo i {
+            font-size: 1.8rem;
+            color: #c17b4c;
+            transition: all 0.3s ease;
+        }
+        
+        footer .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dark mode support for footer logo */
+        .dark footer .logo-text {
+            background: linear-gradient(135deg, #d69462, #c17b4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Responsive footer logo - matches navbar exactly */
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+            footer .logo i {
+                font-size: 1.5rem !important;
+            }
+            footer .logo-text {
+                font-size: 1.2rem !important;
             }
         }
         
-        @media (max-width: 640px) {
-            .footer-grid {
-                grid-template-columns: repeat(1, 1fr);
+        @media (max-width: 480px) {
+            footer .logo i {
+                font-size: 1.3rem !important;
             }
+            footer .logo-text {
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Hover effect same as navbar */
+        footer .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        footer .logo:hover i,
+        footer .logo:hover .logo-text {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -810,31 +852,25 @@
                         <i class="fas fa-cloud-upload-alt"></i> Upload New
                     </a>
                 </div>
-                 <div class="flex items-center gap-6 mt-10 justify-center">
-                    <!-- <div class="mt-8"> -->
-    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-               <div class="flex items-center gap-1">
-            <div class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-sm">MJ</div>
-            <div class="w-9 h-9 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-bold shadow-sm">SC</div>
-            <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">AR</div>
-            <div class="w-9 h-9 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">+24</div>
-        </div>
-        <div class="flex items-center gap-2">
-            <div class="text-right">
-                <div class="flex items-baseline gap-1">
-                    <span class="text-2xl font-bold text-primary">24</span>
-                    <span class="text-sm text-gray-500">+</span>
+                <div class="mt-10">
+                    <div class="flex flex-wrap items-center justify-center gap-4">
+                        
+                        <div class="flex items-center gap-2">
+                            <div class="text-right">
+                                <div class="flex items-baseline gap-1">
+                                    <span class="text-2xl font-bold text-primary">32</span>
+                                    <span class="text-sm text-gray-500">+</span>
+                                </div>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">active Assets</p>
+                            </div>
+                            <div class="w-px h-8 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
+                            <div class="hidden sm:block">
+                                <p class="text-xs text-gray-500">this week</p>
+                                <p class="text-xs font-semibold text-primary">↑ 17%</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400">active collaborations</p>
-            </div>
-            <div class="w-px h-8 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
-            <div class="hidden sm:block">
-                <p class="text-xs text-gray-500">this week</p>
-                <p class="text-xs font-semibold text-primary">↑ 12%</p>
-            </div>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </section>
@@ -871,9 +907,9 @@
                 <!-- Asset 4 - Animation -->
                 <div class="asset-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="animations"><div class="relative h-48 overflow-hidden"><img src="images/a4.jpg" class="w-full h-full object-cover"><div class="absolute top-3 right-3 bg-purple-600 text-white px-2 py-1 rounded text-xs font-semibold">MP4</div></div><div class="p-5"><h3 class="font-bold text-lg mb-1">Villa Walkthrough Animation</h3><p class="text-gray-500 text-sm mb-3">MP4 · 4K · 2 min · 180 MB</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Uploaded: Dec 1, 2024</span><button class="download-btn bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition"><i class="fas fa-download mr-1"></i> Download</button></div></div></div>
                 <!-- Asset 5 - Interior Render -->
-                <div class="asset-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="renders"><div class="relative h-48 overflow-hidden"><img src="images/about_hero.jpg" class="w-full h-full object-cover"><div class="absolute top-3 right-3 bg-primary text-white px-2 py-1 rounded text-xs font-semibold">4K</div></div><div class="p-5"><h3 class="font-bold text-lg mb-1">Neo Tower Lobby Interior</h3><p class="text-gray-500 text-sm mb-3">JPG · 3840x2160 · 18 MB</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Uploaded: Nov 28, 2024</span><button class="download-btn bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition"><i class="fas fa-download mr-1"></i> Download</button></div></div></div>
+                <div class="asset-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="renders"><div class="relative h-48 overflow-hidden"><img src="images/asset1.jpg" class="w-full h-full object-cover"><div class="absolute top-3 right-3 bg-primary text-white px-2 py-1 rounded text-xs font-semibold">4K</div></div><div class="p-5"><h3 class="font-bold text-lg mb-1">Neo Tower Lobby Interior</h3><p class="text-gray-500 text-sm mb-3">JPG · 3840x2160 · 18 MB</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Uploaded: Nov 28, 2024</span><button class="download-btn bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition"><i class="fas fa-download mr-1"></i> Download</button></div></div></div>
                 <!-- Asset 6 - 3D Model -->
-                <div class="asset-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="models"><div class="relative h-48 overflow-hidden"><img src="images/home1(3).jpg" class="w-full h-full object-cover"><div class="absolute top-3 right-3 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">.fbx</div></div><div class="p-5"><h3 class="font-bold text-lg mb-1">Urban Park 3D Scene</h3><p class="text-gray-500 text-sm mb-3">FBX · 234 MB</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Uploaded: Nov 20, 2024</span><button class="download-btn bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition"><i class="fas fa-download mr-1"></i> Download</button></div></div></div>
+                <div class="asset-card bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="models"><div class="relative h-48 overflow-hidden"><img src="images/about2.jpg" class="w-full h-full object-cover"><div class="absolute top-3 right-3 bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">.fbx</div></div><div class="p-5"><h3 class="font-bold text-lg mb-1">Urban Park 3D Scene</h3><p class="text-gray-500 text-sm mb-3">FBX · 234 MB</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Uploaded: Nov 20, 2024</span><button class="download-btn bg-primary text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition"><i class="fas fa-download mr-1"></i> Download</button></div></div></div>
             </div>
             <div class="text-center mt-12"><button class="bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-secondary transition"><i class="fas fa-sync-alt mr-2"></i> Load More Assets</button></div>
         </div>
@@ -892,7 +928,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-primary font-semibold text-sm uppercase tracking-wide">Activity Log</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Recent Downloads</h2></div><div class="bg-gray-50 dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><div class="divide-y divide-gray-100 dark:divide-gray-700"><div class="flex items-center justify-between p-4 hover:bg-gray-100 dark:hover:bg-gray-700"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"><i class="fas fa-file-image text-primary"></i></div><div><p class="font-medium">SkyVilla_Final_4K.png</p><p class="text-xs text-gray-500">24 MB · Downloaded 2 hours ago</p></div></div><button class="text-primary text-sm font-semibold hover:underline">Download again</button></div><div class="flex items-center justify-between p-4 hover:bg-gray-100 dark:hover:bg-gray-700"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"><i class="fas fa-cube text-primary"></i></div><div><p class="font-medium">Modern_Villa_Model.skp</p><p class="text-xs text-gray-500">156 MB · Downloaded yesterday</p></div></div><button class="text-primary text-sm font-semibold hover:underline">Download again</button></div><div class="flex items-center justify-between p-4 hover:bg-gray-100 dark:hover:bg-gray-700"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center"><i class="fas fa-film text-primary"></i></div><div><p class="font-medium">Villa_Walkthrough_4K.mp4</p><p class="text-xs text-gray-500">180 MB · Downloaded 3 days ago</p></div></div><button class="text-primary text-sm font-semibold hover:underline">Download again</button></div></div></div></div>
     </section>
 
-    <!-- Enhanced CTA Section as Card - UNIQUE to Assets Page -->
+    <!-- CTA Section -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-gradient-to-r from-primary to-secondary rounded-3xl p-8 md:p-12 shadow-2xl">
@@ -939,11 +975,13 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="footer-grid mb-10">
+            <!-- Mobile: Stacked (1 column), Desktop: Grid (4 columns) -->
+            <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
+                <!-- Logo & Description - USING SAME CLASSES AS NAVBAR -->
                 <div>
-                    <a href="index.html" class="flex items-center gap-2 mb-4">
-                        <i class="fas fa-cube text-2xl text-primary"></i>
-                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
+                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
+                        <i class="fas fa-cube"></i>
+                        <span class="logo-text">ARKI VIZ</span>
                     </a>
                     <p class="text-gray-400 text-sm mb-4 leading-relaxed">
                         Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
@@ -954,6 +992,8 @@
                         <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
                     </div>
                 </div>
+                
+                <!-- Quick Links -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
@@ -964,6 +1004,8 @@
                         <li><a href="contact.html" class="hover:text-white">Contact</a></li>
                     </ul>
                 </div>
+                
+                <!-- Our Services -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Our Services</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
@@ -974,6 +1016,8 @@
                         <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
                     </ul>
                 </div>
+                
+                <!-- Contact Info -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
                     <div class="space-y-3 text-gray-400 text-sm">
@@ -984,6 +1028,8 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Copyright -->
             <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
                 <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
                 <div class="flex gap-6">
@@ -997,9 +1043,6 @@
 
     <script>
         lucide.createIcons();
-        
-        let currentStep = 1;
-        let uploadedFiles = [];
         
         function openMobileMenu() {
             document.getElementById('mobileMenuPanel').classList.add('open');

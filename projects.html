@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Projects | ARKI VIZ - 3D Architectural Rendering Portfolio</title>
-    <link rel="icon" type="images/jpg" href="images/growwpark_logo.png">
+    <link rel="icon" type="image/jpg" href="images/arki_viz_logo3.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -645,23 +645,65 @@
             color: #c17b4c;
         }
         
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+        /* Footer logo uses same styles as navbar logo */
+        footer .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
         
+        footer .logo i {
+            font-size: 1.8rem;
+            color: #c17b4c;
+            transition: all 0.3s ease;
+        }
+        
+        footer .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dark mode support for footer logo */
+        .dark footer .logo-text {
+            background: linear-gradient(135deg, #d69462, #c17b4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Responsive footer logo - matches navbar exactly */
         @media (max-width: 768px) {
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+            footer .logo i {
+                font-size: 1.5rem !important;
+            }
+            footer .logo-text {
+                font-size: 1.2rem !important;
             }
         }
         
-        @media (max-width: 640px) {
-            .footer-grid {
-                grid-template-columns: repeat(1, 1fr);
+        @media (max-width: 480px) {
+            footer .logo i {
+                font-size: 1.3rem !important;
             }
+            footer .logo-text {
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Hover effect same as navbar */
+        footer .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        footer .logo:hover i,
+        footer .logo:hover .logo-text {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -794,7 +836,7 @@
         </div>
     </div>
 
-    <!-- Unique Hero Section for Projects Page -->
+    <!-- Hero Section - Unique Projects Design -->
     <section class="hero-projects-unique relative min-h-screen flex items-center pt-24 overflow-hidden">
         <div class="floating-shape top-20 left-10"></div>
         <div class="floating-shape bottom-20 right-10" style="animation-delay: -3s; width: 400px; height: 400px;"></div>
@@ -826,30 +868,7 @@
                             <i class="fas fa-cloud-upload-alt"></i> Start a Project
                         </a>
                     </div>
-                    <div class="mt-8">
-    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
-               <div class="flex items-center gap-1">
-            <div class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-sm">MJ</div>
-            <div class="w-9 h-9 rounded-full bg-secondary text-white flex items-center justify-center text-sm font-bold shadow-sm">SC</div>
-            <div class="w-9 h-9 rounded-full bg-amber-600 text-white flex items-center justify-center text-sm font-bold shadow-sm">AR</div>
-            <div class="w-9 h-9 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold shadow-sm">+24</div>
-        </div>
-        <div class="flex items-center gap-2">
-            <div class="text-right">
-                <div class="flex items-baseline gap-1">
-                    <span class="text-2xl font-bold text-primary">24</span>
-                    <span class="text-sm text-gray-500">+</span>
-                </div>
-                <p class="text-xs text-gray-500 dark:text-gray-400">active collaborations</p>
-            </div>
-            <div class="w-px h-8 bg-gray-300 dark:bg-gray-600 hidden sm:block"></div>
-            <div class="hidden sm:block">
-                <p class="text-xs text-gray-500">this week</p>
-                <p class="text-xs font-semibold text-primary">↑ 12%</p>
-            </div>
-        </div>
-    </div>
-</div>
+                    
                 </div>
                 <div class="order-1 lg:order-2 relative">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl transform hover:scale-105 transition duration-500">
@@ -908,10 +927,11 @@
                 <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="exterior residential"><div class="relative h-64 overflow-hidden"><img src="images/a3.jpg" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Exterior</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Coastal Beach Residence</h3><p class="text-gray-500 text-sm mb-3">Luxury beachfront property with infinity pool and tropical landscaping</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">4K Ultra HD</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
                 <div class="project-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700" data-category="landscape"><div class="relative h-64 overflow-hidden"><img src="images/a4.jpg" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"><div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-semibold">Landscape</div></div><div class="p-6"><h3 class="text-xl font-bold mb-1">Zen Japanese Garden</h3><p class="text-gray-500 text-sm mb-3">Tranquil garden design with koi pond and traditional stone lanterns</p><div class="flex justify-between items-center"><span class="text-xs text-gray-400">Lumion · 4K</span><span class="text-primary text-sm font-semibold">View Project →</span></div></div></div>
             </div>
+            <div class="text-center mt-12"><a href="upload.html" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-xl font-semibold hover:bg-secondary transition">Start Your Project <i class="fas fa-arrow-right"></i></a></div>
         </div>
     </section>
 
-    <!-- Card Style CTA Section - UNIQUE to Projects Page -->
+    <!-- Card Style CTA Section -->
     <section class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -959,11 +979,11 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="footer-grid mb-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
                 <div>
-                    <a href="index.html" class="flex items-center gap-2 mb-4">
+                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
                         <i class="fas fa-cube text-2xl text-primary"></i>
-                        <span class="font-black text-xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
+                        <span class="logo-text">ARKI VIZ</span>
                     </a>
                     <p class="text-gray-400 text-sm mb-4 leading-relaxed">
                         Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
@@ -977,21 +997,21 @@
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white">Home</a></li>
-                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                        <li><a href="projects.html" class="hover:text-white">Projects</a></li>
-                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
-                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                        <li><a href="index.html" class="hover:text-white transition">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white transition">Portfolio</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Our Services</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
-                        <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
-                        <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
-                        <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
-                        <li><a href="#" class="hover:text-white">3D Animation</a></li>
-                        <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
+                        <li><a href="#" class="hover:text-white transition">Exterior Rendering</a></li>
+                        <li><a href="#" class="hover:text-white transition">Interior Visualization</a></li>
+                        <li><a href="#" class="hover:text-white transition">360° VR Tours</a></li>
+                        <li><a href="#" class="hover:text-white transition">3D Animation</a></li>
+                        <li><a href="#" class="hover:text-white transition">Virtual Staging</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1007,9 +1027,9 @@
             <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
                 <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
                 <div class="flex gap-6">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Service</a>
-                    <a href="#" class="hover:text-white">Cookie Policy</a>
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition">Cookie Policy</a>
                 </div>
             </div>
         </div>
