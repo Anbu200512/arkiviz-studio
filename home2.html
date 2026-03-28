@@ -810,14 +810,6 @@
         footer .logo:hover .logo-text {
             transform: scale(1.02);
         }
-
-        /* FIXED: Responsive footer grid - proper mobile columns */
-        @media (max-width: 640px) {
-            footer .grid {
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 2rem !important;
-            }
-        }
     </style>
 </head>
 <body class="light font-inter">
@@ -1149,12 +1141,11 @@
         </div>
     </section>
 
-    <!-- Footer - FIXED: Responsive grid with proper mobile columns (2 columns on small screens) -->
-        <!-- Footer - FIXED: Responsive grid with proper mobile columns (2 columns on small screens) -->
+    <!-- Footer - SINGLE COLUMN on mobile (one by one), 4 columns on desktop -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Updated grid classes: 1 column on mobile, 2 columns on sm, 4 columns on md -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+            <!-- Single column on mobile, 4 columns on medium screens and up -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
                 <div>
                     <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
                         <i class="fas fa-cube text-2xl text-primary"></i>
