@@ -810,6 +810,14 @@
         footer .logo:hover .logo-text {
             transform: scale(1.02);
         }
+
+        /* FIXED: Responsive footer grid - proper mobile columns */
+        @media (max-width: 640px) {
+            footer .grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 2rem !important;
+            }
+        }
     </style>
 </head>
 <body class="light font-inter">
@@ -942,7 +950,7 @@
     </div>
 
     <!-- Hero Section - Unique Home 2 Design -->
-    <section class="hero-home2 relative min-h-screen flex items-center pt-24 overflow-hidden">
+    <section class="hero-home2 relative min-h-screen flex items-center pt-5 overflow-hidden">
         <div class="floating-shape top-20 left-10"></div>
         <div class="floating-shape bottom-20 right-10" style="animation-delay: -3s; width: 400px; height: 400px;"></div>
         <div class="floating-shape top-1/2 left-1/3" style="animation-delay: -5s; width: 200px; height: 200px;"></div>
@@ -1019,7 +1027,6 @@
                 </div>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white dark:from-gray-900 to-transparent z-20"></div>
     </section>
 
     <!-- Stats Section -->
@@ -1142,10 +1149,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer - FIXED: Responsive grid with proper mobile columns (2 columns on small screens) -->
+        <!-- Footer - FIXED: Responsive grid with proper mobile columns (2 columns on small screens) -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
+            <!-- Updated grid classes: 1 column on mobile, 2 columns on sm, 4 columns on md -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
                 <div>
                     <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
                         <i class="fas fa-cube text-2xl text-primary"></i>
