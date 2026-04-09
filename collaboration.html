@@ -974,10 +974,70 @@
                 <!-- Project List -->
                 <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700"><h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-folder-open text-primary"></i> Active Projects</h3><div class="space-y-3" id="projectList"></div></div>
                 <!-- Chat Area -->
-                <div class="lg:col-span-2 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 flex flex-col h-[500px]"><div class="p-4 border-b border-gray-200 dark:border-gray-700"><h3 class="font-bold" id="chatProjectTitle">Select a project to start chatting</h3></div><div class="flex-1 overflow-y-auto p-4 space-y-3" id="chatMessages"></div><div class="p-4 border-t border-gray-200 dark:border-gray-700"><div class="flex gap-2"><input type="text" id="chatInput" placeholder="Type your message..." class="chat-input flex-1 px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 focus:outline-none"><button onclick="sendMessage()" class="bg-primary text-white px-4 py-2 rounded-xl hover:bg-secondary transition"><i class="fas fa-paper-plane"></i></button></div></div></div>
-            </div>
+<div class="lg:col-span-2 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 flex flex-col h-[500px]">
+
+    <!-- Header -->
+    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold" id="chatProjectTitle">
+            Chat
+        </h3>
+    </div>
+
+    <!-- Chat Area -->
+    <div 
+        class="flex-1 overflow-y-auto p-4 space-y-3 relative"
+        id="chatMessages"
+    >
+
+        <!-- Background Image -->
+        <!-- Background Image (FULL visible) -->
+<div class="absolute inset-0 bg-cover bg-center"
+    style="background-image: url('images/p1.jpg');">
+</div>
+
+<!-- Light Gradient Overlay (softens image) -->
+<div class="absolute inset-0 
+    bg-gradient-to-b 
+    from-white/70 
+    via-white/50 
+    to-white/80 
+    dark:from-gray-900/70 
+    dark:via-gray-900/60 
+    dark:to-gray-900/80">
+</div>
+
+        <!-- Light Gradient -->
+        <!-- <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white/70 dark:from-gray-900/70 dark:to-gray-900/80"></div> -->
+
+        <!-- Messages -->
+        <div id="chatContent" class="relative z-10 space-y-3"></div>
+
+    </div>
+
+    <!-- Input -->
+    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="flex gap-2">
+            <input 
+                type="text" 
+                id="chatInput" 
+                placeholder="Type your message..." 
+                class="flex-1 px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/80 backdrop-blur-sm focus:outline-none"
+            >
+            <button 
+                onclick="sendMessage()" 
+                class="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600 transition"
+            >
+                Send
+            </button>
+        </div>
+    </div>
+
+</div>            </div>
         </div>
     </section>
+
+
+
 
     <!-- Draft Reviews -->
     <section id="active-projects" class="py-20 bg-gray-50 dark:bg-gray-800">
@@ -1199,5 +1259,54 @@
             renderFiles();
         });
     </script>
+    <script>
+function sendMessage() {
+    const input = document.getElementById("chatInput");
+    const message = input.value.trim();
+    const chat = document.getElementById("chatContent");
+
+    if (message === "") return;
+
+    // User message
+    const userMsg = document.createElement("div");
+    userMsg.className = "flex justify-end";
+
+    userMsg.innerHTML = `
+        <div class="bg-blue-500 text-white px-4 py-2 rounded-xl max-w-xs shadow-md animate-fadeIn">
+            ${message}
+        </div>
+    `;
+
+    chat.appendChild(userMsg);
+
+    input.value = "";
+
+    // Auto scroll
+    chat.scrollTop = chat.scrollHeight;
+
+    // Fake reply (for UI feel)
+    setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "flex justify-start";
+
+        botMsg.innerHTML = `
+            <div class="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-xl max-w-xs shadow-md animate-fadeIn">
+                Got it 👍
+            </div>
+        `;
+
+        chat.appendChild(botMsg);
+        chat.scrollTop = chat.scrollHeight;
+
+    }, 800);
+}
+
+// Enter key support
+document.getElementById("chatInput").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+});
+</script>
 </body>
 </html>
