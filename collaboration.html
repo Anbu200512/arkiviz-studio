@@ -663,7 +663,8 @@
         }
         
         .dark .modal-content {
-            background: #1e1a17;
+            background: #2A241F;
+            border: 1px solid rgba(193, 123, 76, 0.3);
         }
         
         .review-card {
@@ -673,6 +674,47 @@
         .review-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 30px -12px rgba(193, 123, 76, 0.2);
+        }
+        
+        /* Improved dark mode text contrast */
+        .dark .text-gray-500 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9CA3AF !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f1b18 !important;
+        }
+        
+        /* Chat overlay fix - ensures text is readable */
+        .chat-message-user {
+            background: #c17b4c;
+            color: white;
+        }
+        
+        .dark .chat-message-user {
+            background: #c17b4c;
+        }
+        
+        .chat-message-other {
+            background: #e5e7eb;
+            color: #1f2937;
+        }
+        
+        .dark .chat-message-other {
+            background: #374151;
+            color: #f3f4f6;
         }
         
         /* Simple CTA Section - Like Home Page */
@@ -758,6 +800,16 @@
         footer .logo:hover i,
         footer .logo:hover .logo-text {
             transform: scale(1.02);
+        }
+        
+        /* Animation for chat messages */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease forwards;
         }
     </style>
 </head>
@@ -905,7 +957,7 @@
                             <i class="fas fa-handshake text-5xl text-primary mb-4"></i>
                             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Active Collaborations</h3>
                             <div class="mb-4">
-                                <div class="flex justify-between text-sm mb-1 text-gray-600 dark:text-gray-400">
+                                <div class="flex justify-between text-sm mb-1 text-gray-600 dark:text-gray-300">
                                     <span>Team Members Online</span>
                                     <span>12/18</span>
                                 </div>
@@ -948,7 +1000,7 @@
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] tracking-tight mb-6">
                         Collaborate with <br><span class="text-primary">Your Creative Team</span>
                     </h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                         Real-time communication, file sharing, and feedback management. Work together with architects, designers, and clients in one unified workspace.
                     </p>
                     <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -969,79 +1021,35 @@
     <!-- Collaboration Dashboard -->
     <section id="collab-dashboard" class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12"><span class="text-primary font-semibold text-sm uppercase tracking-wide">Collaboration Hub</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Team Communication</h2><p class="text-gray-600 dark:text-gray-400 mt-4">Real-time discussions, file sharing, and feedback management</p></div>
+            <div class="text-center mb-12"><span class="text-primary font-semibold text-sm uppercase tracking-wide">Collaboration Hub</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Team Communication</h2><p class="text-gray-600 dark:text-gray-300 mt-4">Real-time discussions, file sharing, and feedback management</p></div>
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Project List -->
-                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700"><h3 class="font-bold text-lg mb-4 flex items-center gap-2"><i class="fas fa-folder-open text-primary"></i> Active Projects</h3><div class="space-y-3" id="projectList"></div></div>
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-5 border border-gray-200 dark:border-gray-700"><h3 class="font-bold text-lg mb-4 flex items-center gap-2 text-gray-900 dark:text-white"><i class="fas fa-folder-open text-primary"></i> Active Projects</h3><div class="space-y-3" id="projectList"></div></div>
                 <!-- Chat Area -->
-<div class="lg:col-span-2 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 flex flex-col h-[500px]">
-
-    <!-- Header -->
-    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
-        <h3 class="font-bold" id="chatProjectTitle">
-            Chat
-        </h3>
-    </div>
-
-    <!-- Chat Area -->
-    <div 
-        class="flex-1 overflow-y-auto p-4 space-y-3 relative"
-        id="chatMessages"
-    >
-
-        <!-- Background Image -->
-        <!-- Background Image (FULL visible) -->
-<div class="absolute inset-0 bg-cover bg-center"
-    style="background-image: url('images/p1.jpg');">
-</div>
-
-<!-- Light Gradient Overlay (softens image) -->
-<div class="absolute inset-0 
-    bg-gradient-to-b 
-    from-white/70 
-    via-white/50 
-    to-white/80 
-    dark:from-gray-900/70 
-    dark:via-gray-900/60 
-    dark:to-gray-900/80">
-</div>
-
-        <!-- Light Gradient -->
-        <!-- <div class="absolute inset-0 bg-gradient-to-b from-white/60 via-white/40 to-white/70 dark:from-gray-900/70 dark:to-gray-900/80"></div> -->
-
-        <!-- Messages -->
-        <div id="chatContent" class="relative z-10 space-y-3"></div>
-
-    </div>
-
-    <!-- Input -->
-    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
-        <div class="flex gap-2">
-            <input 
-                type="text" 
-                id="chatInput" 
-                placeholder="Type your message..." 
-                class="flex-1 px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white/80 backdrop-blur-sm focus:outline-none"
-            >
-            <button 
-                onclick="sendMessage()" 
-                class="bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-600 transition"
-            >
-                Send
-            </button>
-        </div>
-    </div>
-
-</div>            </div>
+                <div class="lg:col-span-2 bg-gray-50 dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 flex flex-col h-[500px]">
+                    <!-- Header -->
+                    <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+                        <h3 class="font-bold text-gray-900 dark:text-white" id="chatProjectTitle">Select a project to start chatting</h3>
+                    </div>
+                    <!-- Chat Area -->
+                    <div class="flex-1 overflow-y-auto p-4 space-y-3 relative" id="chatMessages">
+                        <div id="chatContent" class="space-y-3"></div>
+                    </div>
+                    <!-- Input -->
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+                        <div class="flex gap-2">
+                            <input type="text" id="chatInput" placeholder="Type your message..." class="flex-1 px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-900 dark:text-white focus:outline-none focus:border-primary">
+                            <button onclick="sendMessage()" class="bg-primary text-white px-4 py-2 rounded-xl hover:bg-secondary transition">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-
-
-
     <!-- Draft Reviews -->
     <section id="active-projects" class="py-20 bg-gray-50 dark:bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-primary font-semibold text-sm uppercase tracking-wide">Review & Feedback</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Draft Reviews</h2><p class="text-gray-600 dark:text-gray-400 mt-4">Provide feedback on render drafts and track revisions</p></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="reviewsContainer"></div></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="text-center mb-12"><span class="text-primary font-semibold text-sm uppercase tracking-wide">Review & Feedback</span><h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Draft Reviews</h2><p class="text-gray-600 dark:text-gray-300 mt-4">Provide feedback on render drafts and track revisions</p></div><div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="reviewsContainer"></div></div>
     </section>
 
     <!-- Shared Files -->
@@ -1075,9 +1083,7 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-12 pb-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Mobile: Stacked (1 column), Desktop: Grid (4 columns) -->
             <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
-                <!-- Logo & Description - USING SAME CLASSES AS NAVBAR -->
                 <div>
                     <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
                         <i class="fas fa-cube"></i>
@@ -1092,8 +1098,6 @@
                         <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
@@ -1104,8 +1108,6 @@
                         <li><a href="contact.html" class="hover:text-white">Contact</a></li>
                     </ul>
                 </div>
-                
-                <!-- Our Services -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Our Services</h4>
                     <ul class="space-y-2 text-gray-400 text-sm">
@@ -1116,8 +1118,6 @@
                         <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
                     </ul>
                 </div>
-                
-                <!-- Contact Info -->
                 <div>
                     <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
                     <div class="space-y-3 text-gray-400 text-sm">
@@ -1128,8 +1128,6 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Copyright -->
             <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
                 <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
                 <div class="flex gap-6">
@@ -1142,7 +1140,7 @@
     </footer>
 
     <!-- Modal -->
-    <div id="feedbackModal" class="modal"><div class="modal-content p-6"><h3 class="text-xl font-bold mb-4">Add Review Feedback</h3><textarea id="reviewFeedback" rows="4" class="w-full p-3 border rounded-xl mb-4" placeholder="Enter your feedback on this draft..."></textarea><div class="flex justify-end gap-3"><button onclick="closeReviewModal()" class="px-4 py-2 border rounded-lg">Cancel</button><button onclick="submitReview()" class="px-4 py-2 bg-primary text-white rounded-lg">Submit Review</button></div></div></div>
+    <div id="feedbackModal" class="modal"><div class="modal-content p-6"><h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">Add Review Feedback</h3><textarea id="reviewFeedback" rows="4" class="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white mb-4" placeholder="Enter your feedback on this draft..."></textarea><div class="flex justify-end gap-3"><button onclick="closeReviewModal()" class="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">Cancel</button><button onclick="submitReview()" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-secondary transition">Submit Review</button></div></div></div>
 
     <script>
         lucide.createIcons();
@@ -1180,7 +1178,11 @@
             projects.forEach(proj => {
                 const div = document.createElement('div');
                 div.className = `p-3 rounded-xl cursor-pointer transition ${currentProject === proj.id ? 'bg-primary/10 border border-primary' : 'bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 hover:border-primary'}`;
-                div.innerHTML = `<div class="flex justify-between items-start"><div><p class="font-semibold">${proj.name}</p><p class="text-xs text-gray-500">${proj.lastMessage}</p></div><span class="text-xs px-2 py-1 rounded-full ${proj.status === 'In Progress' ? 'bg-blue-100 text-blue-700' : proj.status === 'Review Needed' ? 'bg-primary/20 text-primary' : 'bg-green-100 text-green-700'}">${proj.status}</span></div>`;
+                let statusClass = '';
+                if (proj.status === 'In Progress') statusClass = 'bg-primary/20 text-primary';
+                else if (proj.status === 'Review Needed') statusClass = 'bg-primary/20 text-primary';
+                else statusClass = 'bg-primary/20 text-primary';
+                div.innerHTML = `<div class="flex justify-between items-start"><div><p class="font-semibold text-gray-900 dark:text-white">${proj.name}</p><p class="text-xs text-gray-500 dark:text-gray-400">${proj.lastMessage}</p></div><span class="text-xs px-2 py-1 rounded-full ${statusClass}">${proj.status}</span></div>`;
                 div.onclick = () => selectProject(proj.id);
                 container.appendChild(div);
             });
@@ -1188,13 +1190,75 @@
         
         function selectProject(id) { currentProject = id; document.getElementById('chatProjectTitle').innerText = projects.find(p => p.id === id).name; renderMessages(); }
         
-        function renderMessages() { const container = document.getElementById('chatMessages'); container.innerHTML = ''; if(currentProject && messages[currentProject]) { messages[currentProject].forEach(msg => { const div = document.createElement('div'); div.className = `flex ${msg.sender === 'You' ? 'justify-end' : 'justify-start'}`; div.innerHTML = `<div class="max-w-[70%] ${msg.sender === 'You' ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white'} rounded-2xl px-4 py-2"><p class="text-sm">${msg.text}</p><p class="text-xs opacity-70 mt-1">${msg.time}</p></div>`; container.appendChild(div); }); container.scrollTop = container.scrollHeight; } }
+        function renderMessages() { 
+            const container = document.getElementById('chatContent'); 
+            container.innerHTML = ''; 
+            if(currentProject && messages[currentProject]) { 
+                messages[currentProject].forEach(msg => { 
+                    const div = document.createElement('div'); 
+                    div.className = `flex ${msg.sender === 'You' ? 'justify-end' : 'justify-start'}`; 
+                    div.innerHTML = `<div class="max-w-[70%] ${msg.sender === 'You' ? 'bg-primary text-white' : 'bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white'} rounded-2xl px-4 py-2"><p class="text-sm">${msg.text}</p><p class="text-xs opacity-70 mt-1">${msg.time}</p></div>`; 
+                    container.appendChild(div); 
+                }); 
+                const chatContainer = document.getElementById('chatMessages');
+                if(chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight;
+            } 
+        }
         
-        function sendMessage() { const input = document.getElementById('chatInput'); const text = input.value.trim(); if(text && currentProject) { if(!messages[currentProject]) messages[currentProject] = []; messages[currentProject].push({ sender: "You", text: text, time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) }); renderMessages(); input.value = ''; setTimeout(() => { if(messages[currentProject]) messages[currentProject].push({ sender: "Studio", text: "Thanks for your feedback! We'll review and get back to you shortly.", time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) }); renderMessages(); }, 1000); } }
+        function sendMessage() { 
+            const input = document.getElementById('chatInput'); 
+            const text = input.value.trim(); 
+            if(text && currentProject) { 
+                if(!messages[currentProject]) messages[currentProject] = []; 
+                messages[currentProject].push({ sender: "You", text: text, time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) }); 
+                renderMessages(); 
+                input.value = ''; 
+                setTimeout(() => { 
+                    if(messages[currentProject]) messages[currentProject].push({ sender: "Studio", text: "Thanks for your feedback! We'll review and get back to you shortly.", time: new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) }); 
+                    renderMessages(); 
+                }, 1000); 
+            } else if(!currentProject) {
+                alert('Please select a project from the left panel first.');
+            }
+        }
         
-        function renderReviews() { const container = document.getElementById('reviewsContainer'); container.innerHTML = ''; reviews.forEach(rev => { const div = document.createElement('div'); div.className = 'review-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700'; div.innerHTML = `<img src="${rev.image}" class="w-full h-48 object-cover"><div class="p-4"><div class="flex justify-between items-start mb-2"><h3 class="font-bold">${rev.project}</h3><span class="text-xs px-2 py-1 rounded-full ${rev.status === 'Pending' ? 'bg-primary/20 text-primary' : rev.status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}">${rev.status}</span></div><p class="text-sm text-gray-500 mb-2">Version: ${rev.version} · Submitted: ${rev.submitted}</p>${rev.status === 'Pending' ? `<button onclick="openReviewModal(${rev.id})" class="w-full mt-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition">Provide Feedback</button>` : rev.status === 'Approved' ? `<button class="w-full mt-2 bg-green-600 text-white py-2 rounded-lg text-sm font-semibold">Download Final</button>` : `<button class="w-full mt-2 bg-gray-300 text-gray-600 py-2 rounded-lg text-sm font-semibold cursor-not-allowed">Review in Progress</button>`}</div>`; container.appendChild(div); }); }
+        function renderReviews() { 
+            const container = document.getElementById('reviewsContainer'); 
+            container.innerHTML = ''; 
+            reviews.forEach(rev => { 
+                let statusClass = '';
+                let statusText = '';
+                let buttonHtml = '';
+                if (rev.status === 'Pending') {
+                    statusClass = 'bg-primary/20 text-primary';
+                    statusText = 'Pending';
+                    buttonHtml = `<button onclick="openReviewModal(${rev.id})" class="w-full mt-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition">Provide Feedback</button>`;
+                } else if (rev.status === 'Approved') {
+                    statusClass = 'bg-primary/20 text-primary';
+                    statusText = 'Approved';
+                    buttonHtml = `<button class="w-full mt-2 bg-primary text-white py-2 rounded-lg text-sm font-semibold hover:bg-secondary transition">Download Final</button>`;
+                } else {
+                    statusClass = 'bg-primary/20 text-primary';
+                    statusText = 'In Review';
+                    buttonHtml = `<button class="w-full mt-2 bg-gray-300 dark:bg-gray-700 text-gray-600 dark:text-gray-400 py-2 rounded-lg text-sm font-semibold cursor-not-allowed">Review in Progress</button>`;
+                }
+                const div = document.createElement('div'); 
+                div.className = 'review-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700'; 
+                div.innerHTML = `<img src="${rev.image}" class="w-full h-48 object-cover"><div class="p-4"><div class="flex justify-between items-start mb-2"><h3 class="font-bold text-gray-900 dark:text-white">${rev.project}</h3><span class="text-xs px-2 py-1 rounded-full ${statusClass}">${statusText}</span></div><p class="text-sm text-gray-500 dark:text-gray-400 mb-2">Version: ${rev.version} · Submitted: ${rev.submitted}</p>${buttonHtml}</div>`; 
+                container.appendChild(div); 
+            }); 
+        }
         
-        function renderFiles() { const container = document.getElementById('filesContainer'); container.innerHTML = ''; files.forEach(file => { const div = document.createElement('div'); div.className = 'flex justify-between items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition'; div.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-file-alt text-primary"></i><div><p class="font-medium">${file.name}</p><p class="text-xs text-gray-500">${file.size} · Uploaded by ${file.by} · ${file.uploaded}</p></div></div><button onclick="downloadFile('${file.name}')" class="text-primary hover:text-secondary"><i class="fas fa-download"></i> Download</button>`; container.appendChild(div); }); }
+        function renderFiles() { 
+            const container = document.getElementById('filesContainer'); 
+            container.innerHTML = ''; 
+            files.forEach(file => { 
+                const div = document.createElement('div'); 
+                div.className = 'flex justify-between items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-700 transition'; 
+                div.innerHTML = `<div class="flex items-center gap-3"><i class="fas fa-file-alt text-primary"></i><div><p class="font-medium text-gray-900 dark:text-white">${file.name}</p><p class="text-xs text-gray-500 dark:text-gray-400">${file.size} · Uploaded by ${file.by} · ${file.uploaded}</p></div></div><button onclick="downloadFile('${file.name}')" class="text-primary hover:text-secondary"><i class="fas fa-download"></i> Download</button>`; 
+                container.appendChild(div); 
+            }); 
+        }
         
         function openReviewModal(id) { currentReviewId = id; document.getElementById('feedbackModal').classList.add('active'); }
         function closeReviewModal() { document.getElementById('feedbackModal').classList.remove('active'); currentReviewId = null; document.getElementById('reviewFeedback').value = ''; }
@@ -1258,55 +1322,13 @@
             renderReviews();
             renderFiles();
         });
+        
+        // Enter key support for chat input
+        document.getElementById("chatInput").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
     </script>
-    <script>
-function sendMessage() {
-    const input = document.getElementById("chatInput");
-    const message = input.value.trim();
-    const chat = document.getElementById("chatContent");
-
-    if (message === "") return;
-
-    // User message
-    const userMsg = document.createElement("div");
-    userMsg.className = "flex justify-end";
-
-    userMsg.innerHTML = `
-        <div class="bg-blue-500 text-white px-4 py-2 rounded-xl max-w-xs shadow-md animate-fadeIn">
-            ${message}
-        </div>
-    `;
-
-    chat.appendChild(userMsg);
-
-    input.value = "";
-
-    // Auto scroll
-    chat.scrollTop = chat.scrollHeight;
-
-    // Fake reply (for UI feel)
-    setTimeout(() => {
-        const botMsg = document.createElement("div");
-        botMsg.className = "flex justify-start";
-
-        botMsg.innerHTML = `
-            <div class="bg-white/80 backdrop-blur-sm px-4 py-2 rounded-xl max-w-xs shadow-md animate-fadeIn">
-                Got it 👍
-            </div>
-        `;
-
-        chat.appendChild(botMsg);
-        chat.scrollTop = chat.scrollHeight;
-
-    }, 800);
-}
-
-// Enter key support
-document.getElementById("chatInput").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        sendMessage();
-    }
-});
-</script>
 </body>
 </html>
