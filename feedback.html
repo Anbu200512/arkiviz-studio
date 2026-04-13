@@ -636,6 +636,35 @@
             box-shadow: 0 25px 40px -12px rgba(193, 123, 76, 0.25);
         }
         
+        /* Improved dark mode text contrast */
+        .dark .text-gray-500 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9CA3AF !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #E5E7EB !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f1b18 !important;
+        }
+        
+        .dark .bg-white {
+            background-color: #1f1b18 !important;
+        }
+        
         /* Footer logo uses same styles as navbar logo */
         footer .logo {
             display: flex;
@@ -838,13 +867,13 @@
                     <span>Your Voice Matters</span>
                 </div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
-                    Share Your <span class="text-amber-400">Feedback</span>
+                    Share Your <span class="text-primary">Feedback</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
                     Help us improve our rendering services by sharing your thoughts, suggestions, and experiences. Your feedback helps us create better architectural visualizations.
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="#feedback-form" class="bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-amber-700 transition shadow-lg inline-flex items-center gap-2">
+                    <a href="#feedback-form" class="bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-secondary transition shadow-lg inline-flex items-center gap-2">
                         <i class="fas fa-pen-fancy"></i> Give Feedback
                     </a>
                     <a href="#testimonials" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 inline-flex items-center gap-2">
@@ -862,7 +891,7 @@
             <div class="text-center mb-12">
                 <span class="text-primary font-semibold text-sm uppercase tracking-wider">Share Your Experience</span>
                 <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">We Value Your Feedback</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-4 max-w-2xl mx-auto">Help us improve our architectural visualization services by sharing your honest feedback</p>
+                <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Help us improve our architectural visualization services by sharing your honest feedback</p>
             </div>
 
             <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 border border-gray-200 dark:border-gray-700 shadow-lg">
@@ -871,7 +900,7 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Project Name *</label>
-                            <select id="projectSelect" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary">
+                            <select id="projectSelect" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary">
                                 <option value="">Select a project</option>
                                 <option value="SkyVilla Santorini">SkyVilla Santorini</option>
                                 <option value="Neo Tower Lobby">Neo Tower Lobby</option>
@@ -882,7 +911,7 @@
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Name *</label>
-                            <input type="text" id="clientName" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary" placeholder="John Doe">
+                            <input type="text" id="clientName" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary" placeholder="John Doe">
                         </div>
                     </div>
 
@@ -903,10 +932,10 @@
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Feedback Type *</label>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium hover:border-primary hover:text-primary transition" data-type="general">General</button>
-                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium hover:border-primary hover:text-primary transition" data-type="quality">Render Quality</button>
-                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium hover:border-primary hover:text-primary transition" data-type="speed">Turnaround Time</button>
-                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium hover:border-primary hover:text-primary transition" data-type="support">Support Experience</button>
+                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-primary hover:text-primary transition" data-type="general">General</button>
+                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-primary hover:text-primary transition" data-type="quality">Render Quality</button>
+                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-primary hover:text-primary transition" data-type="speed">Turnaround Time</button>
+                            <button type="button" class="feedback-type-btn px-4 py-2 rounded-xl border border-gray-300 dark:border-gray-600 text-sm font-medium text-gray-700 dark:text-gray-300 hover:border-primary hover:text-primary transition" data-type="support">Support Experience</button>
                         </div>
                         <input type="hidden" id="feedbackType" value="">
                     </div>
@@ -914,7 +943,7 @@
                     <!-- Feedback Message -->
                     <div>
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your Feedback *</label>
-                        <textarea id="feedbackMessage" rows="5" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-primary" placeholder="Share your thoughts, suggestions, or concerns..."></textarea>
+                        <textarea id="feedbackMessage" rows="5" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Share your thoughts, suggestions, or concerns..."></textarea>
                     </div>
 
                     <!-- Submit Button -->
@@ -932,32 +961,32 @@
             <div class="text-center mb-12">
                 <span class="text-primary font-semibold text-sm uppercase tracking-wider">What Clients Say</span>
                 <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Recent Feedback</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-4">Real reviews from our valued clients</p>
+                <p class="text-gray-600 dark:text-gray-300 mt-4">Real reviews from our valued clients</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="feedback-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-2 mb-4">
                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"><i class="fas fa-user text-primary"></i></div>
-                        <div><h4 class="font-bold">Sarah Johnson</h4><div class="flex text-primary text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                        <div><h4 class="font-bold text-gray-900 dark:text-white">Sarah Johnson</h4><div class="flex text-primary text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">"The render quality exceeded our expectations. The team was responsive and delivered ahead of schedule."</p>
-                    <p class="text-xs text-gray-500 mt-3">SkyVilla Santorini - 2 days ago</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">"The render quality exceeded our expectations. The team was responsive and delivered ahead of schedule."</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">SkyVilla Santorini - 2 days ago</p>
                 </div>
                 <div class="feedback-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-2 mb-4">
                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"><i class="fas fa-user text-primary"></i></div>
-                        <div><h4 class="font-bold">Michael Rodriguez</h4><div class="flex text-primary text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                        <div><h4 class="font-bold text-gray-900 dark:text-white">Michael Rodriguez</h4><div class="flex text-primary text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">"Amazing attention to detail! The interior lighting and material textures are incredibly realistic."</p>
-                    <p class="text-xs text-gray-500 mt-3">Neo Tower Lobby - 5 days ago</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">"Amazing attention to detail! The interior lighting and material textures are incredibly realistic."</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">Neo Tower Lobby - 5 days ago</p>
                 </div>
                 <div class="feedback-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
                     <div class="flex items-center gap-2 mb-4">
                         <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center"><i class="fas fa-user text-primary"></i></div>
-                        <div><h4 class="font-bold">Emily Chen</h4><div class="flex text-primary text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div></div>
+                        <div><h4 class="font-bold text-gray-900 dark:text-white">Emily Chen</h4><div class="flex text-primary text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
                     </div>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm">"Great collaboration platform. The feedback system made revisions quick and easy. Highly recommended!"</p>
-                    <p class="text-xs text-gray-500 mt-3">Urban Oasis Park - 1 week ago</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">"Great collaboration platform. The feedback system made revisions quick and easy. Highly recommended!"</p>
+                    <p class="text-xs text-gray-500 dark:text-gray-400 mt-3">Urban Oasis Park - 1 week ago</p>
                 </div>
             </div>
         </div>
@@ -974,20 +1003,20 @@
                 <div class="testimonial-card bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
                     <div class="flex text-primary mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">"The team at ARKI VIZ is exceptional. They understood our vision and delivered stunning visuals that helped us win the project bid."</p>
-                    <div class="font-bold">David Kim</div>
-                    <div class="text-sm text-gray-500">Architect, Kim Studio</div>
+                    <div class="font-bold text-gray-900 dark:text-white">David Kim</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Architect, Kim Studio</div>
                 </div>
                 <div class="testimonial-card bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
                     <div class="flex text-primary mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">"Fast turnaround, excellent communication, and breathtaking quality. The feedback system made revisions seamless."</p>
-                    <div class="font-bold">Laura Martinez</div>
-                    <div class="text-sm text-gray-500">Interior Designer</div>
+                    <div class="font-bold text-gray-900 dark:text-white">Laura Martinez</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Interior Designer</div>
                 </div>
                 <div class="testimonial-card bg-white dark:bg-gray-900 p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
                     <div class="flex text-primary mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     <p class="text-gray-700 dark:text-gray-300 mb-4">"Best architectural visualization studio we've worked with. The attention to detail and photorealism is unmatched."</p>
-                    <div class="font-bold">James Wilson</div>
-                    <div class="text-sm text-gray-500">Development Director</div>
+                    <div class="font-bold text-gray-900 dark:text-white">James Wilson</div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">Development Director</div>
                 </div>
             </div>
         </div>

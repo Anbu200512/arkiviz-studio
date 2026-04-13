@@ -655,6 +655,31 @@
             transform: translateX(5px);
         }
         
+        /* Improved dark mode text contrast */
+        .dark .text-gray-500 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9CA3AF !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f1b18 !important;
+        }
+        
+        .dark .bg-white {
+            background-color: #1f1b18 !important;
+        }
+        
         /* Footer logo uses same styles as navbar logo */
         footer .logo {
             display: flex;
@@ -857,13 +882,13 @@
                     <span>Start Your Project</span>
                 </div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
-                    Upload Your <span class="text-amber-400">Architectural Project</span>
+                    Upload Your <span class="text-primary">Architectural Project</span>
                 </h1>
                 <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
                     Share your design files, reference images, and project details. Our team will start working on your 3D visualization within 24 hours.
                 </p>
                 <div class="flex flex-wrap gap-4 justify-center">
-                    <a href="#upload-form" class="bg-amber-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-amber-700 transition shadow-lg inline-flex items-center gap-2">
+                    <a href="#upload-form" class="bg-primary text-white px-8 py-4 rounded-xl font-semibold hover:bg-secondary transition shadow-lg inline-flex items-center gap-2">
                         <i class="fas fa-upload"></i> Start Upload
                     </a>
                     <a href="#faq" class="bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/30 transition border border-white/30 inline-flex items-center gap-2">
@@ -871,9 +896,9 @@
                     </a>
                 </div>
                 <div class="flex flex-wrap gap-6 justify-center mt-10">
-                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-amber-400"></i> Free Consultation</div>
-                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-amber-400"></i> Fast Turnaround</div>
-                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-amber-400"></i> Unlimited Revisions</div>
+                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-primary"></i> Free Consultation</div>
+                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-primary"></i> Fast Turnaround</div>
+                    <div class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-primary"></i> Unlimited Revisions</div>
                 </div>
                 
             </div>
@@ -892,11 +917,11 @@
                 </div>
                 <div class="step-indicator text-center flex-1" id="step2Indicator">
                     <div class="step-number mx-auto mb-2">2</div>
-                    <p class="text-sm font-semibold text-gray-500">Upload Files</p>
+                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Upload Files</p>
                 </div>
                 <div class="step-indicator text-center flex-1" id="step3Indicator">
                     <div class="step-number mx-auto mb-2">3</div>
-                    <p class="text-sm font-semibold text-gray-500">Confirm & Submit</p>
+                    <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">Confirm & Submit</p>
                 </div>
             </div>
 
@@ -906,11 +931,11 @@
                 <form id="projectForm">
                     <div class="mb-5">
                         <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Project Name *</label>
-                        <input type="text" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary" placeholder="e.g., Modern Hillside Villa">
+                        <input type="text" id="projectNameInput" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:border-primary" placeholder="e.g., Modern Hillside Villa">
                     </div>
                     <div class="mb-5">
                         <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Project Type *</label>
-                        <select class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary">
+                        <select id="projectTypeSelect" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:border-primary">
                             <option>Exterior Rendering</option>
                             <option>Interior Visualization</option>
                             <option>360° VR Tour</option>
@@ -920,12 +945,12 @@
                     </div>
                     <div class="mb-5">
                         <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Description *</label>
-                        <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary" placeholder="Describe your project, specific requirements, and any special instructions..."></textarea>
+                        <textarea id="projectDescInput" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:border-primary" placeholder="Describe your project, specific requirements, and any special instructions..."></textarea>
                     </div>
                     <div class="grid md:grid-cols-2 gap-5 mb-5">
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Desired Resolution</label>
-                            <select class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                            <select id="resolutionSelect" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:border-primary">
                                 <option>HD (1920x1080)</option>
                                 <option selected>4K (3840x2160)</option>
                                 <option>8K (7680x4320)</option>
@@ -933,7 +958,7 @@
                         </div>
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Deadline</label>
-                            <input type="date" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:outline-none focus:border-primary">
+                            <input type="date" id="deadlineInput" class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:border-primary">
                         </div>
                     </div>
                     <div class="flex justify-end">
@@ -947,8 +972,8 @@
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Upload Files</h2>
                 <div class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-2xl p-8 text-center hover:border-primary transition">
                     <i class="fas fa-cloud-upload-alt text-5xl text-primary mb-4"></i>
-                    <p class="text-gray-600 dark:text-gray-400 mb-2">Drag & drop your files here, or click to select</p>
-                    <p class="text-sm text-gray-500">Supported: .zip, .rar, .skp, .dwg, .max, .fbx, .obj, .jpg, .png</p>
+                    <p class="text-gray-600 dark:text-gray-300 mb-2">Drag & drop your files here, or click to select</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Supported: .zip, .rar, .skp, .dwg, .max, .fbx, .obj, .jpg, .png</p>
                     <input type="file" multiple class="hidden" id="fileInput">
                     <button onclick="document.getElementById('fileInput').click()" class="mt-4 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 px-6 py-2 rounded-xl hover:bg-primary hover:text-white transition">Select Files</button>
                 </div>
@@ -964,7 +989,7 @@
                 <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Confirm & Submit</h2>
                 <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-6 mb-6">
                     <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Project Summary</h3>
-                    <div class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <div class="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                         <p><strong>Project Name:</strong> <span id="summaryName">-</span></p>
                         <p><strong>Project Type:</strong> <span id="summaryType">-</span></p>
                         <p><strong>Resolution:</strong> <span id="summaryResolution">-</span></p>
@@ -986,7 +1011,7 @@
             <div class="text-center mb-12">
                 <span class="text-primary font-semibold text-sm uppercase tracking-wide">FAQ</span>
                 <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2">Frequently Asked Questions</h2>
-                <p class="text-gray-600 dark:text-gray-400 mt-4">Everything you need to know about our upload process</p>
+                <p class="text-gray-600 dark:text-gray-300 mt-4">Everything you need to know about our upload process</p>
             </div>
             <div class="space-y-4">
                 <div class="faq-item bg-gray-50 dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700">
@@ -994,7 +1019,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">What file formats do you accept?</h3>
                         <i class="fas fa-chevron-down text-primary transition-transform"></i>
                     </button>
-                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-300">
                         <p>We accept a wide range of formats including: .zip, .rar, .skp (SketchUp), .dwg (AutoCAD), .max (3ds Max), .fbx, .obj, .jpg, .png, .psd. For best results, please include all reference images and 3D models in a compressed folder.</p>
                     </div>
                 </div>
@@ -1003,7 +1028,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">How long does the rendering process take?</h3>
                         <i class="fas fa-chevron-down text-primary transition-transform"></i>
                     </button>
-                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-300">
                         <p>Standard delivery time is 3-5 business days for most projects. Express delivery (24-48 hours) is available for an additional fee. Complex animations may require additional time.</p>
                     </div>
                 </div>
@@ -1012,7 +1037,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Can I request revisions?</h3>
                         <i class="fas fa-chevron-down text-primary transition-transform"></i>
                     </button>
-                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-300">
                         <p>Yes! We offer unlimited revisions until you're completely satisfied with the results. Our collaborative feedback system allows you to review drafts and provide comments directly on the renders.</p>
                     </div>
                 </div>
@@ -1021,7 +1046,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">What is the pricing structure?</h3>
                         <i class="fas fa-chevron-down text-primary transition-transform"></i>
                     </button>
-                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-300">
                         <p>Pricing varies based on project complexity, resolution, and deadline. We provide free quotes before starting. Typical exterior renders start at $299, interior renders at $249, and animations at $999+. Contact us for a custom quote.</p>
                     </div>
                 </div>
@@ -1030,7 +1055,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Is my project confidential?</h3>
                         <i class="fas fa-chevron-down text-primary transition-transform"></i>
                     </button>
-                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-400">
+                    <div class="faq-content hidden mt-3 text-gray-600 dark:text-gray-300">
                         <p>Absolutely! We take client confidentiality seriously. All project files and designs are protected under strict NDA agreements. Your intellectual property remains yours.</p>
                     </div>
                 </div>
@@ -1236,10 +1261,10 @@
         }
         
         function updateSummary() {
-            const projectName = document.querySelector('#step1 input[type="text"]')?.value || '-';
-            const projectType = document.querySelector('#step1 select')?.value || '-';
-            const resolution = document.querySelector('#step1 select:last-of-type')?.value || '-';
-            const deadline = document.querySelector('#step1 input[type="date"]')?.value || '-';
+            const projectName = document.getElementById('projectNameInput')?.value || '-';
+            const projectType = document.getElementById('projectTypeSelect')?.value || '-';
+            const resolution = document.getElementById('resolutionSelect')?.value || '-';
+            const deadline = document.getElementById('deadlineInput')?.value || '-';
             
             document.getElementById('summaryName').innerText = projectName;
             document.getElementById('summaryType').innerText = projectType;
@@ -1259,8 +1284,8 @@
             fileList.innerHTML = '';
             uploadedFiles.forEach((file, index) => {
                 fileList.innerHTML += `<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 flex justify-between items-center">
-                    <span class="text-sm">📄 ${file.name}</span>
-                    <button onclick="removeFile(${index})" class="text-red-500 hover:text-red-700">✕</button>
+                    <span class="text-sm text-gray-900 dark:text-white">📄 ${file.name}</span>
+                    <button onclick="removeFile(${index})" class="text-primary hover:text-secondary">✕</button>
                 </div>`;
             });
         });
@@ -1271,8 +1296,8 @@
             fileList.innerHTML = '';
             uploadedFiles.forEach((file, i) => {
                 fileList.innerHTML += `<div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-3 flex justify-between items-center">
-                    <span class="text-sm">📄 ${file.name}</span>
-                    <button onclick="removeFile(${i})" class="text-red-500 hover:text-red-700">✕</button>
+                    <span class="text-sm text-gray-900 dark:text-white">📄 ${file.name}</span>
+                    <button onclick="removeFile(${i})" class="text-primary hover:text-secondary">✕</button>
                 </div>`;
             });
         }

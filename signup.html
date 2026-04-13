@@ -75,8 +75,8 @@
         
         .dark .action-btn {
             background: #2A241F;
-            border-color: #4b5563;
-            color: #d69462;
+            border-color: rgba(193, 123, 76, 0.3);
+            color: #c17b4c;
         }
         
         .action-btn:hover {
@@ -120,12 +120,40 @@
             content: "\f07e";
         }
         
-        /* No scroll - perfect fit */
-       
-        
         /* Password Strength Bar */
         .strength-bar {
             transition: all 0.3s ease;
+        }
+        
+        /* Improved dark mode text contrast */
+        .dark .text-gray-500 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9CA3AF !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        .dark .bg-amber-50 {
+            background-color: #374151 !important;
+        }
+        
+        /* Keep placeholder text readable in dark mode */
+        .dark input::placeholder {
+            color: #9CA3AF !important;
+        }
+        
+        /* Ensure consistent primary color for strength indicators */
+        .bg-primary {
+            background-color: #c17b4c !important;
         }
     </style>
 </head>
@@ -133,7 +161,7 @@
     
     <!-- Top Right Controls - With Working Icons -->
     <div class="fixed top-3 right-3 sm:top-4 sm:right-4 md:top-5 md:right-5 z-50">
-        <div class="desktop-menu flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-1.5 rounded-xl shadow-lg border border-amber-200 dark:border-gray-700">
+        <div class="desktop-menu flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-1.5 rounded-xl shadow-lg border border-primary/20 dark:border-primary/30">
             <button onclick="toggleDirection()" class="action-btn" title="Toggle Direction">
                 <i class="fas fa-arrows-left-right"></i>
             </button>
@@ -146,12 +174,12 @@
 
     <!-- Signup Card - Responsive -->
     <div class="w-full max-w-[90%] sm:max-w-[400px] md:max-w-[420px] lg:max-w-[440px] mx-auto">
-        <div class="bg-white dark:bg-[#2A241F] rounded-xl sm:rounded-2xl shadow-xl border border-amber-200 dark:border-gray-700 p-5 sm:p-6 md:p-7">
+        <div class="bg-white dark:bg-[#2A241F] rounded-xl sm:rounded-2xl shadow-xl border border-primary/20 dark:border-primary/30 p-5 sm:p-6 md:p-7">
             
             <!-- Logo - ARKI VIZ with Gradient -->
             <div class="flex justify-center mb-5 sm:mb-6 md:mb-7">
                 <a href="index.html" class="logo">
-                    <i class="fas fa-cube text-2xl sm:text-2xl md:text-3xl" style="color: #c17b4c;"></i>
+                    <i class="fas fa-cube text-2xl sm:text-2xl md:text-3xl text-primary"></i>
                     <span class="font-black text-2xl sm:text-2xl md:text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">ARKI VIZ</span>
                 </a>
             </div>
@@ -162,7 +190,7 @@
             </h1>
             
             <!-- Subtitle -->
-            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400 mb-5 sm:mb-6 md:mb-7">
+            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-300 mb-5 sm:mb-6 md:mb-7">
                 Join ARKI VIZ and start visualizing your architectural projects
             </p>
             
@@ -175,7 +203,7 @@
                         Full Name
                     </label>
                     <input type="text" id="fullName" placeholder="John Doe" 
-                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm text-gray-900 dark:text-white focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-primary/20">
                 </div>
                 
                 <!-- Email Field with Icon -->
@@ -185,7 +213,7 @@
                         Email Address
                     </label>
                     <input type="email" id="signupEmail" placeholder="studio@arkiviz.com" 
-                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                           class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm text-gray-900 dark:text-white focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-primary/20">
                 </div>
                 
                 <!-- Password Field with Icon -->
@@ -196,8 +224,8 @@
                     </label>
                     <div class="relative">
                         <input type="password" id="signupPassword" placeholder="Create a password" 
-                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all pr-9 sm:pr-10 placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
-                        <button type="button" onclick="togglePassword()" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary">
+                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm text-gray-900 dark:text-white focus:border-primary focus:outline-none transition-all pr-9 sm:pr-10 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-primary/20">
+                        <button type="button" onclick="togglePassword()" class="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-primary dark:text-gray-400 dark:hover:text-primary">
                             <i id="passwordIcon" class="fas fa-eye"></i>
                         </button>
                     </div>
@@ -209,7 +237,7 @@
                             <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 strength-bar" id="strengthBar3"></span>
                             <span class="flex-1 rounded-full bg-gray-200 dark:bg-gray-700 strength-bar" id="strengthBar4"></span>
                         </div>
-                        <p id="strengthText" class="text-[9px] text-gray-500 mt-1">Use 8+ characters with mix of letters & numbers</p>
+                        <p id="strengthText" class="text-[9px] text-gray-500 dark:text-gray-400 mt-1">Use 8+ characters with mix of letters & numbers</p>
                     </div>
                 </div>
                 
@@ -221,7 +249,7 @@
                     </label>
                     <div class="relative">
                         <input type="password" id="confirmPassword" placeholder="Confirm your password" 
-                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 focus:ring-2 focus:ring-primary/20">
+                               class="w-full px-3 sm:px-4 py-2.5 sm:py-3 bg-amber-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-xs sm:text-sm text-gray-900 dark:text-white focus:border-primary focus:outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:ring-2 focus:ring-primary/20">
                     </div>
                     <p id="matchMsg" class="text-[9px] mt-1"></p>
                 </div>
@@ -229,7 +257,7 @@
                 <!-- Terms & Conditions -->
                 <div class="flex items-start gap-2">
                     <input type="checkbox" id="termsCheckbox" class="accent-primary w-3.5 h-3.5 sm:w-4 sm:h-4 rounded mt-0.5">
-                    <label class="text-[9px] sm:text-[10px] md:text-xs text-gray-600 dark:text-gray-400">
+                    <label class="text-[9px] sm:text-[10px] md:text-xs text-gray-600 dark:text-gray-300">
                         I agree to the <a href="#" class="text-primary font-semibold hover:underline">Terms of Service</a> and <a href="#" class="text-primary font-semibold hover:underline">Privacy Policy</a>
                     </label>
                 </div>
@@ -247,28 +275,28 @@
                     <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
                 </div>
                 <div class="relative flex justify-center text-[9px] sm:text-[10px] md:text-xs">
-                    <span class="bg-white dark:bg-[#2A241F] px-3 text-gray-500">or sign up with</span>
+                    <span class="bg-white dark:bg-[#2A241F] px-3 text-gray-500 dark:text-gray-400">or sign up with</span>
                 </div>
             </div>
             
-            <!-- Social Icons with Names -->
+            <!-- Social Icons with Names - Consistent primary color on hover -->
             <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-5 sm:mb-6">
                 <button onclick="socialSignup('google')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
                     <i class="fab fa-google text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
-                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Google</span>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-primary">Google</span>
                 </button>
                 <button onclick="socialSignup('apple')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
                     <i class="fab fa-apple text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
-                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Apple</span>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-primary">Apple</span>
                 </button>
                 <button onclick="socialSignup('facebook')" class="flex items-center justify-center gap-1 sm:gap-2 p-2 sm:p-2.5 md:p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary hover:text-primary transition-all group">
                     <i class="fab fa-facebook-f text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 group-hover:text-primary"></i>
-                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-400 group-hover:text-primary">Facebook</span>
+                    <span class="text-[9px] sm:text-[10px] md:text-xs font-medium text-gray-600 dark:text-gray-300 group-hover:text-primary">Facebook</span>
                 </button>
             </div>
             
             <!-- Login Link -->
-            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-400">
+            <p class="text-center text-[10px] sm:text-xs md:text-sm text-gray-500 dark:text-gray-300">
                 Already have an account? 
                 <a href="login.html" class="text-primary font-bold hover:underline hover:scale-105 inline-block transition-all">
                     Sign in
@@ -341,22 +369,22 @@
                 }
             });
             
-            // Update text
+            // Update text - using consistent color scheme
             if (password.length === 0) {
                 strengthText.textContent = 'Use 8+ characters with mix of letters & numbers';
-                strengthText.className = 'text-[9px] text-gray-500 mt-1';
+                strengthText.className = 'text-[9px] text-gray-500 dark:text-gray-400 mt-1';
             } else if (strength <= 1) {
                 strengthText.textContent = 'Weak - Use at least 8 characters';
-                strengthText.className = 'text-[9px] text-red-500 mt-1';
+                strengthText.className = 'text-[9px] text-primary mt-1';
             } else if (strength === 2) {
                 strengthText.textContent = 'Fair - Add numbers and symbols';
-                strengthText.className = 'text-[9px] text-yellow-500 mt-1';
+                strengthText.className = 'text-[9px] text-primary/80 mt-1';
             } else if (strength === 3) {
                 strengthText.textContent = 'Good - Add special characters for strong password';
-                strengthText.className = 'text-[9px] text-blue-500 mt-1';
+                strengthText.className = 'text-[9px] text-primary/80 mt-1';
             } else {
                 strengthText.textContent = 'Strong password!';
-                strengthText.className = 'text-[9px] text-green-500 mt-1';
+                strengthText.className = 'text-[9px] text-primary mt-1';
             }
         });
         
@@ -371,10 +399,10 @@
             if (confirm.length > 0) {
                 if (password === confirm) {
                     matchMsg.textContent = '✓ Passwords match';
-                    matchMsg.className = 'text-[9px] text-green-500 mt-1';
+                    matchMsg.className = 'text-[9px] text-primary mt-1';
                 } else {
                     matchMsg.textContent = '✗ Passwords do not match';
-                    matchMsg.className = 'text-[9px] text-red-500 mt-1';
+                    matchMsg.className = 'text-[9px] text-red-500 dark:text-red-400 mt-1';
                 }
             } else {
                 matchMsg.textContent = '';

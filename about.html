@@ -693,69 +693,110 @@
             }
         }
         
-
-
-
+        /* Improved dark mode text contrast */
+        .dark .text-gray-500 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-400 {
+            color: #9CA3AF !important;
+        }
+        
+        .dark .text-gray-600 {
+            color: #D1D5DB !important;
+        }
+        
+        .dark .text-gray-700 {
+            color: #E5E7EB !important;
+        }
+        
+        .dark .border-gray-200 {
+            border-color: #374151 !important;
+        }
+        
+        .dark .bg-gray-50 {
+            background-color: #1f1b18 !important;
+        }
+        
+        /* Stats card dark mode text */
+        .dark .stats-card .text-gray-700 {
+            color: #E5E7EB !important;
+        }
+        
+        .dark .stats-card .text-gray-500 {
+            color: #9CA3AF !important;
+        }
+        
+        /* Milestone card dark mode */
+        .dark .milestone-card .text-gray-500 {
+            color: #9CA3AF !important;
+        }
+        
+        /* Team card dark mode */
+        .dark .team-card .text-gray-500 {
+            color: #9CA3AF !important;
+        }
+        
         /* Footer logo uses same styles as navbar logo */
-footer .logo {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-footer .logo i {
-    font-size: 1.8rem;
-    color: #c17b4c;
-    transition: all 0.3s ease;
-}
-
-footer .logo-text {
-    font-weight: 900;
-    font-size: 1.4rem;
-    background: linear-gradient(135deg, #c17b4c, #a5653a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px;
-    transition: all 0.3s ease;
-}
-
-/* Dark mode support for footer logo */
-.dark footer .logo-text {
-    background: linear-gradient(135deg, #d69462, #c17b4c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-/* Responsive footer logo - matches navbar exactly */
-@media (max-width: 768px) {
-    footer .logo i {
-        font-size: 1.5rem !important;
-    }
-    footer .logo-text {
-        font-size: 1.2rem !important;
-    }
-}
-
-@media (max-width: 480px) {
-    footer .logo i {
-        font-size: 1.3rem !important;
-    }
-    footer .logo-text {
-        font-size: 1rem !important;
-    }
-}
-
-/* Hover effect same as navbar */
-footer .logo:hover {
-    transform: scale(1.02);
-}
-
-footer .logo:hover i,
-footer .logo:hover .logo-text {
-    transform: scale(1.02);
-}
+        footer .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        footer .logo i {
+            font-size: 1.8rem;
+            color: #c17b4c;
+            transition: all 0.3s ease;
+        }
+        
+        footer .logo-text {
+            font-weight: 900;
+            font-size: 1.4rem;
+            background: linear-gradient(135deg, #c17b4c, #a5653a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dark mode support for footer logo */
+        .dark footer .logo-text {
+            background: linear-gradient(135deg, #d69462, #c17b4c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Responsive footer logo - matches navbar exactly */
+        @media (max-width: 768px) {
+            footer .logo i {
+                font-size: 1.5rem !important;
+            }
+            footer .logo-text {
+                font-size: 1.2rem !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            footer .logo i {
+                font-size: 1.3rem !important;
+            }
+            footer .logo-text {
+                font-size: 1rem !important;
+            }
+        }
+        
+        /* Hover effect same as navbar */
+        footer .logo:hover {
+            transform: scale(1.02);
+        }
+        
+        footer .logo:hover i,
+        footer .logo:hover .logo-text {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body class="light font-inter">
@@ -914,7 +955,7 @@ footer .logo:hover .logo-text {
                     <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] tracking-tight mb-6">
                         Where <span class="text-primary">Architecture</span><br>Meets <span class="text-primary">Visual Art</span>
                     </h1>
-                    <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0">
                         We transform architectural concepts into photorealistic visualizations, helping architects, developers, and designers bring their visions to life with stunning accuracy and artistic excellence.
                     </p>
                     <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
@@ -933,29 +974,13 @@ footer .logo:hover .logo-text {
     </section>
 
     <!-- Enhanced Stats Section -->
-    <section class="py-16 bg-white dark:bg-gray-900">
+    <section class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="stats-card-enhanced text-center p-6 rounded-2xl">
-                    <div class="text-4xl md:text-5xl font-black text-primary mb-2 counter-number" data-target="500">0</div>
-                    <div class="text-gray-700 dark:text-gray-300 font-medium">Projects Completed</div>
-                    <div class="text-xs text-gray-500 mt-1">Global portfolio</div>
-                </div>
-                <div class="stats-card-enhanced text-center p-6 rounded-2xl">
-                    <div class="text-4xl md:text-5xl font-black text-primary mb-2 counter-number" data-target="45">0</div>
-                    <div class="text-gray-700 dark:text-gray-300 font-medium">Countries Served</div>
-                    <div class="text-xs text-gray-500 mt-1">Worldwide reach</div>
-                </div>
-                <div class="stats-card-enhanced text-center p-6 rounded-2xl">
-                    <div class="text-4xl md:text-5xl font-black text-primary mb-2 counter-number" data-target="15">0</div>
-                    <div class="text-gray-700 dark:text-gray-300 font-medium">Years Experience</div>
-                    <div class="text-xs text-gray-500 mt-1">Industry leaders</div>
-                </div>
-                <div class="stats-card-enhanced text-center p-6 rounded-2xl">
-                    <div class="text-4xl md:text-5xl font-black text-primary mb-2 counter-number" data-target="98">0</div>
-                    <div class="text-gray-700 dark:text-gray-300 font-medium">Client Satisfaction</div>
-                    <div class="text-xs text-gray-500 mt-1">5-star rated</div>
-                </div>
+                <div class="stats-card text-center p-6"><div class="text-4xl md:text-5xl font-black text-primary mb-2">2.5K+</div><div class="text-gray-700 dark:text-gray-300 font-medium">Projects Completed</div><div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Global portfolio</div></div>
+                <div class="stats-card text-center p-6"><div class="text-4xl md:text-5xl font-black text-primary mb-2">45+</div><div class="text-gray-700 dark:text-gray-300 font-medium">Countries Served</div><div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Worldwide reach</div></div>
+                <div class="stats-card text-center p-6"><div class="text-4xl md:text-5xl font-black text-primary mb-2">98%</div><div class="text-gray-700 dark:text-gray-300 font-medium">Client Retention</div><div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Repeat customers</div></div>
+                <div class="stats-card text-center p-6"><div class="text-4xl md:text-5xl font-black text-primary mb-2">24/7</div><div class="text-gray-700 dark:text-gray-300 font-medium">Render Support</div><div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Always available</div></div>
             </div>
         </div>
     </section>
@@ -965,15 +990,15 @@ footer .logo:hover .logo-text {
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Story</span>
+                    <span class="text-primary font-semibold text-sm uppercase tracking-wider">Our Story</span>
                     <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Creating Visual Stories That Inspire</h2>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">Founded in 2015, ARKI VIZ was born from a passion for architectural design and cutting-edge visualization technology. What started as a small team of 3D artists has grown into a premier architectural visualization studio serving clients across 45+ countries.</p>
                     <p class="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">We believe every architectural project deserves to be seen in its full glory. Our mission is to bridge the gap between architectural vision and reality through stunning photorealistic renderings that not only showcase design intent but evoke emotion and inspire action.</p>
                     <div class="flex flex-wrap gap-4 pt-4">
-                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Photoreal Quality</span></div>
-                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Fast Turnaround</span></div>
-                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">Collaborative Process</span></div>
-                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-amber-600"></i><span class="text-sm">24/7 Support</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-primary"></i><span class="text-sm text-gray-700 dark:text-gray-300">Photoreal Quality</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-primary"></i><span class="text-sm text-gray-700 dark:text-gray-300">Fast Turnaround</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-primary"></i><span class="text-sm text-gray-700 dark:text-gray-300">Collaborative Process</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-check-circle text-primary"></i><span class="text-sm text-gray-700 dark:text-gray-300">24/7 Support</span></div>
                     </div>
                 </div>
                 <div class="relative">
@@ -987,8 +1012,8 @@ footer .logo:hover .logo-text {
     <section class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 text-center hover:shadow-xl transition-all"><div class="w-20 h-20 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-bullseye text-3xl text-amber-600"></i></div><h3 class="text-2xl font-bold mb-4">Our Mission</h3><p class="text-gray-600 dark:text-gray-400 leading-relaxed">To empower architects and designers with stunning visualizations that communicate their vision with clarity, emotion, and precision — bridging the gap between imagination and reality.</p></div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 text-center hover:shadow-xl transition-all"><div class="w-20 h-20 bg-amber-100 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-eye text-3xl text-amber-600"></i></div><h3 class="text-2xl font-bold mb-4">Our Vision</h3><p class="text-gray-600 dark:text-gray-400 leading-relaxed">To become the world's leading architectural visualization studio, known for artistic excellence, technical innovation, and unwavering commitment to client success.</p></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 text-center hover:shadow-xl transition-all"><div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-bullseye text-3xl text-primary"></i></div><h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Mission</h3><p class="text-gray-600 dark:text-gray-300 leading-relaxed">To empower architects and designers with stunning visualizations that communicate their vision with clarity, emotion, and precision — bridging the gap between imagination and reality.</p></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl border border-gray-200 dark:border-gray-700 text-center hover:shadow-xl transition-all"><div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"><i class="fas fa-eye text-3xl text-primary"></i></div><h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Our Vision</h3><p class="text-gray-600 dark:text-gray-300 leading-relaxed">To become the world's leading architectural visualization studio, known for artistic excellence, technical innovation, and unwavering commitment to client success.</p></div>
             </div>
         </div>
     </section>
@@ -996,12 +1021,12 @@ footer .logo:hover .logo-text {
     <!-- Core Values -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Core Values</span>
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Core Values</span>
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-12">What Drives Us</h2>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="value-card bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-palette text-2xl text-amber-600"></i></div><h3 class="text-xl font-bold mb-3">Artistic Excellence</h3><p class="text-gray-600 dark:text-gray-400">Every render is crafted with meticulous attention to detail, lighting, composition, and photorealism.</p></div>
-                <div class="value-card bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-microchip text-2xl text-amber-600"></i></div><h3 class="text-xl font-bold mb-3">Technical Precision</h3><p class="text-gray-600 dark:text-gray-400">Using cutting-edge rendering engines for accurate materials, realistic lighting, and lifelike textures.</p></div>
-                <div class="value-card bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-amber-100 dark:bg-amber-900/30 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-handshake text-2xl text-amber-600"></i></div><h3 class="text-xl font-bold mb-3">Client Partnership</h3><p class="text-gray-600 dark:text-gray-400">Collaborative feedback loops ensure your vision is perfectly executed with transparency and communication.</p></div>
+                <div class="value-card bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-palette text-2xl text-primary"></i></div><h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Artistic Excellence</h3><p class="text-gray-600 dark:text-gray-300">Every render is crafted with meticulous attention to detail, lighting, composition, and photorealism.</p></div>
+                <div class="value-card bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-microchip text-2xl text-primary"></i></div><h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Technical Precision</h3><p class="text-gray-600 dark:text-gray-300">Using cutting-edge rendering engines for accurate materials, realistic lighting, and lifelike textures.</p></div>
+                <div class="value-card bg-white dark:bg-gray-900 p-8 rounded-2xl border border-gray-200 dark:border-gray-700"><div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto mb-6"><i class="fas fa-handshake text-2xl text-primary"></i></div><h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3">Client Partnership</h3><p class="text-gray-600 dark:text-gray-300">Collaborative feedback loops ensure your vision is perfectly executed with transparency and communication.</p></div>
             </div>
         </div>
     </section>
@@ -1009,13 +1034,13 @@ footer .logo:hover .logo-text {
     <!-- Milestones -->
     <section class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Journey</span>
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Our Journey</span>
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-12">Key Milestones</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2015</div><p class="font-semibold">Studio Founded</p><p class="text-sm text-gray-500">Started in Barcelona</p></div>
-                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2017</div><p class="font-semibold">First International Client</p><p class="text-sm text-gray-500">Expanded globally</p></div>
-                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2020</div><p class="font-semibold">100th Project Completed</p><p class="text-sm text-gray-500">Milestone achievement</p></div>
-                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-amber-600 mb-2">2024</div><p class="font-semibold">500+ Projects</p><p class="text-sm text-gray-500">Global recognition</p></div>
+                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-primary mb-2">2015</div><p class="font-semibold text-gray-900 dark:text-white">Studio Founded</p><p class="text-sm text-gray-500 dark:text-gray-400">Started in Barcelona</p></div>
+                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-primary mb-2">2017</div><p class="font-semibold text-gray-900 dark:text-white">First International Client</p><p class="text-sm text-gray-500 dark:text-gray-400">Expanded globally</p></div>
+                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-primary mb-2">2020</div><p class="font-semibold text-gray-900 dark:text-white">100th Project Completed</p><p class="text-sm text-gray-500 dark:text-gray-400">Milestone achievement</p></div>
+                <div class="milestone-card bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl"><div class="text-3xl font-black text-primary mb-2">2024</div><p class="font-semibold text-gray-900 dark:text-white">500+ Projects</p><p class="text-sm text-gray-500 dark:text-gray-400">Global recognition</p></div>
             </div>
         </div>
     </section>
@@ -1023,14 +1048,14 @@ footer .logo:hover .logo-text {
     <!-- Our Team -->
     <section class="py-20 bg-gray-50 dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Creative Minds</span>
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Creative Minds</span>
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Meet Our Team</h2>
-            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">Passionate artists, architects, and technologists dedicated to visual storytelling.</p>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">Passionate artists, architects, and technologists dedicated to visual storytelling.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/b1.jpg" class="w-full h-64 object-cover object-top"><div class="p-6 text-center"><h3 class="text-xl font-bold">Michael Chen</h3><p class="text-amber-600 text-sm mb-2">Founder & Creative Director</p><p class="text-gray-500 text-sm">15+ years in architectural visualization</p></div></div>
-                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/g1.jpg" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">Sarah Rodriguez</h3><p class="text-amber-600 text-sm mb-2">Lead 3D Artist</p><p class="text-gray-500 text-sm">Expert in photorealistic rendering</p></div></div>
-                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/b2.jpg" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">David Kim</h3><p class="text-amber-600 text-sm mb-2">Technical Director</p><p class="text-gray-500 text-sm">VRay & Corona Specialist</p></div></div>
-                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/g2.jpg" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold">Emma Watson</h3><p class="text-amber-600 text-sm mb-2">Client Relations</p><p class="text-gray-500 text-sm">Ensuring seamless collaboration</p></div></div>
+                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/b1.jpg" class="w-full h-64 object-cover object-top"><div class="p-6 text-center"><h3 class="text-xl font-bold text-gray-900 dark:text-white">Michael Chen</h3><p class="text-primary text-sm mb-2">Founder & Creative Director</p><p class="text-gray-500 dark:text-gray-400 text-sm">15+ years in architectural visualization</p></div></div>
+                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/g1.jpg" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold text-gray-900 dark:text-white">Sarah Rodriguez</h3><p class="text-primary text-sm mb-2">Lead 3D Artist</p><p class="text-gray-500 dark:text-gray-400 text-sm">Expert in photorealistic rendering</p></div></div>
+                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/b2.jpg" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold text-gray-900 dark:text-white">David Kim</h3><p class="text-primary text-sm mb-2">Technical Director</p><p class="text-gray-500 dark:text-gray-400 text-sm">VRay & Corona Specialist</p></div></div>
+                <div class="team-card bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"><img src="images/g2.jpg" class="w-full h-64 object-cover"><div class="p-6 text-center"><h3 class="text-xl font-bold text-gray-900 dark:text-white">Emma Watson</h3><p class="text-primary text-sm mb-2">Client Relations</p><p class="text-gray-500 dark:text-gray-400 text-sm">Ensuring seamless collaboration</p></div></div>
             </div>
         </div>
     </section>
@@ -1038,22 +1063,22 @@ footer .logo:hover .logo-text {
     <!-- Technology Stack -->
     <section class="py-20 bg-white dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span class="text-amber-600 font-semibold text-sm uppercase tracking-wider">Our Toolkit</span>
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Our Toolkit</span>
             <h2 class="text-3xl md:text-4xl font-black text-gray-900 dark:text-white mt-2 mb-4">Cutting-Edge Technology</h2>
-            <p class="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-12">We leverage industry-leading software to deliver exceptional results.</p>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-12">We leverage industry-leading software to deliver exceptional results.</p>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-cube text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">3ds Max</span></div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-drafting-compass text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">SketchUp</span></div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-drafting-compass text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">Revit</span></div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-chart-line text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">VRay</span></div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-sun text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">Corona</span></div>
-                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-mountain text-3xl text-amber-600 mb-2 block"></i><span class="text-sm font-semibold">Lumion</span></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-cube text-3xl text-primary mb-2 block"></i><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">3ds Max</span></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-drafting-compass text-3xl text-primary mb-2 block"></i><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">SketchUp</span></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-drafting-compass text-3xl text-primary mb-2 block"></i><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Revit</span></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-chart-line text-3xl text-primary mb-2 block"></i><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">VRay</span></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-sun text-3xl text-primary mb-2 block"></i><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Corona</span></div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-xl text-center border border-gray-200 dark:border-gray-700"><i class="fas fa-mountain text-3xl text-primary mb-2 block"></i><span class="text-sm font-semibold text-gray-700 dark:text-gray-300">Lumion</span></div>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-r from-amber-600 to-stone-700">
+    <section class="py-20 bg-gradient-to-r from-primary to-secondary">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="text-center lg:text-left">
@@ -1062,10 +1087,10 @@ footer .logo:hover .logo-text {
                         <span>Let's Work Together</span>
                     </div>
                     <h2 class="text-3xl md:text-5xl font-black text-white mb-4">Ready to Visualize Your Vision?</h2>
-                    <p class="text-xl text-amber-100 mb-6">Join 500+ satisfied architects and bring your next project to life with stunning 3D renders.</p>
+                    <p class="text-xl text-white/90 mb-6">Join 500+ satisfied architects and bring your next project to life with stunning 3D renders.</p>
                     <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                        <a href="upload.html" class="bg-white text-amber-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg inline-flex items-center gap-2"><i class="fas fa-cloud-upload-alt"></i> Start Your Project</a>
-                        <a href="contact.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-amber-600 transition inline-flex items-center gap-2"><i class="fas fa-calendar-alt"></i> Schedule Consultation</a>
+                        <a href="upload.html" class="bg-white text-primary px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition shadow-lg inline-flex items-center gap-2"><i class="fas fa-cloud-upload-alt"></i> Start Your Project</a>
+                        <a href="contact.html" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-primary transition inline-flex items-center gap-2"><i class="fas fa-calendar-alt"></i> Schedule Consultation</a>
                     </div>
                     <div class="flex flex-wrap gap-6 mt-8 justify-center lg:justify-start">
                         <span class="flex items-center gap-2 text-white/90"><i class="fas fa-check-circle text-white"></i> Free Consultation</span>
@@ -1092,73 +1117,73 @@ footer .logo:hover .logo-text {
     </section>
 
     <!-- Footer - Same Size as Navbar Logo -->
- <footer class="bg-gray-900 text-white pt-12 pb-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Mobile: Stacked (1 column), Desktop: Grid (4 columns) -->
-        <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
-            <!-- Logo & Description - USING SAME CLASSES AS NAVBAR -->
-            <div>
-                <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
-                    <i class="fas fa-cube"></i>
-                    <span class="logo-text">ARKI VIZ</span>
-                </a>
-                <p class="text-gray-400 text-sm mb-4 leading-relaxed">
-                    Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
-                </p>
-                <div class="flex gap-3">
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-xs"></i></a>
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-xs"></i></a>
-                    <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
+    <footer class="bg-gray-900 text-white pt-12 pb-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Mobile: Stacked (1 column), Desktop: Grid (4 columns) -->
+            <div class="flex flex-col md:grid md:grid-cols-4 gap-8 mb-10">
+                <!-- Logo & Description - USING SAME CLASSES AS NAVBAR -->
+                <div>
+                    <a href="index.html" class="logo flex items-center gap-2 mb-4 group">
+                        <i class="fas fa-cube"></i>
+                        <span class="logo-text">ARKI VIZ</span>
+                    </a>
+                    <p class="text-gray-400 text-sm mb-4 leading-relaxed">
+                        Premium architectural visualization & 3D rendering studio helping architects and developers bring their visions to life.
+                    </p>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-instagram text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fab fa-linkedin-in text-xs"></i></a>
+                        <a href="#" class="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition"><i class="fas fa-envelope text-xs"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white">Home</a></li>
+                        <li><a href="about.html" class="hover:text-white">About Us</a></li>
+                        <li><a href="projects.html" class="hover:text-white">Projects</a></li>
+                        <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
+                        <li><a href="contact.html" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Our Services -->
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Our Services</h4>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
+                        <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
+                        <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
+                        <li><a href="#" class="hover:text-white">3D Animation</a></li>
+                        <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Barcelona, Spain</p>
+                        <p><i class="fas fa-envelope text-primary mr-2"></i> <a href="mailto:studio@arkiviz.com" class="hover:text-white">studio@arkiviz.com</a></p>
+                        <p><i class="fas fa-phone text-primary mr-2"></i> <a href="tel:+34931234567" class="hover:text-white">+34 93 123 4567</a></p>
+                        <p><i class="fas fa-clock text-primary mr-2"></i> Mon-Fri: 9AM - 8PM</p>
+                    </div>
                 </div>
             </div>
             
-            <!-- Quick Links -->
-            <div>
-                <h4 class="font-bold mb-4 text-primary">Quick Links</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="index.html" class="hover:text-white">Home</a></li>
-                    <li><a href="about.html" class="hover:text-white">About Us</a></li>
-                    <li><a href="projects.html" class="hover:text-white">Projects</a></li>
-                    <li><a href="portfolio.html" class="hover:text-white">Portfolio</a></li>
-                    <li><a href="contact.html" class="hover:text-white">Contact</a></li>
-                </ul>
-            </div>
-            
-            <!-- Our Services -->
-            <div>
-                <h4 class="font-bold mb-4 text-primary">Our Services</h4>
-                <ul class="space-y-2 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white">Exterior Rendering</a></li>
-                    <li><a href="#" class="hover:text-white">Interior Visualization</a></li>
-                    <li><a href="#" class="hover:text-white">360° VR Tours</a></li>
-                    <li><a href="#" class="hover:text-white">3D Animation</a></li>
-                    <li><a href="#" class="hover:text-white">Virtual Staging</a></li>
-                </ul>
-            </div>
-            
-            <!-- Contact Info -->
-            <div>
-                <h4 class="font-bold mb-4 text-primary">Contact Info</h4>
-                <div class="space-y-3 text-gray-400 text-sm">
-                    <p><i class="fas fa-map-marker-alt text-primary mr-2"></i> Barcelona, Spain</p>
-                    <p><i class="fas fa-envelope text-primary mr-2"></i> <a href="mailto:studio@arkiviz.com" class="hover:text-white">studio@arkiviz.com</a></p>
-                    <p><i class="fas fa-phone text-primary mr-2"></i> <a href="tel:+34931234567" class="hover:text-white">+34 93 123 4567</a></p>
-                    <p><i class="fas fa-clock text-primary mr-2"></i> Mon-Fri: 9AM - 8PM</p>
+            <!-- Copyright -->
+            <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
+                <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">Cookie Policy</a>
                 </div>
             </div>
         </div>
-        
-        <!-- Copyright -->
-        <div class="pt-6 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs">
-            <p>© 2026 ARKI VIZ Studio — Architectural Visualization & 3D Rendering. All rights reserved.</p>
-            <div class="flex gap-6">
-                <a href="#" class="hover:text-white">Privacy Policy</a>
-                <a href="#" class="hover:text-white">Terms of Service</a>
-                <a href="#" class="hover:text-white">Cookie Policy</a>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <script>
         lucide.createIcons();

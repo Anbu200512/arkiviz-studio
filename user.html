@@ -189,6 +189,27 @@
                 display: none !important;
             }
         }
+        
+        /* HIDE SCROLLBAR IN SIDEBAR NAVIGATION - KEEP FUNCTIONALITY INTACT */
+        #sidebar nav {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        #sidebar nav::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        /* Ensure the nav container can still scroll but without visible scrollbar */
+        nav.overflow-y-auto {
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        
+        nav.overflow-y-auto::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-[#1E1A17] text-gray-900 dark:text-gray-100 antialiased">
@@ -237,8 +258,8 @@
                     <p class="text-[8px] text-primary uppercase tracking-widest">Architect Client</p>
                 </div>
 
-                <!-- Navigation -->
-                <nav class="flex-1 space-y-1 overflow-y-auto">
+                <!-- Navigation - Scrollbar removed via CSS, scrolling still works -->
+                <nav class="flex-1 space-y-1 overflow-y-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
                     <p class="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-3 ml-2">
                         <i data-lucide="layout-grid" class="w-3 h-3 inline mr-1"></i>
                         MAIN MENU
