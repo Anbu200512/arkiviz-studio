@@ -930,18 +930,36 @@
     </section>
 
     <!-- Asset Categories -->
-    <section class="py-12 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-wrap justify-center gap-3">
-                <button class="category-btn active px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition" data-category="all">All Assets</button>
-                <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition" data-category="renders">4K Renders</button>
-                <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition" data-category="models">3D Models</button>
-                <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition" data-category="textures">Textures</button>
-                <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition" data-category="animations">Animations</button>
-                <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition" data-category="documents">Documents</button>
-            </div>
+ <!-- Asset Categories -->
+<section class="py-12 bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap justify-center gap-3">
+
+            <!-- All Assets (Active) -->
+            <button 
+                class="category-btn active px-6 py-2 rounded-full 
+                border border-gray-300 dark:border-gray-600 
+                font-medium transition 
+                text-gray-800 dark:text-white 
+                hover:bg-gray-200 dark:hover:bg-gray-600"
+                data-category="all">
+                All Assets
+            </button>
+
+            <!-- Others -->
+            <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600" data-category="renders">4K Renders</button>
+
+            <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600" data-category="models">3D Models</button>
+
+            <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600" data-category="textures">Textures</button>
+
+            <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600" data-category="animations">Animations</button>
+
+            <button class="category-btn px-6 py-2 rounded-full border border-gray-300 dark:border-gray-600 font-medium transition text-gray-800 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600" data-category="documents">Documents</button>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Assets Grid -->
     <section id="assets-grid" class="py-20 bg-white dark:bg-gray-900">
